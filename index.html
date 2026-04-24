@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Flow — Glass Interface</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background: #ffffff;
+            overflow: hidden;
+        }
+
+        /* App container */
+        .app-shell {
+            width: 100%;
+            max-width: 430px;
+            margin: 0 auto;
+            background: #ffffff;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 40px rgba(0,0,0,0.02);
+        }
+
+        /* Header - dynamic & elegant */
+        .header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: #ffffff;
+            padding: 24px 24px 14px 24px;
+            z-index: 10;
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.8px;
+            background: linear-gradient(125deg, #1c1c1e, #3a3a3e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #8e8e93;
+            margin-top: 6px;
+            font-weight: 500;
+            letter-spacing: -0.2px;
+        }
+
+        /* Scrollable pages container */
+        .pages-container {
+            flex: 1;
+            position: relative;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+
+        .page {
+            display: none;
+            width: 100%;
+            min-height: 100%;
+            padding: 20px 20px 100px 20px;
+            background: #ffffff;
+            animation: pageTransition 0.28s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        .page.active-page {
+            display: block;
+        }
+
+        @keyframes pageTransition {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ========== GLASS BOTTOM NAVIGATION (premium blurred) ========== */
+        .bottom-nav {
+            position: fixed;
+            bottom: 24px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            width: calc(100% - 32px);
+            max-width: 380px;
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(24px) saturate(200%);
+            -webkit-backdrop-filter: blur(24px) saturate(200%);
+            border-radius: 48px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08), 0 1px 1px rgba(255,255,255,0.6) inset;
+            border: 0.8px solid rgba(255, 255, 255, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 6px 12px;
+            z-index: 200;
+        }
+
+        /* Transparent liquid droplet - follows selection */
+        .nav-droplet {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 78px;
+            height: 56px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 42px;
+            transition: left 0.32s cubic-bezier(0.2, 0.85, 0.4, 1.1);
+            pointer-events: none;
+            z-index: 1;
+            border: 0.5px solid rgba(255,255,255,0.9);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02), inset 0 1px 2px rgba(255,255,255,0.8);
+        }
+
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            gap: 4px;
+            padding: 10px 0;
+            border-radius: 36px;
+            transition: all 0.2s ease;
+            color: #8e8e93;
+            position: relative;
+            z-index: 2;
+            font-weight: 520;
+        }
+
+        .nav-item i {
+            font-size: 22px;
+            transition: transform 0.18s ease;
+        }
+
+        .nav-item span {
+            font-size: 11px;
+            font-weight: 540;
+            letter-spacing: 0.2px;
+        }
+
+        .nav-item.active {
+            color: #007aff;
+        }
+
+        .nav-item.active i {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        .nav-item:active {
+            transform: scale(0.95);
+        }
+
+        /* UI Components — Cards & grid */
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1c1c1e;
+            margin-bottom: 22px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: -0.3px;
+        }
+        .section-title i {
+            color: #007aff;
+            background: #f2f2f6;
+            padding: 8px;
+            border-radius: 28px;
+            font-size: 18px;
+        }
+
+        /* Marketplace Grid */
+        .market-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-top: 8px;
+        }
+
+        .product-card {
+            background: #ffffff;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.02);
+            border: 1px solid #f0f0f2;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .product-card:active {
+            transform: scale(0.97);
+            background: #fefefe;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .product-img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background: #fbfbfd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: #007aff;
+            border-bottom: 1px solid #f3f3f5;
+        }
+        .product-info {
+            padding: 14px 12px 16px;
+        }
+        .product-price {
+            font-weight: 760;
+            font-size: 17px;
+            color: #1c1c1e;
+        }
+        .product-name {
+            font-size: 13px;
+            color: #6c6c70;
+            margin-top: 5px;
+            font-weight: 480;
+        }
+
+        /* Transactions List with dual arrows */
+        .transactions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .transaction-item {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 16px 18px;
+            border: 1px solid #efeff1;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: all 0.15s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+        }
+        .transaction-icon {
+            width: 52px;
+            height: 52px;
+            background: #f7f7f9;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: #007aff;
+        }
+        .transaction-details {
+            flex: 1;
+        }
+        .transaction-title {
+            font-weight: 620;
+            font-size: 16px;
+            color: #1c1c1e;
+        }
+        .transaction-date {
+            font-size: 12px;
+            color: #8e8e93;
+            margin-top: 4px;
+        }
+        .transaction-amount {
+            font-weight: 720;
+            font-size: 17px;
+        }
+
+        /* Profile page — circle avatar & stats */
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 34px;
+        }
+        .avatar {
+            width: 104px;
+            height: 104px;
+            background: linear-gradient(125deg, #f0f0f4, #ffffff);
+            border-radius: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 52px;
+            color: #007aff;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.03);
+            border: 3px solid white;
+            margin-bottom: 16px;
+        }
+        .profile-name {
+            font-size: 26px;
+            font-weight: 720;
+            color: #1c1c1e;
+        }
+        .profile-bio {
+            font-size: 14px;
+            color: #8e8e93;
+            margin-top: 5px;
+        }
+        .stats-row {
+            display: flex;
+            justify-content: space-around;
+            background: #fafafc;
+            border-radius: 48px;
+            padding: 18px 16px;
+            margin: 18px 0 28px;
+            border: 1px solid #efeff2;
+        }
+        .stat-cell {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 23px;
+            font-weight: 800;
+            color: #1c1c1e;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #8e8e93;
+        }
+        .menu-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+            border-bottom: 1px solid #efeff2;
+            cursor: pointer;
+            transition: all 0.1s;
+        }
+        .menu-row:active {
+            background: #f7f7f9;
+            border-radius: 24px;
+            padding-left: 12px;
+        }
+        .menu-left {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+        .menu-left i {
+            width: 28px;
+            font-size: 18px;
+            color: #007aff;
+        }
+        .menu-text {
+            font-weight: 520;
+            color: #1c1c1e;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 70px 20px;
+            color: #aeaeb2;
+        }
+        .empty-state i {
+            font-size: 64px;
+            margin-bottom: 18px;
+            opacity: 0.4;
+        }
+
+        /* Product Detail Overlay (glass-like slide) */
+        .overlay-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #ffffff;
+            z-index: 400;
+            transform: translateY(100%);
+            transition: transform 0.35s cubic-bezier(0.2, 0.95, 0.3, 1);
+            overflow-y: auto;
+        }
+        .overlay-page.active-overlay {
+            transform: translateY(0);
+        }
+        .overlay-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 22px 14px;
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #efeff1;
+            position: sticky;
+            top: 0;
+            z-index: 5;
+        }
+        .back-btn {
+            background: #f2f2f6;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            color: #007aff;
+        }
+        .back-btn:active {
+            background: #e5e5ea;
+            transform: scale(0.94);
+        }
+        .overlay-title {
+            font-size: 19px;
+            font-weight: 620;
+        }
+        .product-detail-image {
+            width: 100%;
+            background: #fbfbfd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 56px 0;
+            font-size: 88px;
+            color: #007aff;
+            border-bottom: 1px solid #efeff1;
+        }
+        .product-detail-info {
+            padding: 28px 24px;
+        }
+        .product-detail-name {
+            font-size: 28px;
+            font-weight: 740;
+        }
+        .product-detail-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: #007aff;
+            margin: 12px 0 16px;
+        }
+        .product-detail-desc {
+            color: #5c5c5e;
+            line-height: 1.45;
+            margin: 20px 0;
+            font-size: 15px;
+        }
+        .action-button {
+            width: 100%;
+            background: #007aff;
+            padding: 18px;
+            border-radius: 48px;
+            border: none;
+            color: white;
+            font-weight: 620;
+            font-size: 17px;
+            cursor: pointer;
+            transition: 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .action-button:active {
+            background: #005fc1;
+            transform: scale(0.98);
+        }
+        .pages-container::-webkit-scrollbar {
+            width: 4px;
+        }
+        .pages-container::-webkit-scrollbar-track {
+            background: #f5f5f7;
+        }
+        .pages-container::-webkit-scrollbar-thumb {
+            background: #c6c6c8;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="app-shell">
+    <div class="header">
+        <h1 id="dynamicHeaderTitle">Market</h1>
+        <p id="dynamicSubtitle">discover & collect</p>
+    </div>
+
+    <div class="pages-container">
+        <!-- PAGE: TRANSACTIONS (double arrow style) -->
+        <div class="page" id="page-transactions">
+            <div class="section-title">
+                <i class="fas fa-credit-card"></i>
+                <i class="fas fa-arrows-left-right" style="font-size: 18px;"></i>
+                <span>Transactions</span>
+            </div>
+            <div class="transactions-list" id="transactionsList"></div>
+            <div class="empty-state" id="emptyTransactions" style="display: none;">
+                <i class="fas fa-receipt"></i>
+                <p>No transactions recorded</p>
+            </div>
+        </div>
+
+        <!-- PAGE: MARKET -->
+        <div class="page" id="page-market">
+            <div class="section-title">
+                <i class="fas fa-store"></i>
+                <span>Marketplace</span>
+            </div>
+            <div class="market-grid" id="marketGrid"></div>
+        </div>
+
+        <!-- PAGE: PROFILE -->
+        <div class="page" id="page-profile">
+            <div class="profile-header">
+                <div class="avatar">
+                    <i class="fas fa-circle-user"></i>
+                </div>
+                <div class="profile-name">Elena Rossi</div>
+                <div class="profile-bio">@elena · creator</div>
+            </div>
+            <div class="stats-row">
+                <div class="stat-cell"><div class="stat-number">1.8k</div><div class="stat-label">followers</div></div>
+                <div class="stat-cell"><div class="stat-number">42</div><div class="stat-label">items</div></div>
+                <div class="stat-cell"><div class="stat-number">4.9</div><div class="stat-label">rating</div></div>
+            </div>
+            <div class="menu-row" onclick="alert('❤️ Favorites — your saved items')">
+                <div class="menu-left"><i class="fas fa-heart"></i><span class="menu-text">Favorites</span></div>
+                <i class="fas fa-chevron-right" style="color:#c6c6c8;"></i>
+            </div>
+            <div class="menu-row" onclick="alert('📦 Order history & tracking')">
+                <div class="menu-left"><i class="fas fa-box"></i><span class="menu-text">Orders</span></div>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="menu-row" onclick="alert('⚙️ App preferences and security')">
+                <div class="menu-left"><i class="fas fa-sliders-h"></i><span class="menu-text">Settings</span></div>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTTOM GLASS NAVIGATION -->
+    <div class="bottom-nav" id="bottomNav">
+        <div class="nav-droplet" id="navDroplet"></div>
+        <button class="nav-item" data-page="transactions">
+            <div style="display: flex; align-items: center; gap: 4px;">
+                <i class="fas fa-credit-card"></i>
+                <i class="fas fa-arrows-left-right" style="font-size: 10px;"></i>
+            </div>
+            <span>Flow</span>
+        </button>
+        <button class="nav-item" data-page="market">
+            <i class="fas fa-store"></i>
+            <span>Market</span>
+        </button>
+        <button class="nav-item" data-page="profile">
+            <i class="fas fa-circle-user"></i>
+            <span>Profile</span>
+        </button>
+    </div>
+
+    <!-- Product Detail Overlay -->
+    <div class="overlay-page" id="productOverlay">
+        <div class="overlay-header">
+            <button class="back-btn" id="closeProductOverlayBtn"><i class="fas fa-arrow-left"></i></button>
+            <div class="overlay-title">Product</div>
+            <div style="width: 44px;"></div>
+        </div>
+        <div id="productOverlayContent"></div>
+    </div>
+</div>
+
+<script>
+    // ---- MARKET DATA ----
+    const marketProducts = [
+        { id: 1, name: "Aura Headphones", price: "$129", desc: "Immersive spatial audio, active noise cancellation, 40h battery life.", icon: "fas fa-headphones" },
+        { id: 2, name: "Nova Watch", price: "$249", desc: "Sapphire glass, heart rate monitor, always-on display & elegant strap.", icon: "fas fa-clock" },
+        { id: 3, name: "Orbit Speaker", price: "$89", desc: "360° immersive sound, waterproof, 20h portable speaker.", icon: "fas fa-volume-up" },
+        { id: 4, name: "Vista Camera", price: "$499", desc: "4K mirrorless with built-in stabilization, retro design.", icon: "fas fa-camera" },
+        { id: 5, name: "Flow Backpack", price: "$79", desc: "Water-resistant, 15” laptop compartment, eco-friendly fabric.", icon: "fas fa-bag-shopping" },
+        { id: 6, name: "Lumina Lamp", price: "$45", desc: "Smart RGB ambient light, voice enabled, 16M colors.", icon: "fas fa-lightbulb" }
+    ];
+
+    // ---- TRANSACTIONS (flow data with double arrows concept) ----
+    const transactionsData = [
+        { id: 1, title: "Payment → StudioElegan", date: "May 18, 2025", amount: "- $49.99", icon: "fas fa-arrow-right" },
+        { id: 2, title: "Refund ← ArtSpace", date: "May 15, 2025", amount: "+ $34.50", icon: "fas fa-arrow-left" },
+        { id: 3, title: "Purchase: Nova Watch", date: "May 12, 2025", amount: "- $249.00", icon: "fas fa-clock" },
+        { id: 4, title: "Sold design asset", date: "May 9, 2025", amount: "+ $120.00", icon: "fas fa-crown" },
+        { id: 5, title: "Coffee shop • Flow", date: "May 6, 2025", amount: "- $6.30", icon: "fas fa-mug-hot" }
+    ];
+
+    // Helper render functions
+    function renderMarket() {
+        const grid = document.getElementById('marketGrid');
+        if (!grid) return;
+        grid.innerHTML = '';
+        marketProducts.forEach(product => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.onclick = () => openProductDetail(product);
+            card.innerHTML = `
+                <div class="product-img"><i class="${product.icon}"></i></div>
+                <div class="product-info">
+                    <div class="product-price">${product.price}</div>
+                    <div class="product-name">${product.name}</div>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    function renderTransactions() {
+        const container = document.getElementById('transactionsList');
+        const emptyDiv = document.getElementById('emptyTransactions');
+        if (!container) return;
+        if (transactionsData.length === 0) {
+            container.style.display = 'none';
+            if(emptyDiv) emptyDiv.style.display = 'block';
+            return;
+        }
+        container.style.display = 'flex';
+        if(emptyDiv) emptyDiv.style.display = 'none';
+        container.innerHTML = '';
+        transactionsData.forEach(tx => {
+            const txElement = document.createElement('div');
+            txElement.className = 'transaction-item';
+            const amountColor = tx.amount.includes('+') ? '#34c759' : '#ff3b30';
+            txElement.innerHTML = `
+                <div class="transaction-icon"><i class="${tx.icon}"></i></div>
+                <div class="transaction-details">
+                    <div class="transaction-title">${tx.title}</div>
+                    <div class="transaction-date">${tx.date}</div>
+                </div>
+                <div class="transaction-amount" style="color:${amountColor}">${tx.amount}</div>
+            `;
+            container.appendChild(txElement);
+        });
+    }
+
+    // product detail overlay
+    function openProductDetail(product) {
+        const overlay = document.getElementById('productOverlay');
+        const content = document.getElementById('productOverlayContent');
+        content.innerHTML = `
+            <div class="product-detail-image"><i class="${product.icon}" style="font-size: 84px;"></i></div>
+            <div class="product-detail-info">
+                <div class="product-detail-name">${product.name}</div>
+                <div class="product-detail-price">${product.price}</div>
+                <div class="product-detail-desc">${product.desc} · Elegant design, premium quality & 2-year warranty.</div>
+                <button class="action-button" id="buyNowBtnDetail"><i class="fas fa-shopping-bag"></i> Buy now</button>
+            </div>
+        `;
+        overlay.classList.add('active-overlay');
+        document.body.style.overflow = 'hidden';
+        const buyBtn = document.getElementById('buyNowBtnDetail');
+        if (buyBtn) {
+            buyBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                alert(`✨ Order confirmed: ${product.name} added to your Flow wallet.`);
+                closeProductOverlay();
+            });
+        }
+    }
+
+    function closeProductOverlay() {
+        const overlay = document.getElementById('productOverlay');
+        overlay.classList.remove('active-overlay');
+        document.body.style.overflow = '';
+    }
+
+    // ---------- BOTTOM NAV + DROPLET POSITION (glass dynamic) ----------
+    let currentPage = 'market';
+
+    function updateDropletPosition(pageId) {
+        const navItems = document.querySelectorAll('.nav-item');
+        const droplet = document.getElementById('navDroplet');
+        const navBar = document.getElementById('bottomNav');
+        if (!droplet || navItems.length === 0 || !navBar) return;
+
+        let idx = pageId === 'transactions' ? 0 : (pageId === 'market' ? 1 : 2);
+        const targetButton = navItems[idx];
+        if (!targetButton) return;
+
+        const navRect = navBar.getBoundingClientRect();
+        const btnRect = targetButton.getBoundingClientRect();
+        let relativeLeft = btnRect.left - navRect.left;
+        const btnWidth = btnRect.width;
+        const dropletWidth = 78;
+        let leftPos = relativeLeft + (btnWidth / 2) - (dropletWidth / 2);
+        leftPos = Math.max(8, Math.min(leftPos, navRect.width - dropletWidth - 8));
+        droplet.style.left = `${leftPos}px`;
+    }
+
+    function switchToPage(pageId) {
+        // deactivate all pages
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
+        const activePageElement = document.getElementById(`page-${pageId}`);
+        if (activePageElement) activePageElement.classList.add('active-page');
+
+        // update nav button active class
+        document.querySelectorAll('.nav-item').forEach(btn => {
+            const btnPage = btn.getAttribute('data-page');
+            if (btnPage === pageId) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+
+        // header titles
+        const titleEl = document.getElementById('dynamicHeaderTitle');
+        const subEl = document.getElementById('dynamicSubtitle');
+        if (pageId === 'transactions') {
+            titleEl.innerText = 'Flow';
+            subEl.innerText = 'income & payments • double arrows';
+        } else if (pageId === 'market') {
+            titleEl.innerText = 'Market';
+            subEl.innerText = 'discover & collect';
+        } else {
+            titleEl.innerText = 'Profile';
+            subEl.innerText = 'your elegant space';
+        }
+
+        currentPage = pageId;
+        updateDropletPosition(pageId);
+    }
+
+    // resize listener to maintain droplet after orientation change
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        if (resizeTimer) clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            if (currentPage) updateDropletPosition(currentPage);
+        }, 80);
+    });
+
+    // initial load
+    document.addEventListener('DOMContentLoaded', () => {
+        renderMarket();
+        renderTransactions();
+
+        // attach navigation events
+        const navButtons = document.querySelectorAll('.nav-item');
+        navButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const pageId = btn.getAttribute('data-page');
+                if (pageId) switchToPage(pageId);
+            });
+        });
+
+        // default market
+        switchToPage('market');
+
+        // overlay close events
+        const closeBtn = document.getElementById('closeProductOverlayBtn');
+        if (closeBtn) closeBtn.addEventListener('click', closeProductOverlay);
+        const overlayBg = document.getElementById('productOverlay');
+        if (overlayBg) {
+            overlayBg.addEventListener('click', (e) => {
+                if (e.target === overlayBg) closeProductOverlay();
+            });
+        }
+
+        // ensure dynamic droplet init after slight delay for proper measurements
+        setTimeout(() => {
+            updateDropletPosition(currentPage);
+        }, 50);
+    });
+
+    window.closeProductOverlay = closeProductOverlay;
+</script>
+</body>
+</html>
