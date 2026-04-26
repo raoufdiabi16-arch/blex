@@ -507,7 +507,6 @@
             width: 74px;
             height: 48px;
             border-radius: 30px;
-            /* زجاج شفاف */
             background: rgba(255, 255, 255, 0.88);
             backdrop-filter: blur(24px) saturate(180%);
             -webkit-backdrop-filter: blur(24px) saturate(180%);
@@ -523,11 +522,14 @@
                 border-radius 0.22s ease,
                 background 0.2s ease,
                 box-shadow 0.2s ease;
-            pointer-events: none;
-            z-index: 1;
+            /* السحب يعمل على القطرة مباشرة */
+            pointer-events: auto;
+            z-index: 3;
             cursor: grab;
             touch-action: none;
             will-change: left, width, height;
+            -webkit-user-select: none;
+            user-select: none;
         }
 
         /* حالة السحب — تكبر وتصبح أكثر شفافية */
@@ -535,7 +537,7 @@
             width: 88px;
             height: 58px;
             border-radius: 36px;
-            background: rgba(255, 255, 255, 0.50);
+            background: rgba(255, 255, 255, 0.45);
             backdrop-filter: blur(40px) saturate(240%);
             -webkit-backdrop-filter: blur(40px) saturate(240%);
             border: 1px solid rgba(255, 255, 255, 0.72);
@@ -545,7 +547,6 @@
                 inset 0 1.5px 0 rgba(255,255,255,1),
                 inset 0 0 24px rgba(255,255,255,0.25);
             cursor: grabbing;
-            /* transition سريع أثناء السحب */
             transition:
                 width 0.15s cubic-bezier(0.34,1.56,0.64,1),
                 height 0.15s cubic-bezier(0.34,1.56,0.64,1),
@@ -1121,28 +1122,43 @@
         let startX    = 0;
         let startLeft = 0;
         let holdTimer = null;
+        let moved     = false;
 
         function getLeft() { return parseFloat(droplet.style.left) || 0; }
+
+        function disableTransition() {
+            droplet.style.transition =
+                'width .15s cubic-bezier(.34,1.56,.64,1),' +
+                'height .15s cubic-bezier(.34,1.56,.64,1),' +
+                'border-radius .15s ease,' +
+                'background .15s ease,' +
+                'box-shadow .15s ease';
+        }
+        function enableTransition() { droplet.style.transition = ''; }
 
         function onStart(clientX) {
             startX    = clientX;
             startLeft = getLeft();
             dragging  = true;
-            // ضغط مطول → تكبر فوراً
+            moved     = false;
+            disableTransition();
+            // ضغط مطول قليلاً → تكبر
             holdTimer = setTimeout(() => {
                 droplet.classList.add('dragging');
-            }, 110);
+            }, 100);
         }
 
         function onMove(clientX) {
             if (!dragging) return;
-            if (Math.abs(clientX - startX) > 5) droplet.classList.add('dragging');
-            const dw = droplet.offsetWidth;
-            // بدون transition للـ left أثناء السحب
-            droplet.style.transition =
-                'width .15s cubic-bezier(.34,1.56,.64,1), height .15s cubic-bezier(.34,1.56,.64,1), border-radius .15s ease, background .15s ease, box-shadow .15s ease';
-            let newLeft = startLeft + (clientX - startX);
-            newLeft = Math.max(4, Math.min(newLeft, nav.offsetWidth - dw - 4));
+            const dx = clientX - startX;
+            if (Math.abs(dx) > 3) {
+                moved = true;
+                droplet.classList.add('dragging');
+            }
+            const navW = nav.offsetWidth;
+            const dw   = droplet.offsetWidth;
+            let newLeft = startLeft + dx;
+            newLeft = Math.max(4, Math.min(newLeft, navW - dw - 4));
             droplet.style.left = newLeft + 'px';
         }
 
@@ -1150,17 +1166,19 @@
             if (!dragging) return;
             dragging = false;
             clearTimeout(holdTimer);
-            droplet.style.transition = ''; // إعادة كل الـ transitions
+            enableTransition();
             droplet.classList.remove('dragging');
 
+            if (!moved) return; // مجرد نقرة بدون تحريك → لا شيء
+
             // أقرب تبويب
-            const btns = document.querySelectorAll('.nav-item');
-            const nr   = nav.getBoundingClientRect();
+            const btns   = document.querySelectorAll('.nav-item');
+            const nr     = nav.getBoundingClientRect();
+            const dropCx = getLeft() + droplet.offsetWidth / 2;
             let nearest = 1, minDist = Infinity;
             btns.forEach((b, i) => {
                 const br = b.getBoundingClientRect();
                 const cx = (br.left - nr.left) + br.width / 2;
-                const dropCx = getLeft() + 37;
                 const dist = Math.abs(dropCx - cx);
                 if (dist < minDist) { minDist = dist; nearest = i; }
             });
@@ -1169,15 +1187,31 @@
             snapDroplet(targetPage);
         }
 
-        // Touch events
-        droplet.addEventListener('touchstart', e => { e.preventDefault(); onStart(e.touches[0].clientX); }, { passive: false });
-        window.addEventListener('touchmove',   e => { if (dragging) { e.preventDefault(); onMove(e.touches[0].clientX); } }, { passive: false });
-        window.addEventListener('touchend',    () => onEnd());
+        // ── Touch (الجوال) ──
+        droplet.addEventListener('touchstart', e => {
+            e.preventDefault();
+            e.stopPropagation();
+            onStart(e.touches[0].clientX);
+        }, { passive: false });
 
-        // Mouse events
-        droplet.addEventListener('mousedown', e => { e.preventDefault(); onStart(e.clientX); });
-        window.addEventListener('mousemove',  e => { if (dragging) onMove(e.clientX); });
-        window.addEventListener('mouseup',    () => onEnd());
+        droplet.addEventListener('touchmove', e => {
+            e.preventDefault();
+            e.stopPropagation();
+            onMove(e.touches[0].clientX);
+        }, { passive: false });
+
+        droplet.addEventListener('touchend', e => {
+            e.preventDefault();
+            onEnd();
+        }, { passive: false });
+
+        // ── Mouse (الكمبيوتر) ──
+        droplet.addEventListener('mousedown', e => {
+            e.preventDefault();
+            onStart(e.clientX);
+        });
+        window.addEventListener('mousemove', e => { if (dragging) onMove(e.clientX); });
+        window.addEventListener('mouseup',   () => { if (dragging) onEnd(); });
     }
 
     /* ═══════ INIT ═══════ */
