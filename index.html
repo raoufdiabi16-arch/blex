@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Flow — Luxury Glass Experience</title>
+    <title>Flow — Pure Glass App</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -13,6 +13,7 @@
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            user-select: none;
         }
 
         body {
@@ -33,34 +34,9 @@
             overflow: hidden;
         }
 
-        /* Header - compact & elegant */
-        .header {
-            background: #ffffff;
-            padding: 12px 16px 8px 16px;
-            z-index: 10;
-            border-bottom: 1px solid rgba(0,0,0,0.04);
-        }
-
-        .header h1 {
-            font-size: 26px;
-            font-weight: 700;
-            letter-spacing: -0.8px;
-            background: linear-gradient(135deg, #1c1c1e, #48484c);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .header p {
-            font-size: 12px;
-            color: #8e8e93;
-            margin-top: 2px;
-            font-weight: 500;
-        }
-
         /* Market Header */
         .market-header-container {
-            background: #ffffff;
+            background: transparent;
             padding: 8px 16px 10px 16px;
             border-bottom: 1px solid rgba(0,0,0,0.04);
             display: none;
@@ -78,7 +54,7 @@
             position: relative;
         }
 
-        /* Elegant glass search bar */
+        /* Glass search bar */
         .glass-search-bar {
             flex: 1;
             background: rgba(120, 120, 128, 0.08);
@@ -92,7 +68,6 @@
             gap: 10px;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
 
         .glass-search-bar:active {
@@ -111,7 +86,7 @@
             font-weight: 400;
         }
 
-        /* Black icon buttons - sleek */
+        /* Black icon buttons */
         .black-icon-btn {
             background: transparent;
             border: none;
@@ -153,19 +128,19 @@
             padding: 0 4px;
         }
 
-        /* Glass Popup Menu - مباشرة تحت الزر */
+        /* Glass Popup Menu - شفافة زجاجية */
         .glass-popup-menu {
             position: absolute;
             top: calc(100% + 6px);
             right: 0;
-            background: rgba(255, 255, 255, 0.94);
+            background: rgba(255, 255, 255, 0.88);
             backdrop-filter: blur(32px);
             -webkit-backdrop-filter: blur(32px);
             border-radius: 26px;
             padding: 8px 0;
             min-width: 180px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-            border: 0.8px solid rgba(255, 255, 255, 0.7);
+            border: 0.8px solid rgba(255, 255, 255, 0.6);
             z-index: 300;
             transform: scale(0.95);
             opacity: 0;
@@ -191,17 +166,17 @@
             color: #1c1c1e;
             font-weight: 500;
             font-size: 14px;
+            border-radius: 20px;
+        }
+
+        .popup-menu-item:active {
+            background: rgba(0, 122, 255, 0.15);
         }
 
         .popup-menu-item i {
             width: 22px;
             font-size: 16px;
             color: #007aff;
-        }
-
-        .popup-menu-item:active {
-            background: rgba(0, 122, 255, 0.1);
-            border-radius: 20px;
         }
 
         /* Pages */
@@ -216,7 +191,7 @@
             display: none;
             width: 100%;
             min-height: 100%;
-            padding: 16px 16px 80px 16px;
+            padding: 20px 16px 80px 16px;
             background: #ffffff;
             animation: fadeSlide 0.25s ease-out;
         }
@@ -230,16 +205,85 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .section-title {
-            font-size: 20px;
+        /* Flow Header */
+        .flow-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .section-title-clickable {
+            font-size: 22px;
             font-weight: 700;
             color: #1c1c1e;
-            margin-bottom: 18px;
             display: flex;
             align-items: center;
             gap: 10px;
+            cursor: pointer;
         }
 
+        .dropdown-icon {
+            font-size: 16px;
+            color: #8e8e93;
+            transition: transform 0.2s;
+        }
+
+        /* Glass Dropdown - شفافة زجاجية */
+        .glass-dropdown {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            border-radius: 24px;
+            padding: 8px 0;
+            min-width: 160px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            border: 0.8px solid rgba(255, 255, 255, 0.6);
+            z-index: 250;
+            transform: scale(0.95);
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+            pointer-events: none;
+        }
+
+        .glass-dropdown.show {
+            transform: scale(1);
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: 0.1s;
+            color: #1c1c1e;
+            font-weight: 500;
+            font-size: 15px;
+            border-radius: 20px;
+        }
+
+        .dropdown-item:active {
+            background: rgba(0, 122, 255, 0.15);
+        }
+
+        .dropdown-item i {
+            width: 22px;
+            font-size: 16px;
+            color: #007aff;
+        }
+
+        .dropdown-item.active-mode {
+            background: rgba(0, 122, 255, 0.1);
+            color: #007aff;
+        }
+
+        /* Market Grid */
         .market-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -259,7 +303,6 @@
 
         .product-card:active {
             transform: scale(0.97);
-            background: #fafafc;
         }
 
         .product-img {
@@ -290,14 +333,14 @@
             margin-top: 3px;
         }
 
-        /* Transactions */
-        .transactions-list {
+        /* Lists for Flow page */
+        .transactions-list, .orders-list {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
 
-        .transaction-item {
+        .transaction-item, .order-item {
             background: #ffffff;
             border-radius: 22px;
             padding: 14px;
@@ -307,7 +350,7 @@
             gap: 14px;
         }
 
-        .transaction-icon {
+        .transaction-icon, .order-icon {
             width: 48px;
             height: 48px;
             background: #f7f7f9;
@@ -319,22 +362,22 @@
             color: #007aff;
         }
 
-        .transaction-details {
+        .transaction-details, .order-details {
             flex: 1;
         }
 
-        .transaction-title {
+        .transaction-title, .order-title {
             font-weight: 600;
             font-size: 14px;
         }
 
-        .transaction-date {
+        .transaction-date, .order-date {
             font-size: 11px;
             color: #8e8e93;
             margin-top: 3px;
         }
 
-        .transaction-amount {
+        .transaction-amount, .order-amount {
             font-weight: 700;
             font-size: 15px;
         }
@@ -344,26 +387,34 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
+            margin-top: 8px;
         }
 
         .avatar {
-            width: 88px;
-            height: 88px;
+            width: 100px;
+            height: 100px;
             background: linear-gradient(145deg, #f0f0f4, #ffffff);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 44px;
+            font-size: 50px;
             color: #007aff;
-            margin-bottom: 10px;
+            margin-bottom: 14px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            border: 2px solid white;
         }
 
         .profile-name {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 700;
+        }
+
+        .profile-bio {
+            font-size: 13px;
+            color: #8e8e93;
+            margin-top: 4px;
         }
 
         .stats-row {
@@ -371,9 +422,24 @@
             justify-content: space-around;
             background: #fafafc;
             border-radius: 32px;
-            padding: 14px 12px;
-            margin: 16px 0 20px;
+            padding: 16px 12px;
+            margin: 16px 0 24px;
             border: 1px solid #efeff0;
+        }
+
+        .stat-cell {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 20px;
+            font-weight: 800;
+            color: #1c1c1e;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #8e8e93;
         }
 
         .menu-row {
@@ -403,7 +469,7 @@
             color: #007aff;
         }
 
-        /* Bottom Navigation - مع قطرة قابلة للسحب */
+        /* Bottom Navigation with Draggable Droplet */
         .bottom-nav {
             position: fixed;
             bottom: 18px;
@@ -412,18 +478,17 @@
             margin: 0 auto;
             width: calc(100% - 32px);
             max-width: 360px;
-            background: rgba(255, 255, 255, 0.78);
+            background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(26px) saturate(180%);
             -webkit-backdrop-filter: blur(26px);
             border-radius: 44px;
             box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
-            border: 0.8px solid rgba(255, 255, 255, 0.7);
+            border: 0.6px solid rgba(255, 255, 255, 0.6);
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 6px 12px;
             z-index: 100;
-            position: fixed;
         }
 
         .nav-droplet {
@@ -432,29 +497,39 @@
             transform: translateY(-50%);
             width: 74px;
             height: 50px;
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.55);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
-            border-radius: 36px;
-            transition: width 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1), height 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1), left 0.1s ease-out;
+            border-radius: 38px;
+            transition: width 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.2), 
+                        height 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.2),
+                        left 0.08s linear;
             pointer-events: auto;
             z-index: 1;
-            border: 0.6px solid rgba(255, 255, 255, 0.9);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            border: 0.8px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             cursor: grab;
             touch-action: none;
+            will-change: left, width, height;
         }
 
         .nav-droplet:active {
             cursor: grabbing;
         }
 
-        .nav-droplet.expanded {
+        .nav-droplet.long-press {
             width: 92px;
             height: 62px;
             border-radius: 44px;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.75);
             box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+            transition: width 0.15s ease-out, height 0.15s ease-out;
+        }
+
+        .nav-droplet.dragging-active {
+            cursor: grabbing;
+            opacity: 0.95;
+            transition: none;
         }
 
         .nav-item {
@@ -473,7 +548,6 @@
             position: relative;
             z-index: 2;
             font-weight: 510;
-            font-size: 10px;
             transition: color 0.15s;
         }
 
@@ -492,7 +566,7 @@
             color: #007aff;
         }
 
-        /* Glass Search Page - زجاجية شفافة بالكامل */
+        /* Glass Search Page - شفافة قليلاً */
         .glass-search-page {
             position: fixed;
             top: 0;
@@ -502,7 +576,7 @@
             margin: 0 auto;
             right: 0;
             height: 100vh;
-            background: rgba(245, 245, 247, 0.92);
+            background: rgba(245, 245, 247, 0.88);
             backdrop-filter: blur(36px);
             -webkit-backdrop-filter: blur(36px);
             z-index: 500;
@@ -539,7 +613,6 @@
             border: none;
             font-size: 18px;
             color: #007aff;
-            transition: 0.1s;
         }
 
         .search-back-btn:active {
@@ -577,7 +650,7 @@
             color: #aeaeb2;
         }
 
-        /* Categories section */
+        /* Categories section - زجاجية شفافة */
         .categories-section {
             padding: 20px 20px 12px;
         }
@@ -616,29 +689,9 @@
 
         .search-results {
             padding: 0 20px 20px;
-            flex: 1;
         }
 
-        .search-result-item {
-            background: rgba(255, 255, 255, 0.55);
-            backdrop-filter: blur(12px);
-            border-radius: 22px;
-            padding: 14px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            cursor: pointer;
-            border: 0.5px solid rgba(255, 255, 255, 0.7);
-            transition: 0.1s;
-        }
-
-        .search-result-item:active {
-            background: rgba(255, 255, 255, 0.8);
-            transform: scale(0.98);
-        }
-
-        /* Product Overlay */
+        /* Overlay */
         .overlay-page {
             position: fixed;
             top: 0;
@@ -668,15 +721,29 @@
             margin-top: 18px;
             cursor: pointer;
         }
+
+        .action-button:active {
+            background: #005fc1;
+            transform: scale(0.98);
+        }
+
+        .back-btn {
+            background: #f5f5f7;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
 <div class="app-shell">
-    <div class="header" id="defaultHeader">
-        <h1 id="headerTitle">Market</h1>
-        <p id="headerSubtitle">discover & collect</p>
-    </div>
-
+    <!-- Market Header -->
     <div class="market-header-container" id="marketHeader">
         <div class="market-header-row">
             <div class="glass-search-bar" id="glassSearchTrigger">
@@ -702,40 +769,64 @@
         </div>
     </div>
 
-    <!-- Glass Search Page with Categories -->
+    <!-- Glass Search Page - فقط الفئات -->
     <div class="glass-search-page" id="glassSearchPage">
         <div class="search-page-header">
             <button class="search-back-btn" id="closeSearchPage"><i class="fas fa-arrow-left"></i></button>
             <div class="search-input-glass">
                 <i class="fas fa-search"></i>
-                <input type="text" id="fullSearchInput" placeholder="Search...">
+                <input type="text" id="fullSearchInput" placeholder="Search categories...">
             </div>
         </div>
         <div class="categories-section">
             <div class="categories-title">Categories</div>
             <div class="categories-grid" id="categoriesGrid"></div>
         </div>
-        <div class="search-results" id="searchResultsList"></div>
     </div>
 
+    <!-- Pages -->
     <div class="pages-container">
+        <!-- Flow Page -->
         <div class="page" id="page-transactions">
-            <div class="section-title"><i class="fas fa-credit-card"></i><i class="fas fa-arrows-left-right"></i><span>Transactions</span></div>
-            <div class="transactions-list" id="transactionsList"></div>
+            <div class="flow-header">
+                <div class="section-title-clickable" id="flowTitleBtn">
+                    <span id="flowModeTitle">Purchases</span>
+                    <i class="fas fa-chevron-down dropdown-icon"></i>
+                </div>
+            </div>
+            <div id="purchasesContainer"></div>
         </div>
+
+        <!-- Market Page -->
         <div class="page" id="page-market">
             <div class="market-grid" id="marketGrid"></div>
         </div>
+
+        <!-- Profile Page -->
         <div class="page" id="page-profile">
-            <div class="profile-header"><div class="avatar"><i class="fas fa-circle-user"></i></div><div class="profile-name">Elena Rossi</div><div class="profile-bio">@elena · creator</div></div>
-            <div class="stats-row"><div class="stat-cell"><div class="stat-number">1.8k</div><div class="stat-label">followers</div></div><div class="stat-cell"><div class="stat-number">42</div><div class="stat-label">items</div></div><div class="stat-cell"><div class="stat-number">4.9</div><div class="stat-label">rating</div></div></div>
+            <div class="profile-header">
+                <div class="avatar"><i class="fas fa-circle-user"></i></div>
+                <div class="profile-name">Elena Rossi</div>
+                <div class="profile-bio">@elena · creator</div>
+            </div>
+            <div class="stats-row">
+                <div class="stat-cell"><div class="stat-number">1.8k</div><div class="stat-label">followers</div></div>
+                <div class="stat-cell"><div class="stat-number">42</div><div class="stat-label">items</div></div>
+                <div class="stat-cell"><div class="stat-number">4.9</div><div class="stat-label">rating</div></div>
+            </div>
             <div class="menu-row" onclick="alert('❤️ Favorites')"><div class="menu-left"><i class="fas fa-heart"></i><span>Favorites</span></div><i class="fas fa-chevron-right"></i></div>
             <div class="menu-row" onclick="alert('📦 Orders')"><div class="menu-left"><i class="fas fa-box"></i><span>Orders</span></div><i class="fas fa-chevron-right"></i></div>
             <div class="menu-row" onclick="alert('⚙️ Settings')"><div class="menu-left"><i class="fas fa-sliders-h"></i><span>Settings</span></div><i class="fas fa-chevron-right"></i></div>
         </div>
     </div>
 
-    <!-- Bottom Navigation with draggable droplet -->
+    <!-- Glass Dropdown for Flow -->
+    <div class="glass-dropdown" id="flowDropdown">
+        <div class="dropdown-item" data-mode="purchases"><i class="fas fa-shopping-cart"></i><span>Purchases</span></div>
+        <div class="dropdown-item" data-mode="orders"><i class="fas fa-truck"></i><span>Orders</span></div>
+    </div>
+
+    <!-- Bottom Navigation -->
     <div class="bottom-nav" id="bottomNav">
         <div class="nav-droplet" id="navDroplet"></div>
         <button class="nav-item" data-page="transactions"><div><i class="fas fa-credit-card"></i><i class="fas fa-arrows-left-right" style="font-size: 9px;"></i></div><span>Flow</span></button>
@@ -743,34 +834,55 @@
         <button class="nav-item" data-page="profile"><i class="fas fa-circle-user"></i><span>Profile</span></button>
     </div>
 
-    <div class="overlay-page" id="productOverlay"><div class="overlay-header" style="display:flex; padding:16px 20px; gap:16px; border-bottom:1px solid #efefef;"><button class="back-btn" id="closeOverlayBtn" style="background:#f5f5f7; border:none; width:40px; height:40px; border-radius:30px;"><i class="fas fa-chevron-left"></i></button><div style="font-weight:600;">Product</div><div style="width:40px;"></div></div><div id="productOverlayContent"></div></div>
+    <!-- Product Overlay -->
+    <div class="overlay-page" id="productOverlay">
+        <div class="overlay-header" style="display:flex; padding:16px 20px; gap:16px; border-bottom:1px solid #efefef;">
+            <button class="back-btn" id="closeOverlayBtn"><i class="fas fa-chevron-left"></i></button>
+            <div style="font-weight:600;">Product</div>
+            <div style="width:40px;"></div>
+        </div>
+        <div id="productOverlayContent"></div>
+    </div>
 </div>
 
 <script>
-    // Products with categories
+    // Products for Market page
     const products = [
-        { id: 1, name: "Aura Headphones", price: "$129", category: "Electronics", desc: "Noise cancelling, 40h battery", icon: "fas fa-headphones" },
-        { id: 2, name: "Nova Watch", price: "$249", category: "Electronics", desc: "Fitness tracker, sleek design", icon: "fas fa-clock" },
-        { id: 3, name: "Orbit Speaker", price: "$89", category: "Electronics", desc: "360° audio, waterproof", icon: "fas fa-volume-up" },
-        { id: 4, name: "Vista Camera", price: "$499", category: "Electronics", desc: "4K mirrorless camera", icon: "fas fa-camera" },
-        { id: 5, name: "Flow Backpack", price: "$79", category: "Accessories", desc: "Eco-friendly, laptop compartment", icon: "fas fa-bag-shopping" },
-        { id: 6, name: "Lumina Lamp", price: "$45", category: "Home", desc: "Smart RGB lamp", icon: "fas fa-lightbulb" },
-        { id: 7, name: "Nike Air Max", price: "$159", category: "Shoes", desc: "Comfortable running shoes", icon: "fas fa-shoe-prints" },
-        { id: 8, name: "Leather Jacket", price: "$199", category: "Clothing", desc: "Premium leather jacket", icon: "fas fa-tshirt" },
-        { id: 9, name: "Denim Jeans", price: "$89", category: "Clothing", desc: "Classic slim fit", icon: "fas fa-jeans" }
+        { id: 1, name: "Aura Headphones", price: "$129", category: "Electronics", desc: "Noise cancelling", icon: "fas fa-headphones" },
+        { id: 2, name: "Nova Watch", price: "$249", category: "Electronics", desc: "Fitness tracker", icon: "fas fa-clock" },
+        { id: 3, name: "Orbit Speaker", price: "$89", category: "Electronics", desc: "360° audio", icon: "fas fa-volume-up" },
+        { id: 4, name: "Vista Camera", price: "$499", category: "Electronics", desc: "4K mirrorless", icon: "fas fa-camera" },
+        { id: 5, name: "Flow Backpack", price: "$79", category: "Accessories", desc: "Eco-friendly", icon: "fas fa-bag-shopping" },
+        { id: 6, name: "Lumina Lamp", price: "$45", category: "Home", desc: "Smart RGB", icon: "fas fa-lightbulb" },
+        { id: 7, name: "Nike Air Max", price: "$159", category: "Shoes", desc: "Running shoes", icon: "fas fa-shoe-prints" },
+        { id: 8, name: "Leather Jacket", price: "$199", category: "Clothing", desc: "Premium jacket", icon: "fas fa-tshirt" }
+    ];
+
+    // Purchases data
+    const purchasesData = [
+        { id: 1, title: "Payment to StudioElegan", date: "May 18, 2025", amount: "- $49.99", icon: "fas fa-arrow-right" },
+        { id: 2, title: "Refund from ArtSpace", date: "May 15, 2025", amount: "+ $34.50", icon: "fas fa-arrow-left" },
+        { id: 3, title: "Purchase: Nova Watch", date: "May 12, 2025", amount: "- $249.00", icon: "fas fa-clock" },
+        { id: 4, title: "Sold design asset", date: "May 9, 2025", amount: "+ $120.00", icon: "fas fa-crown" },
+        { id: 5, title: "Coffee shop", date: "May 6, 2025", amount: "- $6.30", icon: "fas fa-mug-hot" }
+    ];
+
+    // Orders data
+    const ordersData = [
+        { id: 1, title: "Aura Headphones", date: "May 20, 2025", amount: "$129", status: "Delivered", icon: "fas fa-headphones" },
+        { id: 2, title: "Nova Watch", date: "May 18, 2025", amount: "$249", status: "Shipped", icon: "fas fa-clock" },
+        { id: 3, title: "Flow Backpack", date: "May 15, 2025", amount: "$79", status: "Processing", icon: "fas fa-bag-shopping" },
+        { id: 4, title: "Orbit Speaker", date: "May 10, 2025", amount: "$89", status: "Delivered", icon: "fas fa-volume-up" }
     ];
 
     const categories = ["All", "Clothing", "Shoes", "Electronics", "Accessories", "Home"];
-    const transactions = [
-        { id: 1, title: "Payment to StudioElegan", date: "May 18, 2025", amount: "- $49.99", icon: "fas fa-arrow-right" },
-        { id: 2, title: "Refund from ArtSpace", date: "May 15, 2025", amount: "+ $34.50", icon: "fas fa-arrow-left" },
-        { id: 3, title: "Purchase: Nova Watch", date: "May 12, 2025", amount: "- $249.00", icon: "fas fa-clock" }
-    ];
 
     let cart = [];
     let currentPage = 'market';
     let currentCategory = "All";
+    let currentFlowMode = "purchases";
 
+    // Render Market
     function renderMarket() {
         const grid = document.getElementById('marketGrid');
         if (!grid) return;
@@ -785,139 +897,293 @@
         });
     }
 
-    function renderTransactions() {
-        const container = document.getElementById('transactionsList');
-        container.innerHTML = '';
-        transactions.forEach(tx => {
-            const color = tx.amount.includes('+') ? '#34c759' : '#ff3b30';
-            container.innerHTML += `<div class="transaction-item"><div class="transaction-icon"><i class="${tx.icon}"></i></div><div class="transaction-details"><div class="transaction-title">${tx.title}</div><div class="transaction-date">${tx.date}</div></div><div class="transaction-amount" style="color:${color}">${tx.amount}</div></div>`;
+    // Render Flow Content
+    function renderFlowContent() {
+        const container = document.getElementById('purchasesContainer');
+        if (!container) return;
+        if (currentFlowMode === "purchases") {
+            container.innerHTML = '<div class="transactions-list" id="transactionsList"></div>';
+            const list = document.getElementById('transactionsList');
+            list.innerHTML = '';
+            purchasesData.forEach(tx => {
+                const color = tx.amount.includes('+') ? '#34c759' : '#ff3b30';
+                list.innerHTML += `<div class="transaction-item"><div class="transaction-icon"><i class="${tx.icon}"></i></div><div class="transaction-details"><div class="transaction-title">${tx.title}</div><div class="transaction-date">${tx.date}</div></div><div class="transaction-amount" style="color:${color}">${tx.amount}</div></div>`;
+            });
+        } else {
+            container.innerHTML = '<div class="orders-list" id="ordersList"></div>';
+            const list = document.getElementById('ordersList');
+            list.innerHTML = '';
+            ordersData.forEach(order => {
+                list.innerHTML += `<div class="order-item"><div class="order-icon"><i class="${order.icon}"></i></div><div class="order-details"><div class="order-title">${order.title}</div><div class="order-date">${order.date} · ${order.status}</div></div><div class="order-amount" style="color:#007aff">${order.amount}</div></div>`;
+            });
+        }
+    }
+
+    // Render Categories in Search Page
+    function renderCategoriesGrid() {
+        const grid = document.getElementById('categoriesGrid');
+        if (!grid) return;
+        grid.innerHTML = '';
+        categories.forEach(cat => {
+            const chip = document.createElement('div');
+            chip.className = 'category-chip';
+            chip.innerText = cat;
+            chip.onclick = () => {
+                currentCategory = cat;
+                renderMarket();
+                closeGlassSearch();
+            };
+            grid.appendChild(chip);
         });
     }
 
-    function updateCartBadge() { document.getElementById('cartCount').innerText = cart.length; }
+    function updateCartBadge() { 
+        document.getElementById('cartCount').innerText = cart.length; 
+    }
+
     function openProductDetail(p) {
         const overlay = document.getElementById('productOverlay');
-        document.getElementById('productOverlayContent').innerHTML = `<div style="display:flex; justify-content:center; padding:40px 0; background:#fafafc;"><i class="${p.icon}" style="font-size:70px; color:#007aff;"></i></div><div style="padding:24px;"><div style="font-size:26px; font-weight:700;">${p.name}</div><div style="font-size:20px; font-weight:600; color:#007aff; margin:10px 0;">${p.price}</div><div style="color:#5c5c5e;">${p.desc} · premium quality.</div><button class="action-button" id="buyBtn"><i class="fas fa-shopping-cart"></i> Buy now</button></div>`;
+        document.getElementById('productOverlayContent').innerHTML = `
+            <div style="display:flex; justify-content:center; padding:40px 0; background:#fafafc;">
+                <i class="${p.icon}" style="font-size:70px; color:#007aff;"></i>
+            </div>
+            <div style="padding:24px;">
+                <div style="font-size:26px; font-weight:700;">${p.name}</div>
+                <div style="font-size:20px; font-weight:600; color:#007aff; margin:10px 0;">${p.price}</div>
+                <div style="color:#5c5c5e;">${p.desc} · premium quality.</div>
+                <button class="action-button" id="buyBtn"><i class="fas fa-shopping-cart"></i> Buy now</button>
+            </div>
+        `;
         overlay.classList.add('active-overlay');
         document.body.style.overflow = 'hidden';
-        document.getElementById('buyBtn')?.addEventListener('click', () => { cart.push(p.id); updateCartBadge(); alert(`✅ ${p.name} added!`); closeOverlay(); });
+        document.getElementById('buyBtn')?.addEventListener('click', () => { 
+            cart.push(p.id); 
+            updateCartBadge(); 
+            alert(`✅ ${p.name} added to cart!`); 
+            closeOverlay(); 
+        });
     }
-    function closeOverlay() { document.getElementById('productOverlay').classList.remove('active-overlay'); document.body.style.overflow = ''; }
 
+    function closeOverlay() { 
+        document.getElementById('productOverlay').classList.remove('active-overlay'); 
+        document.body.style.overflow = ''; 
+    }
+
+    // Page Navigation
     function switchPage(pageId) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
         document.getElementById(`page-${pageId}`).classList.add('active-page');
-        document.querySelectorAll('.nav-item').forEach(btn => { if(btn.dataset.page === pageId) btn.classList.add('active'); else btn.classList.remove('active'); });
-        const defaultHeader = document.getElementById('defaultHeader');
+        
+        document.querySelectorAll('.nav-item').forEach(btn => { 
+            if(btn.dataset.page === pageId) btn.classList.add('active'); 
+            else btn.classList.remove('active'); 
+        });
+        
         const marketHeader = document.getElementById('marketHeader');
-        if (pageId === 'market') { defaultHeader.style.display = 'none'; marketHeader.classList.add('active'); } 
-        else { defaultHeader.style.display = 'block'; marketHeader.classList.remove('active'); document.getElementById('headerTitle').innerText = pageId === 'transactions' ? 'Flow' : 'Profile'; document.getElementById('headerSubtitle').innerText = pageId === 'transactions' ? 'banking & transfers' : 'your elegant space'; }
+        if (pageId === 'market') marketHeader.classList.add('active');
+        else marketHeader.classList.remove('active');
+        
         currentPage = pageId;
         updateDropletPosition(pageId);
+        if (pageId === 'transactions') renderFlowContent();
     }
 
     function updateDropletPosition(pageId) {
         const items = document.querySelectorAll('.nav-item');
         const droplet = document.getElementById('navDroplet');
         const nav = document.getElementById('bottomNav');
+        if (!droplet || items.length === 0) return;
+        
         let idx = pageId === 'transactions' ? 0 : (pageId === 'market' ? 1 : 2);
         const target = items[idx];
         if (!target) return;
+        
         const navRect = nav.getBoundingClientRect();
         const btnRect = target.getBoundingClientRect();
-        let left = (btnRect.left - navRect.left) + (btnRect.width/2) - 37;
+        let left = (btnRect.left - navRect.left) + (btnRect.width / 2) - 37;
         left = Math.max(6, Math.min(left, navRect.width - 74 - 6));
         droplet.style.left = `${left}px`;
+        droplet.style.transition = 'left 0.2s cubic-bezier(0.2, 0.85, 0.4, 1)';
     }
 
-    // Draggable Droplet with scale effect
-    function initDraggable() {
+    // Draggable Droplet with Long Press
+    function initDraggableDroplet() {
         const droplet = document.getElementById('navDroplet');
         const nav = document.getElementById('bottomNav');
         let isDragging = false;
+        let isLongPressing = false;
         let startX = 0;
         let currentLeft = 0;
+        let longPressTimer = null;
 
         const onStart = (clientX) => {
-            isDragging = true;
             startX = clientX;
-            const left = parseFloat(droplet.style.left) || 37;
-            currentLeft = left;
-            droplet.classList.add('expanded');
+            currentLeft = parseFloat(droplet.style.left) || 37;
+            longPressTimer = setTimeout(() => {
+                isLongPressing = true;
+                droplet.classList.add('long-press');
+            }, 150);
         };
 
         const onMove = (clientX) => {
             if (!isDragging) return;
+            if (longPressTimer) {
+                clearTimeout(longPressTimer);
+                longPressTimer = null;
+            }
             let newLeft = currentLeft + (clientX - startX);
             const maxLeft = nav.offsetWidth - droplet.offsetWidth - 6;
             newLeft = Math.max(6, Math.min(newLeft, maxLeft));
             droplet.style.left = `${newLeft}px`;
+            droplet.style.transition = 'none';
         };
 
         const onEnd = () => {
+            if (longPressTimer) {
+                clearTimeout(longPressTimer);
+                longPressTimer = null;
+            }
+            if (isLongPressing || droplet.classList.contains('long-press')) {
+                droplet.classList.remove('long-press');
+                isLongPressing = false;
+            }
             if (!isDragging) return;
             isDragging = false;
-            droplet.classList.remove('expanded');
+            droplet.style.transition = 'left 0.25s cubic-bezier(0.2, 0.85, 0.4, 1), width 0.25s, height 0.25s';
+            
             const finalLeft = parseFloat(droplet.style.left);
             const navRect = nav.getBoundingClientRect();
             const itemWidth = navRect.width / 3;
-            let selected = finalLeft + droplet.offsetWidth/2 < itemWidth ? 0 : (finalLeft + droplet.offsetWidth/2 < itemWidth*2 ? 1 : 2);
+            const dropletCenter = finalLeft + droplet.offsetWidth / 2;
+            let selectedIndex = 0;
+            if (dropletCenter < itemWidth) selectedIndex = 0;
+            else if (dropletCenter < itemWidth * 2) selectedIndex = 1;
+            else selectedIndex = 2;
+            
             const pages = ['transactions', 'market', 'profile'];
-            switchPage(pages[selected]);
+            if (pages[selectedIndex] !== currentPage) {
+                switchPage(pages[selectedIndex]);
+            } else {
+                updateDropletPosition(currentPage);
+            }
         };
 
-        droplet.addEventListener('touchstart', (e) => { e.preventDefault(); onStart(e.touches[0].clientX); });
-        droplet.addEventListener('touchmove', (e) => { e.preventDefault(); onMove(e.touches[0].clientX); });
-        droplet.addEventListener('touchend', () => onEnd());
-        droplet.addEventListener('mousedown', (e) => { e.preventDefault(); onStart(e.clientX); });
-        window.addEventListener('mousemove', (e) => { if(isDragging) onMove(e.clientX); });
-        window.addEventListener('mouseup', () => onEnd());
-    }
+        // Touch events
+        droplet.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            isDragging = true;
+            onStart(e.touches[0].clientX);
+        });
+        droplet.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            onMove(e.touches[0].clientX);
+        });
+        droplet.addEventListener('touchend', () => {
+            onEnd();
+            isDragging = false;
+        });
 
-    // Search Page Logic
-    function renderSearchCategories() {
-        const grid = document.getElementById('categoriesGrid');
-        grid.innerHTML = '';
-        categories.forEach(cat => {
-            const chip = document.createElement('div');
-            chip.className = 'category-chip';
-            chip.innerText = cat;
-            chip.onclick = () => { currentCategory = cat; renderMarket(); renderSearchResults(document.getElementById('fullSearchInput').value); };
-            grid.appendChild(chip);
+        // Mouse events
+        droplet.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            isDragging = true;
+            onStart(e.clientX);
+        });
+        window.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                e.preventDefault();
+                onMove(e.clientX);
+            }
+        });
+        window.addEventListener('mouseup', () => {
+            if (isDragging) {
+                onEnd();
+                isDragging = false;
+            }
         });
     }
-    function renderSearchResults(query) {
-        const container = document.getElementById('searchResultsList');
-        let filtered = currentCategory === "All" ? products : products.filter(p => p.category === currentCategory);
-        if (query) filtered = filtered.filter(p => p.name.toLowerCase().includes(query.toLowerCase()));
-        container.innerHTML = filtered.length ? '' : '<div style="text-align:center; padding:40px; color:#aeaeb2;">No products found</div>';
-        filtered.forEach(p => {
-            const div = document.createElement('div');
-            div.className = 'search-result-item';
-            div.innerHTML = `<i class="${p.icon}" style="font-size:28px; color:#007aff;"></i><div><div style="font-weight:600;">${p.name}</div><div style="font-size:13px; color:#6c6c70;">${p.price}</div></div>`;
-            div.onclick = () => { closeGlassSearch(); setTimeout(() => openProductDetail(p), 150); };
-            container.appendChild(div);
-        });
-    }
-    function openGlassSearch() { document.getElementById('glassSearchPage').classList.add('active-search'); currentCategory = "All"; renderSearchCategories(); renderSearchResults(''); document.body.style.overflow = 'hidden'; }
-    function closeGlassSearch() { document.getElementById('glassSearchPage').classList.remove('active-search'); document.body.style.overflow = ''; }
 
+    // Search Page Functions
+    function openGlassSearch() { 
+        document.getElementById('glassSearchPage').classList.add('active-search'); 
+        document.body.style.overflow = 'hidden'; 
+    }
+    
+    function closeGlassSearch() { 
+        document.getElementById('glassSearchPage').classList.remove('active-search'); 
+        document.body.style.overflow = ''; 
+    }
+
+    // Event Listeners
     document.addEventListener('DOMContentLoaded', () => {
-        renderMarket(); renderTransactions(); renderSearchCategories();
-        document.querySelectorAll('.nav-item').forEach(btn => btn.addEventListener('click', () => switchPage(btn.dataset.page)));
+        renderMarket();
+        renderFlowContent();
+        renderCategoriesGrid();
+        
+        // Navigation
+        document.querySelectorAll('.nav-item').forEach(btn => {
+            btn.addEventListener('click', () => switchPage(btn.dataset.page));
+        });
         switchPage('market');
-        initDraggable();
+        initDraggableDroplet();
+        
+        // Flow dropdown
+        const flowTitleBtn = document.getElementById('flowTitleBtn');
+        const dropdown = document.getElementById('flowDropdown');
+        flowTitleBtn?.addEventListener('click', (e) => { 
+            e.stopPropagation(); 
+            dropdown.classList.toggle('show'); 
+        });
+        
+        document.querySelectorAll('.dropdown-item').forEach(item => {
+            item.addEventListener('click', () => {
+                currentFlowMode = item.dataset.mode;
+                document.getElementById('flowModeTitle').innerText = currentFlowMode === "purchases" ? "Purchases" : "Orders";
+                renderFlowContent();
+                dropdown.classList.remove('show');
+            });
+        });
+        
+        document.addEventListener('click', (e) => { 
+            if (!dropdown.contains(e.target) && e.target !== flowTitleBtn) {
+                dropdown.classList.remove('show');
+            }
+        });
+        
+        // Search
         document.getElementById('glassSearchTrigger')?.addEventListener('click', openGlassSearch);
         document.getElementById('closeSearchPage')?.addEventListener('click', closeGlassSearch);
-        document.getElementById('fullSearchInput')?.addEventListener('input', (e) => renderSearchResults(e.target.value));
+        
+        // Cart
         document.getElementById('cartBtn')?.addEventListener('click', () => alert(`🛍️ Cart (${cart.length} item(s))`));
+        
+        // Layers popup
         const layersBtn = document.getElementById('layersBtn');
         const popup = document.getElementById('popupMenu');
-        layersBtn?.addEventListener('click', (e) => { e.stopPropagation(); popup.classList.toggle('show'); });
-        document.addEventListener('click', (e) => { if(!popup.contains(e.target) && e.target !== layersBtn) popup.classList.remove('show'); });
-        document.getElementById('addProductItem')?.addEventListener('click', () => { alert('✨ إضافة منتج جديد'); popup.classList.remove('show'); });
-        document.getElementById('createNicheItem')?.addEventListener('click', () => { alert('🌟 إنشاء نيش مخصص'); popup.classList.remove('show'); });
+        layersBtn?.addEventListener('click', (e) => { 
+            e.stopPropagation(); 
+            popup.classList.toggle('show'); 
+        });
+        
+        document.addEventListener('click', (e) => { 
+            if (!popup.contains(e.target) && e.target !== layersBtn) {
+                popup.classList.remove('show');
+            }
+        });
+        
+        document.getElementById('addProductItem')?.addEventListener('click', () => { 
+            alert('✨ إضافة منتج جديد'); 
+            popup.classList.remove('show'); 
+        });
+        
+        document.getElementById('createNicheItem')?.addEventListener('click', () => { 
+            alert('🌟 إنشاء نيش مخصص'); 
+            popup.classList.remove('show'); 
+        });
+        
         document.getElementById('closeOverlayBtn')?.addEventListener('click', closeOverlay);
+        
         window.addEventListener('resize', () => updateDropletPosition(currentPage));
         setTimeout(() => updateDropletPosition('market'), 60);
     });
