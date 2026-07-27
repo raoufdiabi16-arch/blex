@@ -856,6 +856,20 @@ body{
 .npk-card-price{font-size:var(--fs-base);font-weight:800;color:var(--text);margin-top:4px}
 .npk-card-arrow{color:#c5cedb;flex-shrink:0}
 
+/* ── My Published Products (S37) ── */
+.mpp-list{width:100%;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:10px 20px calc(20px + var(--sab))}
+.mpp-card{display:flex;align-items:center;gap:12px;background:#fff;border-radius:var(--r-lg);padding:10px 12px;box-shadow:var(--shadow-subtle);margin-bottom:10px}
+.mpp-thumb{width:52px;height:52px;border-radius:var(--r-sm);flex-shrink:0;background:#f4f6fb;background-size:cover;background-position:center}
+.mpp-info{flex:1;min-width:0}
+.mpp-name{font-size:var(--fs-base);font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mpp-price{font-size:var(--fs-sm);color:var(--blue);font-weight:700;margin-top:2px}
+.mpp-edit-btn{flex-shrink:0;background:#fff;color:var(--blue);border:1.5px solid var(--blue);border-radius:var(--r-pill);padding:7px 16px;font-size:13px;font-weight:700;font-family:inherit;cursor:pointer;transition:opacity .15s,transform .15s}
+.mpp-edit-btn:active{opacity:.65;transform:scale(.94)}
+.mpp-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 20px;color:var(--muted)}
+.mpp-empty .ic{width:64px;height:64px;border-radius:var(--r-lg);background:linear-gradient(135deg,#eef4ff,#dce8ff);display:flex;align-items:center;justify-content:center;color:var(--blue);margin-bottom:16px}
+.mpp-empty h3{font-size:var(--fs-md);font-weight:700;color:var(--text);margin-bottom:5px}
+.mpp-empty p{font-size:var(--fs-base);color:var(--muted);max-width:240px;line-height:1.5}
+
 /* ── Niche multi-item orders inbox (S36) — grouped orders from
    buyers who bought 2+ products within this specific niche in a
    single order. Reached from the basket icon on S17. ── */
@@ -895,7 +909,7 @@ body{
 .niche-label .ct{font-size:var(--fs-xs);opacity:.75;margin-top:1px}
 
 /* Product grid */
-.mk-products{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 12px 8px;margin-top:18px}
+.mk-products{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:0 6px 8px;margin-top:18px}
 .pcard{
   background:#fff;border-radius:var(--r-lg);overflow:hidden;
   box-shadow:var(--shadow-subtle);
@@ -1413,13 +1427,57 @@ body{
 #s25 .ap-ios-toggle.on::after{left:22px;}
 #s25 .ap-toggle-content{overflow:hidden;max-height:0;opacity:0;transition:max-height .3s ease,opacity .2s ease;padding:0;}
 #s25 .ap-toggle-content.open{max-height:350px;opacity:1;padding:6px 0 4px;}
+#s25 .ap-lang-chips{display:flex;gap:8px;}
+#s25 .ap-lang-chip{flex:1;text-align:center;padding:10px 8px;border-radius:var(--r-sm);background:#f4f6fb;border:1.5px solid #e1e6ee;font-size:var(--fs-sm);font-weight:600;color:var(--mid);cursor:pointer;transition:all .15s;}
+#s25 .ap-lang-chip.active{background:rgba(26,86,240,.08);border-color:var(--blue);color:var(--blue);font-weight:700;}
+#s25 .ap-lang-chip:active{transform:scale(.96);}
+.nch-form-body .ap-lang-chips{display:flex;gap:8px;}
+.nch-form-body .ap-lang-chip{flex:1;text-align:center;padding:10px 8px;border-radius:var(--r-sm);background:#f4f6fb;border:1.5px solid #e1e6ee;font-size:var(--fs-sm);font-weight:600;color:var(--mid);cursor:pointer;transition:all .15s;}
+.nch-form-body .ap-lang-chip.active{background:rgba(26,86,240,.08);border-color:var(--blue);color:var(--blue);font-weight:700;}
+.nch-form-body .ap-lang-chip:active{transform:scale(.96);}
 /* ── Colors ── */
 #s25 .ap-colors{display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
 #s25 .color-circle{width:36px;height:36px;border-radius:50%;cursor:pointer;flex-shrink:0;box-shadow:0 1px 4px rgba(0,0,0,0.1);transition:transform .15s;}
 #s25 .color-circle:active{transform:scale(.88);}
 #s25 .add-color-btn{width:36px;height:36px;border-radius:50%;background:#f4f6fb;border:1.5px dashed #d5dbe6;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#90a4bc;font-size:18px;flex-shrink:0;transition:all .15s;}
 #s25 .add-color-btn:active{transform:scale(.88);}
-#s25 input[type=color].ap-color-input{width:0;height:0;opacity:0;position:absolute;pointer-events:none;}
+/* ── Custom Color Picker Sheet ── */
+.cp-preview-row{display:flex;align-items:center;gap:10px;padding:0 20px 16px;flex-shrink:0;}
+.cp-preview-swatch{width:44px;height:44px;border-radius:50%;flex-shrink:0;border:2px solid #fff;box-shadow:0 0 0 1px #e5e9f0,0 2px 6px rgba(0,0,0,.08);background:var(--blue);transition:background .1s;}
+.cp-hex-field{flex:1;display:flex;align-items:center;gap:2px;background:#f4f6fb;border:1.5px solid #e1e6ee;border-radius:var(--r-sm);padding:0 14px;height:44px;transition:border-color .15s;}
+.cp-hex-field.invalid{border-color:#ef4444;}
+.cp-hex-field span{color:var(--muted);font-weight:700;font-size:15px;}
+.cp-hex-field input{border:none;background:none;outline:none;font-family:inherit;font-size:15px;font-weight:600;color:var(--text);width:100%;text-transform:uppercase;letter-spacing:.02em;}
+.cp-native-btn{width:44px;height:44px;border-radius:50%;background:conic-gradient(from 180deg,#ff004c,#ff9a00,#ffea00,#5bff00,#00ffd5,#0066ff,#a600ff,#ff004c);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;position:relative;box-shadow:0 2px 6px rgba(0,0,0,.15);}
+.cp-native-btn input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;border:none;padding:0;}
+.cp-presets{display:flex;flex-wrap:wrap;gap:12px;padding:4px 20px 20px;flex-shrink:0;}
+.cp-preset-swatch{width:38px;height:38px;border-radius:50%;cursor:pointer;flex-shrink:0;box-shadow:0 1px 4px rgba(0,0,0,.1);transition:transform .15s,box-shadow .15s;border:2px solid transparent;}
+.cp-preset-swatch:active{transform:scale(.88);}
+.cp-preset-swatch.selected{border-color:var(--blue);box-shadow:0 0 0 2px rgba(26,86,240,.25);}
+.cp-add-btn{width:calc(100% - 40px);margin:0 20px calc(16px + var(--sab));height:50px;border:none;background:var(--blue);color:#fff;font-size:16px;font-weight:700;font-family:inherit;border-radius:var(--r-md);cursor:pointer;box-shadow:0 4px 0 0 var(--blue-dk),0 6px 14px -7px rgba(26,86,240,.45);transition:transform .15s,box-shadow .15s;flex-shrink:0;}
+.cp-add-btn:active{transform:scale(.97) translateY(2px);box-shadow:0 2px 0 0 var(--blue-dk),0 4px 9px -6px rgba(26,86,240,.4);}
+/* ── Image Cropper ── */
+.crop-scrim{position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity .25s}
+.crop-scrim.show{opacity:1;pointer-events:auto}
+.crop-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.94);z-index:401;width:calc(100% - 48px);max-width:340px;background:#fff;border-radius:var(--r-lg);box-shadow:var(--shadow-elevated);opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s cubic-bezier(.34,1.56,.64,1);overflow:hidden}
+.crop-modal.show{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
+.crop-hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 14px 10px}
+.crop-hdr-btn{border:none;background:none;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;padding:4px}
+.crop-confirm{color:var(--blue);font-weight:700}
+.crop-title{font-size:14px;font-weight:700;color:var(--text)}
+.crop-stage-wrap{display:flex;align-items:center;justify-content:center;padding:4px 20px 8px;background:#0c0f14}
+.crop-stage{position:relative;overflow:hidden;background:#1a1d24;touch-action:none;cursor:grab}
+.crop-stage:active{cursor:grabbing}
+.crop-stage img{position:absolute;top:0;left:0;max-width:none;max-height:none;will-change:transform;user-select:none;-webkit-user-drag:none}
+.crop-hint{text-align:center;font-size:11px;color:var(--muted);padding:8px 20px 2px}
+.crop-zoom-row{display:flex;align-items:center;gap:10px;padding:6px 22px 18px}
+.crop-zoom-row input[type=range]{flex:1;accent-color:var(--blue)}
+/* ── Background Color Step ── */
+.bgc-icon-wrap{width:52px;height:52px;border-radius:50%;background:rgba(26,86,240,.1);display:flex;align-items:center;justify-content:center;margin:2px auto 12px;flex-shrink:0;}
+.bgc-explain{font-size:13px;color:var(--mid);text-align:center;line-height:1.55;padding:0 24px 16px;flex-shrink:0;}
+.bgc-preview-row{display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 20px 18px;flex-shrink:0;}
+.bgc-preview-card{width:88px;height:88px;border-radius:var(--r-md);background:#EFF2F7;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px -6px rgba(15,30,60,.18);transition:background .1s;}
+.bgc-preview-label{font-size:11px;font-weight:600;color:var(--muted);text-align:center;}
 /* ── Category row ── */
 #s25 .ap-cat-row{display:flex;align-items:center;justify-content:space-between;width:100%;background:#f4f6fb;border:1px solid #e1e6ee;border-radius:var(--r-sm);padding:14px 16px;cursor:pointer;transition:all .15s;font-family:inherit;}
 #s25 .ap-cat-row:active{background:#e8edf6;}
@@ -1910,25 +1968,25 @@ body{
 
 /* ── Following Niches (s35) ── */
 #s35{display:flex;flex-direction:column;background:#f8f9fb}
-#s35 .foll-gloss{display:flex;align-items:center;padding:12px 16px;gap:8px;flex-shrink:0;background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);border-bottom:1px solid rgba(0,0,0,.05);position:sticky;top:0;z-index:2}
-#s35 .foll-back{width:34px;height:34px;border:none;background:none;display:flex;align-items:center;justify-content:center;border-radius:50%;color:var(--text);cursor:pointer;flex-shrink:0}
+#s35 .foll-gloss{width:100%;display:flex;align-items:center;padding:10px 16px;gap:8px;flex-shrink:0;background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);border-bottom:1px solid rgba(0,0,0,.05);position:sticky;top:0;z-index:2;box-sizing:border-box}
+#s35 .foll-back{width:32px;height:32px;border:none;background:none;display:flex;align-items:center;justify-content:center;border-radius:50%;color:var(--text);cursor:pointer;flex-shrink:0}
 #s35 .foll-back:active{background:rgba(0,0,0,.06)}
-#s35 .foll-title{font-size:17px;font-weight:700;color:var(--text);text-align:center;flex:1;margin-right:34px}
-#s35 .foll-spacer{width:34px;flex-shrink:0}
-#s35 .foll-search-wrap{display:flex;align-items:center;gap:8px;padding:10px 16px;background:#fff;border-bottom:1px solid #f0f2f5;flex-shrink:0}
+#s35 .foll-title{font-size:16px;font-weight:700;color:var(--text);text-align:center;flex:1;margin-right:32px;min-width:0}
+#s35 .foll-spacer{width:32px;flex-shrink:0}
+#s35 .foll-search-wrap{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#f4f6fb;border:1px solid #e1e6ee;border-radius:var(--r-pill);margin:10px 16px;box-sizing:border-box;flex-shrink:0}
 #s35 .foll-search-wrap svg{color:#b0b8c8;flex-shrink:0}
-#s35 .foll-search{flex:1;border:none;background:none;font-family:inherit;font-size:14px;font-weight:400;color:var(--text);outline:none;padding:4px 0}
+#s35 .foll-search{flex:1;min-width:0;border:none;background:none;font-family:inherit;font-size:14px;font-weight:400;color:var(--text);outline:none;padding:2px 0}
 #s35 .foll-search::placeholder{color:#b0b8c8}
-#s35 .foll-body{flex:1;overflow-y:auto;padding:0 0 60px;-webkit-overflow-scrolling:touch}
-#s35 .foll-card{background:#fff;border-radius:0;overflow:hidden;cursor:pointer;border-bottom:1px solid #f0f2f5;display:flex;gap:0;padding:0}
+#s35 .foll-body{width:100%;flex:1;overflow-y:auto;overflow-x:hidden;padding:10px 14px 60px;-webkit-overflow-scrolling:touch;box-sizing:border-box}
+#s35 .foll-card{width:100%;background:#fff;border-radius:var(--r-lg);overflow:hidden;cursor:pointer;display:flex;align-items:center;gap:12px;padding:10px 12px;box-shadow:var(--shadow-subtle);margin-bottom:10px;box-sizing:border-box}
 #s35 .foll-card:active{background:#f8f9fc}
-#s35 .foll-card-cover{width:96px;min-height:96px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;gap:6px;padding:8px}
-#s35 .foll-card-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:rgba(255,255,255,.8);overflow:hidden;background:rgba(255,255,255,.18)}
-#s35 .foll-card-cover .foll-card-follow{padding:3px 10px;border-radius:var(--r-pill);background:#fff;color:#1a56f0;font-size:10px;font-weight:700;cursor:pointer;border:none;transition:background .2s,color .2s;white-space:nowrap}
-#s35 .foll-card-cover .foll-card-follow:active{transform:scale(.92)}
-#s35 .foll-card-info{flex:1;display:flex;flex-direction:column;justify-content:center;padding:12px 14px;min-width:0}
-#s35 .foll-card-name{font-size:15px;font-weight:700;color:var(--text);margin-bottom:3px}
-#s35 .foll-card-desc{font-size:12px;color:var(--muted);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#s35 .foll-card-cover{width:52px;height:52px;border-radius:var(--r-sm);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:rgba(255,255,255,.9);overflow:hidden}
+#s35 .foll-card-info{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center}
+#s35 .foll-card-name{font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#s35 .foll-card-desc{font-size:12px;color:var(--muted);line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#s35 .foll-card-follow{flex-shrink:0;padding:6px 14px;border-radius:var(--r-pill);background:#fff;color:var(--blue);border:1.5px solid var(--blue);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s,color .15s,transform .15s}
+#s35 .foll-card-follow:active{transform:scale(.94)}
+#s35 .foll-card-follow.unfollowed{background:var(--blue);color:#fff}
 #s35 .foll-removing{opacity:.4;transition:opacity .5s}
 #s35 .foll-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;text-align:center;color:var(--muted);font-size:14px;line-height:1.6;min-height:60vh}
 #s35 .foll-empty svg{display:block;margin:0 auto 12px;color:#d5dee8}
@@ -2653,6 +2711,18 @@ body{
   <div class="nko-list" id="nkoList"></div>
 </div>
 
+<!-- S37 — MY PUBLISHED PRODUCTS -->
+<div class="screen offright" id="s37">
+  <div class="npk-hdr">
+    <div class="npk-back" id="mppBack">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </div>
+    <div class="npk-title">My Published Products</div>
+    <div style="width:34px"></div>
+  </div>
+  <div class="mpp-list" id="mppList"></div>
+</div>
+
 <!-- S22 — CART (My Purchases / My Messages & Questions) -->
 <div class="screen offright" id="s22">
   <div class="cart-hdr">
@@ -2702,6 +2772,21 @@ body{
     <div class="ap-section">
       <div class="ap-label">Product Name <span>*</span></div>
       <input class="ap-field" id="prodName" placeholder="e.g. Vintage Leather Jacket" maxlength="80">
+      <div class="ap-toggle-row" style="margin-top:14px;">
+        <div class="ap-toggle-left">
+          <div class="ap-toggle-title">Add name in another language</div>
+          <div class="ap-toggle-sub">Show your product name in a second language too</div>
+        </div>
+        <div class="ap-ios-toggle" id="altNameToggle" onclick="toggleFeature('altNameToggle','altNameContent')"></div>
+      </div>
+      <div class="ap-toggle-content" id="altNameContent">
+        <div class="ap-lang-chips" id="altLangChips">
+          <div class="ap-lang-chip active" data-lang="Arabic">العربية</div>
+          <div class="ap-lang-chip" data-lang="French">Français</div>
+          <div class="ap-lang-chip" data-lang="English">English</div>
+        </div>
+        <input class="ap-field" id="prodAltName" placeholder="Product name in the selected language" style="margin-top:10px;" maxlength="80">
+      </div>
     </div>
 
     <div class="ap-section">
@@ -2795,12 +2880,11 @@ body{
       </div>
       <div class="ap-toggle-content" id="colorsContent">
         <div class="ap-colors" id="colorsArea">
-          <div class="add-color-btn" id="addColorBtn" onclick="document.getElementById('colorPickerInput').click()">
+          <div class="add-color-btn" id="addColorBtn" onclick="openColorSheet()">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </div>
         </div>
       </div>
-      <input type="color" id="colorPickerInput" class="ap-color-input" onchange="addColor(this.value)">
     </div>
 
     <!-- Weight -->
@@ -2852,7 +2936,7 @@ body{
   </div>
 
   <div class="ap-bottom">
-    <button class="ap-submit-btn" id="publishBtnBottom" data-label="Publish Product" onclick="handlePublish()">Publish Product</button>
+    <button class="ap-submit-btn" id="publishBtnBottom" data-label="Continue" onclick="handlePublish()">Continue</button>
   </div>
 </div>
 
@@ -2863,6 +2947,79 @@ body{
   <div class="ap-sheet-title">Choose Category</div>
   <input class="ap-sheet-search" id="catSearch" placeholder="Search categories..." oninput="filterCategories(this.value)">
   <div class="ap-sheet-list" id="catList"></div>
+</div>
+
+<!-- Image Cropper (free pan + zoom, used for niche cover/background photos) -->
+<div class="crop-scrim" id="cropScrim"></div>
+<div class="crop-modal" id="cropModal">
+  <div class="crop-hdr">
+    <button class="crop-hdr-btn" id="cropCancel">Cancel</button>
+    <div class="crop-title">Adjust Photo</div>
+    <button class="crop-hdr-btn crop-confirm" id="cropConfirm">Use Photo</button>
+  </div>
+  <div class="crop-stage-wrap">
+    <div class="crop-stage" id="cropStage">
+      <img id="cropImg" draggable="false" alt="">
+    </div>
+  </div>
+  <div class="crop-hint">Drag to reposition · use the slider to zoom</div>
+  <div class="crop-zoom-row">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+    <input type="range" id="cropZoom" min="100" max="300" value="100">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+  </div>
+</div>
+
+<!-- Custom Color Picker Sheet -->
+<div class="ap-sheet-scrim" id="colorScrim"></div>
+<div class="ap-sheet" id="colorSheet">
+  <div class="ap-sheet-handle"></div>
+  <div class="ap-sheet-title">Add Color</div>
+  <div class="cp-preview-row">
+    <div class="cp-preview-swatch" id="colorPreviewSwatch"></div>
+    <div class="cp-hex-field">
+      <span>#</span>
+      <input type="text" id="colorHexInput" maxlength="6" placeholder="1A56F0" autocomplete="off">
+    </div>
+    <label class="cp-native-btn" title="Pick any color">
+      <input type="color" id="colorPickerInput" onchange="setColorFromNative(this.value)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/><circle cx="6.5" cy="11.5" r="1.5" fill="#fff" stroke="none"/><circle cx="9.5" cy="7.5" r="1.5" fill="#fff" stroke="none"/><circle cx="14.5" cy="7.5" r="1.5" fill="#fff" stroke="none"/><circle cx="17.5" cy="11.5" r="1.5" fill="#fff" stroke="none"/></svg>
+    </label>
+  </div>
+  <div class="cp-presets" id="colorPresets"></div>
+  <button class="cp-add-btn" id="colorAddBtn">Add Color</button>
+</div>
+
+<!-- Background Color Step (shown after tapping Continue, before the product actually goes live) -->
+<div class="ap-sheet-scrim" id="bgcScrim"></div>
+<div class="ap-sheet" id="bgcSheet" style="max-height:88%">
+  <div class="ap-sheet-handle"></div>
+  <div class="bgc-icon-wrap">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+  </div>
+  <div class="ap-sheet-title" style="margin-bottom:2px">Choose Your Product's Background Color</div>
+  <div class="bgc-explain">This color will appear behind your product photo in the Marketplace. Pick any color you like — it's totally up to you.</div>
+
+  <div class="bgc-preview-row">
+    <div class="bgc-preview-card" id="bgcPreviewCard">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity=".9"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+    </div>
+    <div class="bgc-preview-label">Live preview — this is how your product card will look</div>
+  </div>
+
+  <div class="cp-preview-row">
+    <div class="cp-preview-swatch" id="bgcPreviewSwatch"></div>
+    <div class="cp-hex-field">
+      <span>#</span>
+      <input type="text" id="bgcHexInput" maxlength="6" placeholder="EFF2F7" autocomplete="off">
+    </div>
+    <label class="cp-native-btn" title="Pick any color">
+      <input type="color" id="bgcPickerInput" onchange="setBgColorFromNative(this.value)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/><circle cx="6.5" cy="11.5" r="1.5" fill="#fff" stroke="none"/><circle cx="9.5" cy="7.5" r="1.5" fill="#fff" stroke="none"/><circle cx="14.5" cy="7.5" r="1.5" fill="#fff" stroke="none"/><circle cx="17.5" cy="11.5" r="1.5" fill="#fff" stroke="none"/></svg>
+    </label>
+  </div>
+  <div class="cp-presets" id="bgcPresets"></div>
+  <button class="cp-add-btn" id="bgcConfirmBtn">Publish Product</button>
 </div>
 
 <!-- SIDE DRAWER (opened from the Store Map hamburger button) -->
@@ -4084,6 +4241,21 @@ body{
     <div class="ap-section">
       <div class="ap-label">Product Name <span>*</span></div>
       <input class="ap-field" id="nchProdName" placeholder="e.g. Vintage Leather Jacket" maxlength="80">
+      <div class="ap-toggle-row" style="margin-top:14px;">
+        <div class="ap-toggle-left">
+          <div class="ap-toggle-title">Add name in another language</div>
+          <div class="ap-toggle-sub">Show your product name in a second language too</div>
+        </div>
+        <div class="ap-ios-toggle" id="nchAltNameToggle" onclick="toggleFeature('nchAltNameToggle','nchAltNameContent')"></div>
+      </div>
+      <div class="ap-toggle-content" id="nchAltNameContent">
+        <div class="ap-lang-chips" id="nchAltLangChips">
+          <div class="ap-lang-chip active" data-lang="Arabic">العربية</div>
+          <div class="ap-lang-chip" data-lang="French">Français</div>
+          <div class="ap-lang-chip" data-lang="English">English</div>
+        </div>
+        <input class="ap-field" id="nchProdAltName" placeholder="Product name in the selected language" style="margin-top:10px;" maxlength="80">
+      </div>
     </div>
     <div class="ap-section">
       <div class="ap-label">Description</div>
@@ -4156,19 +4328,6 @@ body{
     </div>
     <div class="ap-section">
       <div class="ap-label">Available Colors</div>
-      <div class="ap-label-sub">Tap a color to add, tap again to remove</div>
-      <div class="ap-preset-colors" id="nchPresetColors">
-        <div class="ap-preset-swatch" style="background:#ef4444" data-color="#ef4444"></div>
-        <div class="ap-preset-swatch" style="background:#f97316" data-color="#f97316"></div>
-        <div class="ap-preset-swatch" style="background:#eab308" data-color="#eab308"></div>
-        <div class="ap-preset-swatch" style="background:#22c55e" data-color="#22c55e"></div>
-        <div class="ap-preset-swatch" style="background:#06b6d4" data-color="#06b6d4"></div>
-        <div class="ap-preset-swatch" style="background:#3b82f6" data-color="#3b82f6"></div>
-        <div class="ap-preset-swatch" style="background:#8b5cf6" data-color="#8b5cf6"></div>
-        <div class="ap-preset-swatch" style="background:#ec4899" data-color="#ec4899"></div>
-        <div class="ap-preset-swatch" style="background:#000" data-color="#000000"></div>
-        <div class="ap-preset-swatch" style="background:#fff;border:2px solid #d5dbe6" data-color="#ffffff"></div>
-      </div>
       <div class="ap-colors" id="nchColorsArea"></div>
     </div>
     <div class="ap-section">
@@ -5704,13 +5863,24 @@ window.saveFollowing = function(){
   });
   /* See All (Following) */
   var seeAllBtns = document.querySelectorAll('#s19 .prf-stat-action');
+  var editProductsBtn = seeAllBtns[0];
+  if(editProductsBtn) editProductsBtn.addEventListener('click', function(){
+    renderMyPublishedProducts();
+    go('s19', 's37', 'l');
+  });
+  var mppBack = el('mppBack');
+  if(mppBack) mppBack.addEventListener('click', function(){
+    go('s37', 's19', 'r');
+  });
   var seeAllBtn = seeAllBtns[2];
   if(seeAllBtn) seeAllBtn.addEventListener('click', function(){
+    window._pendingUnfollow = {};
     renderFollowingNiches();
     go('s19', 's35', 'l');
   });
   var follBack = el('follBack');
   if(follBack) follBack.addEventListener('click', function(){
+    commitPendingUnfollows();
     go('s35', 's19', 'r');
   });
   var follSearch = el('follSearch');
@@ -5769,15 +5939,14 @@ function renderFollowingNiches(q){
     var bg = n._img ? 'url('+n._img+') center/cover no-repeat' : n.grad;
     var letter = n.name.charAt(0).toUpperCase();
     var iconHtml = n._img ? '' : letter;
+    var isPending = !!(window._pendingUnfollow && window._pendingUnfollow[idx]);
     html += '<div class="foll-card" data-idx="'+idx+'">' +
-      '<div class="foll-card-cover" style="background:'+n.grad+'">' +
-        '<div class="foll-card-icon">'+(n._img ? '<img src="'+n._img+'" style="width:100%;height:100%;object-fit:cover">' : letter)+'</div>' +
-        '<div class="foll-card-follow">Following</div>' +
-      '</div>' +
+      '<div class="foll-card-cover" style="background:'+n.grad+'">'+(n._img ? '<img src="'+n._img+'" style="width:100%;height:100%;object-fit:cover">' : letter)+'</div>' +
       '<div class="foll-card-info">' +
         '<div class="foll-card-name">'+n.name+'</div>' +
         '<div class="foll-card-desc">'+(n.desc || n.count || '')+'</div>' +
       '</div>' +
+      '<button class="foll-card-follow'+(isPending?' unfollowed':'')+'" data-idx="'+idx+'">'+(isPending?'Follow':'Following')+'</button>' +
     '</div>';
   });
   if(!count){
@@ -5790,6 +5959,7 @@ function renderFollowingNiches(q){
       if(e.target.closest('.foll-card-follow')) return;
       var idx = parseInt(card.getAttribute('data-idx'));
       if(!isNaN(idx)){
+        commitPendingUnfollows();
         window._prodNicheBack = { product: null, origin: 's35' };
         openNiche(idx);
       }
@@ -5798,17 +5968,31 @@ function renderFollowingNiches(q){
   body.querySelectorAll('.foll-card-follow').forEach(function(btn){
     btn.addEventListener('click', function(e){
       e.stopPropagation();
-      var card = btn.closest('.foll-card');
-      var idx = parseInt(card.getAttribute('data-idx'));
-      var pos = window.FOLLOWING.indexOf(idx);
-      if(pos !== -1) window.FOLLOWING.splice(pos, 1);
-      window.saveFollowing();
-      var followEl = el('prfStatFollow');
-      if(followEl) followEl.textContent = window.FOLLOWING.length;
-      card.classList.add('foll-removing');
-      setTimeout(function(){ renderFollowingNiches(); }, 3000);
+      var idx = parseInt(btn.getAttribute('data-idx'));
+      if(!window._pendingUnfollow) window._pendingUnfollow = {};
+      var nowPending = !window._pendingUnfollow[idx];
+      window._pendingUnfollow[idx] = nowPending;
+      btn.textContent = nowPending ? 'Follow' : 'Following';
+      btn.classList.toggle('unfollowed', nowPending);
     });
   });
+}
+
+function commitPendingUnfollows(){
+  if(!window._pendingUnfollow || !window.FOLLOWING) return;
+  var changed = false;
+  Object.keys(window._pendingUnfollow).forEach(function(key){
+    if(!window._pendingUnfollow[key]) return;
+    var idx = parseInt(key);
+    var pos = window.FOLLOWING.indexOf(idx);
+    if(pos !== -1){ window.FOLLOWING.splice(pos, 1); changed = true; }
+  });
+  window._pendingUnfollow = {};
+  if(changed){
+    if(typeof window.saveFollowing === 'function') window.saveFollowing();
+    var followEl = el('prfStatFollow');
+    if(followEl) followEl.textContent = window.FOLLOWING.length;
+  }
 }
 (function(){
   function placeSvPill(btn){
@@ -6598,6 +6782,7 @@ function getUserDisplayName(){
   if(u.name) return u.name;
   return 'User';
 }
+window.getUserDisplayName = getUserDisplayName;
 function updateUserUI(){
   var name = getUserDisplayName();
   var initials = getUserInitials();
@@ -7100,9 +7285,10 @@ var TAB_BAR = initTabBar('globTabbar', 'globTabGlow', SCREEN_MAP);
   el('spPublishBtn').addEventListener('click', function(){
     hideSP();
     window._editingSavedIdx = -1;
+    window._editingPublishedIdx = -1;
     window.ADD_PRODUCT_SOURCE = CURRENT_SCREEN;
-    try{ clearProductForm(); }catch(e){ console.warn('clearProductForm error:',e); }
-    setTimeout(function(){ go(CURRENT_SCREEN, 's25', 'l'); }, 50);
+    clearProductForm();
+    go(CURRENT_SCREEN, 's25', 'l');
   });
   el('spList').addEventListener('click', function(e){
     var item = e.target.closest('.sp-item');
@@ -7113,6 +7299,7 @@ var TAB_BAR = initTabBar('globTabbar', 'globTabGlow', SCREEN_MAP);
       if(prod){
         hideSP();
         window._editingSavedIdx = idx;
+        window._editingPublishedIdx = -1;
         window.ADD_PRODUCT_SOURCE = CURRENT_SCREEN;
         loadProductForm(prod);
         showToast('📝 Editing saved product');
@@ -7895,10 +8082,12 @@ window.renderSavedNiches = function(){
       if(!f) return;
       var r = new FileReader();
       r.onload = function(ev){
-        nchPrimaryImgData = ev.target.result;
-        var box = el('nchPrimaryImg');
-        box.innerHTML = '<img src="'+ev.target.result+'" style="width:100%;height:100%;object-fit:cover;border-radius:8px">';
-        box.style.border = '2px solid var(--blue)';
+        openImageCropper(ev.target.result, 260, 260, 400, 400, function(cropped){
+          nchPrimaryImgData = cropped;
+          var box = el('nchPrimaryImg');
+          box.innerHTML = '<img src="'+cropped+'" style="width:100%;height:100%;object-fit:cover;border-radius:8px">';
+          box.style.border = '2px solid var(--blue)';
+        });
       };
       r.readAsDataURL(f);
     };
@@ -7912,10 +8101,12 @@ window.renderSavedNiches = function(){
       if(!f) return;
       var r = new FileReader();
       r.onload = function(ev){
-        nchBgImgData = ev.target.result;
-        var box = el('nchBgImg');
-        box.innerHTML = '<img src="'+ev.target.result+'" style="width:100%;height:100%;object-fit:cover;border-radius:8px">';
-        box.style.border = '2px solid var(--blue)';
+        openImageCropper(ev.target.result, 296, 122, 640, 264, function(cropped){
+          nchBgImgData = cropped;
+          var box = el('nchBgImg');
+          box.innerHTML = '<img src="'+cropped+'" style="width:100%;height:100%;object-fit:cover;border-radius:8px">';
+          box.style.border = '2px solid var(--blue)';
+        });
       };
       r.readAsDataURL(f);
     };
@@ -7939,7 +8130,12 @@ window.renderSavedNiches = function(){
     document.querySelectorAll('#nchProdCondGrid .ap-cond-card').forEach(function(c){ c.classList.remove('active'); });
     document.querySelector('#nchProdCondGrid .ap-cond-card[data-cond="new"]').classList.add('active');
     document.querySelectorAll('#nchProdSizeChips .ap-chip').forEach(function(c){ c.classList.remove('active'); });
-    if(typeof renderNchColors === 'function'){ renderNchColors(); updatePresetSelections(); }
+    var nchAltT=el('nchAltNameToggle'), nchAltC=el('nchAltNameContent'), nchAltN=el('nchProdAltName');
+    if(nchAltT) nchAltT.classList.remove('on');
+    if(nchAltC) nchAltC.classList.remove('open');
+    if(nchAltN) nchAltN.value='';
+    document.querySelectorAll('#nchAltLangChips .ap-lang-chip').forEach(function(c,i){ c.classList.toggle('active', i===0); });
+    if(typeof renderNchColors === 'function'){ renderNchColors(); }
     if(typeof buildNchFormImgSlots === 'function') buildNchFormImgSlots();
     formScrim.classList.add('show');
     formModal.classList.add('show');
@@ -8015,19 +8211,16 @@ window.renderSavedNiches = function(){
       div.addEventListener('click', function(){
         nchFormColors.splice(i, 1);
         renderNchColors();
-        updatePresetSelections();
         showToast('Color removed');
       });
       ca.appendChild(div);
     });
-  }
-
-  function updatePresetSelections(){
-    var swatches = document.querySelectorAll('#nchPresetColors .ap-preset-swatch');
-    swatches.forEach(function(s){
-      var color = s.getAttribute('data-color');
-      s.classList.toggle('sel', nchFormColors.indexOf(color) !== -1);
-    });
+    var addBtn = document.createElement('div');
+    addBtn.className = 'add-color-btn';
+    addBtn.id = 'nchAddColorBtn';
+    addBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>';
+    addBtn.addEventListener('click', function(){ openColorSheet('niche'); });
+    ca.appendChild(addBtn);
   }
 
   window.addNchColor = function(hex){
@@ -8035,24 +8228,15 @@ window.renderSavedNiches = function(){
     if(nchFormColors.indexOf(hex) !== -1){ showToast('Color already added'); return; }
     nchFormColors.push(hex);
     renderNchColors();
-    updatePresetSelections();
     showToast('Color added ✓');
   };
+  renderNchColors();
 
-  /* ── Preset color swatches ── */
-  document.querySelectorAll('#nchPresetColors .ap-preset-swatch').forEach(function(el){
-    el.addEventListener('click', function(){
-      var color = this.getAttribute('data-color');
-      var idx = nchFormColors.indexOf(color);
-      if(idx === -1){
-        nchFormColors.push(color);
-        showToast('Color added ✓');
-      } else {
-        nchFormColors.splice(idx, 1);
-        showToast('Color removed');
-      }
-      renderNchColors();
-      updatePresetSelections();
+  /* ── Add-color button now opens the shared Color Picker Sheet ── */
+  document.querySelectorAll('#nchAltLangChips .ap-lang-chip').forEach(function(chip){
+    chip.addEventListener('click', function(){
+      document.querySelectorAll('#nchAltLangChips .ap-lang-chip').forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
     });
   });
 
@@ -8120,34 +8304,50 @@ window.renderSavedNiches = function(){
     if(!formName.value.trim()){ showToast('⚠️ Please enter a product name'); formName.focus(); return; }
     if(!formPrice.value || parseFloat(formPrice.value) <= 0){ showToast('⚠️ Please enter a valid price'); formPrice.focus(); return; }
     if(nchFormPhotos.length === 0){ showToast('⚠️ Please add at least one photo'); return; }
-    var catLabel = el('nchProdCatLabel');
-    var condCard = document.querySelector('#nchProdCondGrid .ap-cond-card.active');
-    var data = {
-      name: formName.value.trim(),
-      price: formPrice.value,
-      desc: formDesc.value.trim(),
-      category: catLabel.classList.contains('sel') ? catLabel.textContent : '',
-      condition: condCard ? condCard.getAttribute('data-cond') : 'new',
-      brand: el('nchProdBrand').value.trim(),
-      oldPrice: el('nchProdOldPrice').value || '',
-      sizes: nchFormSizes.slice(),
-      colors: nchFormColors.slice(),
-      weight: el('nchProdWeight').value || '',
-      dims: {l:el('nchDimL').value,w:el('nchDimW').value,h:el('nchDimH').value},
-      campus: nchCampusOn,
-      photos: nchFormPhotos.slice()
-    };
-    if(_editingIdx !== -1){
-      nchProds[_editingIdx] = data;
-      showToast('✅ Product updated');
-      _editingIdx = -1;
-    } else {
-      nchProds.push(data);
-      showToast('✅ Product added');
-    }
-    renderNchProds();
-    formScrim.classList.remove('show');
-    formModal.classList.remove('show');
+
+    var editingAtOpen = _editingIdx;
+    var existingBg = (editingAtOpen !== -1 && nchProds[editingAtOpen] && nchProds[editingAtOpen].bgColor) ? nchProds[editingAtOpen].bgColor.replace('#','') : '';
+
+    openBgColorSheet({
+      existingHex: existingBg,
+      confirmLabel: editingAtOpen !== -1 ? 'Save Changes' : 'Add to Niche',
+      onConfirm: function(bgHex){
+        var catLabel = el('nchProdCatLabel');
+        var condCard = document.querySelector('#nchProdCondGrid .ap-cond-card.active');
+        var altOn = el('nchAltNameToggle') ? el('nchAltNameToggle').classList.contains('on') : false;
+        var altNameEl = el('nchProdAltName');
+        var altLangEl = document.querySelector('#nchAltLangChips .ap-lang-chip.active');
+        var data = {
+          name: formName.value.trim(),
+          price: formPrice.value,
+          desc: formDesc.value.trim(),
+          category: catLabel.classList.contains('sel') ? catLabel.textContent : '',
+          condition: condCard ? condCard.getAttribute('data-cond') : 'new',
+          brand: el('nchProdBrand').value.trim(),
+          oldPrice: el('nchProdOldPrice').value || '',
+          sizes: nchFormSizes.slice(),
+          colors: nchFormColors.slice(),
+          weight: el('nchProdWeight').value || '',
+          dims: {l:el('nchDimL').value,w:el('nchDimW').value,h:el('nchDimH').value},
+          campus: nchCampusOn,
+          photos: nchFormPhotos.slice(),
+          bgColor: bgHex,
+          altName: altOn ? (altNameEl?altNameEl.value.trim():'') : '',
+          altLang: altOn ? (altLangEl?altLangEl.getAttribute('data-lang'):'Arabic') : ''
+        };
+        if(editingAtOpen !== -1){
+          nchProds[editingAtOpen] = data;
+          showToast('✅ Product updated');
+          _editingIdx = -1;
+        } else {
+          nchProds.push(data);
+          showToast('✅ Product added');
+        }
+        renderNchProds();
+        formScrim.classList.remove('show');
+        formModal.classList.remove('show');
+      }
+    });
   });
 
   function renderNchProds(){
@@ -8203,7 +8403,22 @@ window.renderSavedNiches = function(){
         });
         /* Restore colors */
         nchFormColors = prod.colors ? prod.colors.slice() : [];
-        if(typeof renderNchColors === 'function'){ renderNchColors(); updatePresetSelections(); }
+        if(typeof renderNchColors === 'function'){ renderNchColors(); }
+        /* Restore alt-language name */
+        var nAltT=el('nchAltNameToggle'), nAltC=el('nchAltNameContent'), nAltN=el('nchProdAltName');
+        if(prod.altName){
+          if(nAltT) nAltT.classList.add('on');
+          if(nAltC) nAltC.classList.add('open');
+          if(nAltN) nAltN.value = prod.altName;
+          document.querySelectorAll('#nchAltLangChips .ap-lang-chip').forEach(function(c){
+            c.classList.toggle('active', c.getAttribute('data-lang')===prod.altLang);
+          });
+        } else {
+          if(nAltT) nAltT.classList.remove('on');
+          if(nAltC) nAltC.classList.remove('open');
+          if(nAltN) nAltN.value = '';
+          document.querySelectorAll('#nchAltLangChips .ap-lang-chip').forEach(function(c,i){ c.classList.toggle('active', i===0); });
+        }
         formScrim.classList.add('show');
         formModal.classList.add('show');
       });
@@ -9480,11 +9695,270 @@ function renderColors(){
     el.onclick=()=>removeColor(i);
     area.appendChild(el);
   });
-  const addBtn=document.createElement('div'); addBtn.className='add-color-btn';
+  const addBtn=document.createElement('div'); addBtn.className='add-color-btn'; addBtn.id='addColorBtn';
   addBtn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>';
-  addBtn.onclick=()=>document.getElementById('colorPickerInput').click();
+  addBtn.onclick=()=>openColorSheet();
   area.appendChild(addBtn);
 }
+
+/* ── Custom Color Picker Sheet ──
+   Guaranteed to work everywhere: a curated preset grid (one-tap add)
+   plus a hex text field (type ANY color code), instead of relying
+   solely on the native <input type=color> dialog which some
+   sandboxed/embedded browser contexts block from opening. A visible
+   native color-wheel button is kept as a bonus shortcut where the
+   browser does support it. ── */
+const COLOR_PRESETS=['1A56F0','0EA5E9','06B6D4','10B981','84CC16','EAB308','F97316','EF4444','EC4899','A855F7','8B5CF6','6366F1','64748B','0F172A','FFFFFF','000000'];
+
+var _colorSheetTarget = 'main';
+
+function addColorGeneric(hex){
+  if(_colorSheetTarget==='niche'){
+    if(typeof window.addNchColor==='function') window.addNchColor(hex);
+  } else { addColor(hex); }
+}
+
+function renderColorPresets(){
+  const grid=document.getElementById('colorPresets');
+  if(!grid) return;
+  grid.innerHTML='';
+  COLOR_PRESETS.forEach(hex=>{
+    const sw=document.createElement('div');
+    sw.className='cp-preset-swatch';
+    sw.style.background='#'+hex;
+    if(hex.toUpperCase()==='FFFFFF') sw.style.boxShadow='0 0 0 1px #e5e9f0, 0 1px 4px rgba(0,0,0,.1)';
+    sw.onclick=()=>{
+      addColorGeneric('#'+hex);
+      closeColorSheet();
+    };
+    grid.appendChild(sw);
+  });
+}
+
+function isValidHex(v){ return /^[0-9A-Fa-f]{6}$/.test(v); }
+
+function openColorSheet(target){
+  _colorSheetTarget = target || 'main';
+  document.getElementById('colorScrim').classList.add('show');
+  document.getElementById('colorSheet').classList.add('open');
+  const hexInput=document.getElementById('colorHexInput');
+  hexInput.value='';
+  document.getElementById('colorHexInput').closest('.cp-hex-field').classList.remove('invalid');
+  document.getElementById('colorPreviewSwatch').style.background='var(--blue)';
+  renderColorPresets();
+  setTimeout(()=>hexInput.focus(),300);
+}
+function closeColorSheet(){
+  document.getElementById('colorScrim').classList.remove('show');
+  document.getElementById('colorSheet').classList.remove('open');
+}
+function setColorFromNative(hex){
+  addColorGeneric(hex);
+  closeColorSheet();
+}
+document.getElementById('colorHexInput').addEventListener('input',function(){
+  const v=this.value.replace(/[^0-9A-Fa-f]/g,'').slice(0,6);
+  this.value=v;
+  const field=this.closest('.cp-hex-field');
+  if(isValidHex(v)){
+    field.classList.remove('invalid');
+    document.getElementById('colorPreviewSwatch').style.background='#'+v;
+  } else {
+    field.classList.remove('invalid');
+    document.getElementById('colorPreviewSwatch').style.background='var(--blue)';
+  }
+});
+document.getElementById('colorHexInput').addEventListener('keydown',function(e){
+  if(e.key==='Enter') document.getElementById('colorAddBtn').click();
+});
+document.getElementById('colorAddBtn').addEventListener('click',function(){
+  const v=document.getElementById('colorHexInput').value;
+  const field=document.getElementById('colorHexInput').closest('.cp-hex-field');
+  if(!isValidHex(v)){
+    field.classList.add('invalid');
+    showToast('⚠️ Enter a valid 6-digit hex color');
+    return;
+  }
+  addColorGeneric('#'+v);
+  closeColorSheet();
+});
+document.getElementById('colorScrim').addEventListener('click',closeColorSheet);
+
+/* ── Background Color Step logic ──
+   Opened by handlePublish() once the basic fields validate. This is
+   now the actual final step: its confirm button runs finalizePublish(). */
+let bgcCurrentHex = 'EFF2F7';
+
+function renderBgColorPresets(){
+  const grid=document.getElementById('bgcPresets');
+  if(!grid) return;
+  grid.innerHTML='';
+  COLOR_PRESETS.concat(['EFF2F7','E5E7EB']).forEach(hex=>{
+    const sw=document.createElement('div');
+    sw.className='cp-preset-swatch';
+    sw.style.background='#'+hex;
+    if(hex.toUpperCase()==='FFFFFF'||hex.toUpperCase()==='EFF2F7'||hex.toUpperCase()==='E5E7EB') sw.style.boxShadow='0 0 0 1px #e5e9f0, 0 1px 4px rgba(0,0,0,.1)';
+    if(hex.toUpperCase()===bgcCurrentHex.toUpperCase()) sw.classList.add('selected');
+    sw.onclick=()=>{ setBgColor(hex); };
+    grid.appendChild(sw);
+  });
+}
+
+function setBgColor(hex){
+  bgcCurrentHex = hex.toUpperCase();
+  document.getElementById('bgcHexInput').value = bgcCurrentHex;
+  document.getElementById('bgcPreviewSwatch').style.background = '#'+bgcCurrentHex;
+  document.getElementById('bgcPreviewCard').style.background = '#'+bgcCurrentHex;
+  document.querySelectorAll('#bgcPresets .cp-preset-swatch').forEach(sw=>{
+    sw.classList.toggle('selected', sw.style.background.replace(/\s/g,'').toLowerCase()==='#'+bgcCurrentHex.toLowerCase());
+  });
+}
+
+var _bgcOnConfirm = null;
+
+function openBgColorSheet(options){
+  options = options || {};
+  document.getElementById('bgcScrim').classList.add('show');
+  document.getElementById('bgcSheet').classList.add('open');
+  var isEditing = window._editingPublishedIdx >= 0 && window._editingPublishedIdx < window.PRODUCTS.length;
+  var existingHex = options.existingHex || (isEditing ? (window.PRODUCTS[window._editingPublishedIdx].bgColor||'').replace('#','') : '');
+  setBgColor(existingHex && /^[0-9A-Fa-f]{6}$/.test(existingHex) ? existingHex : 'EFF2F7');
+  renderBgColorPresets();
+  document.getElementById('bgcConfirmBtn').textContent = options.confirmLabel || (isEditing ? 'Save Changes' : 'Publish Product');
+  _bgcOnConfirm = options.onConfirm || function(hex){ finalizePublish(hex); };
+}
+function closeBgColorSheet(){
+  document.getElementById('bgcScrim').classList.remove('show');
+  document.getElementById('bgcSheet').classList.remove('open');
+}
+function setBgColorFromNative(hex){
+  setBgColor(hex.replace('#',''));
+  renderBgColorPresets();
+}
+document.getElementById('bgcHexInput').addEventListener('input',function(){
+  const v=this.value.replace(/[^0-9A-Fa-f]/g,'').slice(0,6);
+  this.value=v;
+  const field=this.closest('.cp-hex-field');
+  if(/^[0-9A-Fa-f]{6}$/.test(v)){
+    field.classList.remove('invalid');
+    setBgColor(v);
+  } else {
+    field.classList.remove('invalid');
+  }
+});
+document.getElementById('bgcHexInput').addEventListener('keydown',function(e){
+  if(e.key==='Enter') document.getElementById('bgcConfirmBtn').click();
+});
+document.getElementById('bgcConfirmBtn').addEventListener('click',function(){
+  const v=document.getElementById('bgcHexInput').value || bgcCurrentHex;
+  const field=document.getElementById('bgcHexInput').closest('.cp-hex-field');
+  if(!/^[0-9A-Fa-f]{6}$/.test(v)){
+    field.classList.add('invalid');
+    showToast('⚠️ Enter a valid 6-digit hex color');
+    return;
+  }
+  closeBgColorSheet();
+  var cb = _bgcOnConfirm;
+  _bgcOnConfirm = null;
+  if(typeof cb === 'function') cb('#'+v);
+});
+document.getElementById('bgcScrim').addEventListener('click',closeBgColorSheet);
+
+/* ── Image Cropper ──
+   Generic pan+zoom cropper used for the niche cover/background photos.
+   openImageCropper(dataUrl, stageW, stageH, outputW, outputH, onConfirm) */
+var cropState = null;
+
+function openImageCropper(dataUrl, stageW, stageH, outputW, outputH, onConfirm){
+  var stage = document.getElementById('cropStage');
+  var img = document.getElementById('cropImg');
+  stage.style.width = stageW+'px';
+  stage.style.height = stageH+'px';
+  stage.style.borderRadius = (stageW===stageH) ? '50%' : 'var(--r-md)';
+  img.src = dataUrl;
+  img.onload = function(){
+    cropState = {
+      nw: img.naturalWidth, nh: img.naturalHeight,
+      stageW: stageW, stageH: stageH,
+      outputW: outputW, outputH: outputH,
+      cx: 0.5, cy: 0.5, zoom: 1,
+      onConfirm: onConfirm
+    };
+    document.getElementById('cropZoom').value = 100;
+    applyCropTransform();
+    document.getElementById('cropScrim').classList.add('show');
+    document.getElementById('cropModal').classList.add('show');
+  };
+}
+function cropBaseScale(){
+  return Math.max(cropState.stageW/cropState.nw, cropState.stageH/cropState.nh);
+}
+function applyCropTransform(){
+  if(!cropState) return;
+  var scale = cropBaseScale() * cropState.zoom;
+  var dw = cropState.nw*scale, dh = cropState.nh*scale;
+  var minCx = (cropState.stageW/2)/dw, maxCx = 1-minCx;
+  var minCy = (cropState.stageH/2)/dh, maxCy = 1-minCy;
+  cropState.cx = Math.min(Math.max(cropState.cx, Math.min(minCx,maxCx)), Math.max(minCx,maxCx));
+  cropState.cy = Math.min(Math.max(cropState.cy, Math.min(minCy,maxCy)), Math.max(minCy,maxCy));
+  cropState.scale = scale;
+  var tx = cropState.stageW/2 - cropState.cx*dw;
+  var ty = cropState.stageH/2 - cropState.cy*dh;
+  var img = document.getElementById('cropImg');
+  img.style.width = dw+'px';
+  img.style.height = dh+'px';
+  img.style.transform = 'translate('+tx+'px,'+ty+'px)';
+}
+function closeImageCropper(){
+  document.getElementById('cropScrim').classList.remove('show');
+  document.getElementById('cropModal').classList.remove('show');
+  cropState = null;
+}
+(function(){
+  var stage = document.getElementById('cropStage');
+  var dragging = false, lastX = 0, lastY = 0;
+  stage.addEventListener('pointerdown', function(e){
+    if(!cropState) return;
+    dragging = true; lastX = e.clientX; lastY = e.clientY;
+    stage.setPointerCapture(e.pointerId);
+  });
+  stage.addEventListener('pointermove', function(e){
+    if(!dragging || !cropState) return;
+    var dx = e.clientX-lastX, dy = e.clientY-lastY;
+    lastX = e.clientX; lastY = e.clientY;
+    var dw = cropState.nw*cropState.scale, dh = cropState.nh*cropState.scale;
+    cropState.cx -= dx/dw;
+    cropState.cy -= dy/dh;
+    applyCropTransform();
+  });
+  stage.addEventListener('pointerup', function(){ dragging = false; });
+  stage.addEventListener('pointercancel', function(){ dragging = false; });
+  document.getElementById('cropZoom').addEventListener('input', function(){
+    if(!cropState) return;
+    cropState.zoom = this.value/100;
+    applyCropTransform();
+  });
+  document.getElementById('cropCancel').addEventListener('click', closeImageCropper);
+  document.getElementById('cropScrim').addEventListener('click', closeImageCropper);
+  document.getElementById('cropConfirm').addEventListener('click', function(){
+    if(!cropState) return;
+    var scale = cropState.scale;
+    var dw = cropState.nw*scale, dh = cropState.nh*scale;
+    var tx = cropState.stageW/2 - cropState.cx*dw;
+    var ty = cropState.stageH/2 - cropState.cy*dh;
+    var sourceX = -tx/scale, sourceY = -ty/scale;
+    var sourceW = cropState.stageW/scale, sourceH = cropState.stageH/scale;
+    var canvas = document.createElement('canvas');
+    canvas.width = cropState.outputW; canvas.height = cropState.outputH;
+    var ctx = canvas.getContext('2d');
+    var img = document.getElementById('cropImg');
+    ctx.drawImage(img, sourceX, sourceY, sourceW, sourceH, 0, 0, cropState.outputW, cropState.outputH);
+    var result = canvas.toDataURL('image/jpeg', 0.9);
+    var cb = cropState.onConfirm;
+    closeImageCropper();
+    if(typeof cb === 'function') cb(result);
+  });
+})();
 
 /* ── CATEGORY SHEET ── */
 const categories=[
@@ -9656,6 +10130,43 @@ function updateChar(inputId,labelId,max){
 }
 
 /* ── PUBLISH / SAVE ── */
+window._editingPublishedIdx = -1;
+
+function updatePublishedCount(){
+  var el2=document.getElementById('prfStatProds');
+  if(el2) el2.textContent = (window.PRODUCTS||[]).length;
+}
+
+function renderMyPublishedProducts(){
+  var list = document.getElementById('mppList');
+  if(!list) return;
+  var arr = window.PRODUCTS || [];
+  updatePublishedCount();
+  if(arr.length === 0){
+    list.innerHTML =
+      '<div class="mpp-empty"><div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div>'+
+      '<h3>No published products yet</h3><p>Products you publish to the Marketplace will show up here for editing.</p></div>';
+    return;
+  }
+  list.innerHTML = '';
+  arr.forEach(function(p, i){
+    var card = document.createElement('div');
+    card.className = 'mpp-card';
+    var thumbStyle = p._img ? 'background-image:url(\''+p._img+'\')' : 'background:'+(p.bgColor||p.grad||'#f4f6fb');
+    card.innerHTML =
+      '<div class="mpp-thumb" style="'+thumbStyle+'"></div>'+
+      '<div class="mpp-info"><div class="mpp-name">'+p.name+'</div><div class="mpp-price">'+(p.price||'')+'</div></div>'+
+      '<button class="mpp-edit-btn">Edit</button>';
+    card.querySelector('.mpp-edit-btn').addEventListener('click', function(){
+      window._editingPublishedIdx = i;
+      window._editingSavedIdx = -1;
+      loadProductForm(p);
+      go('s37', 's25', 'l');
+    });
+    list.appendChild(card);
+  });
+}
+
 function renderSavedProducts(){
   var list = document.getElementById('spList');
   if(!list) return;
@@ -9690,6 +10201,15 @@ function handlePublish(){
   if(imgData.length===0){showToast('⚠️ Please add at least one photo');return;}
   if(!selectedCategory){showToast('⚠️ Please select a category');return;}
 
+  openBgColorSheet();
+}
+
+function finalizePublish(bgColorHex){
+  var btns=document.querySelectorAll('.ap-submit-btn');
+  var name=document.getElementById('prodName');
+  var price=document.getElementById('prodPrice');
+  var nv=name.value.trim(), pv=price.value;
+
   btns.forEach(function(b){ b.textContent='Saving…'; b.disabled=true; b.style.opacity='0.6'; });
 
   var condEl=document.querySelector('.ap-cond-card.active');
@@ -9714,10 +10234,17 @@ function handlePublish(){
   var desc=descEl?descEl.value.trim():'';
   if(!brand) brand=getUserDisplayName();
 
+  var altOn=document.getElementById('altNameToggle')?document.getElementById('altNameToggle').classList.contains('on'):false;
+  var altNameEl=document.getElementById('prodAltName');
+  var altName=altOn&&altNameEl?altNameEl.value.trim():'';
+  var altLangEl=document.querySelector('#altLangChips .ap-lang-chip.active');
+  var altLang=altLangEl?altLangEl.getAttribute('data-lang'):'Arabic';
+
   var condLabels={new:'New','like-new':'Like New',good:'Good',fair:'Fair'};
   var pNum=parseFloat(pv);
   var fmtPrice=(isNaN(pNum)?'0':window.formatPrice(pNum))+' DA';
   var imgSrc=imgData.length>0?imgData[0]:null;
+  var bg=bgColorHex||'#EFF2F7';
 
   var prod={
     _savedId: Date.now() + '_' + Math.random().toString(36).slice(2,7),
@@ -9728,9 +10255,10 @@ function handlePublish(){
     seller:brand,
     rating:'5.0',
     reviews:'1',
-    grad:imgSrc?'url('+imgSrc+') center/cover no-repeat':'linear-gradient(135deg,#667eea,#764ba2)',
+    bgColor:bg,
+    grad:imgSrc?'url('+imgSrc+') center/cover no-repeat':bg,
     fav:false,
-    images:imgData.length>0?imgData.slice():['linear-gradient(135deg,#667eea,#764ba2)'],
+    images:imgData.length>0?imgData.slice():[bg],
     desc:desc||'No description provided.',
     specs:[],
     _img:imgSrc,
@@ -9742,19 +10270,37 @@ function handlePublish(){
       weight:weight,
       weightUnit:weightUnit,
       dimL:dl,dimW:dw,dimH:dh,
-      campus:campusOn
+      campus:campusOn,
+      bgColor:bg,
+      altName: altOn ? altName : '',
+      altLang: altOn ? altLang : ''
     }
   };
 
+  var isEditingPublished = window._editingPublishedIdx >= 0 && window._editingPublishedIdx < window.PRODUCTS.length;
+
   if(window._editingSavedIdx >= 0 && window._editingSavedIdx < window.SAVED_PRODUCTS.length){
-    prod._savedId = window.SAVED_PRODUCTS[window._editingSavedIdx]._savedId;
-    window.SAVED_PRODUCTS[window._editingSavedIdx] = prod;
-  } else {
-    window.SAVED_PRODUCTS.push(prod);
+    // Was opened by editing a saved draft — publishing promotes it out of
+    // drafts and onto the live Marketplace, it no longer stays a draft.
+    window.SAVED_PRODUCTS.splice(window._editingSavedIdx, 1);
   }
+
+  if(isEditingPublished){
+    var existing = window.PRODUCTS[window._editingPublishedIdx];
+    prod.fav = existing.fav;
+    prod.rating = existing.rating;
+    prod.reviews = existing.reviews;
+    prod.time = existing.time;
+    window.PRODUCTS[window._editingPublishedIdx] = prod;
+  } else {
+    window.PRODUCTS.unshift(prod);
+  }
+  if(typeof window.renderMarketGrid === 'function') window.renderMarketGrid();
+  if(typeof updatePublishedCount === 'function') updatePublishedCount();
 
   clearProductForm();
   window._editingSavedIdx = -1;
+  window._editingPublishedIdx = -1;
 
   setTimeout(function(){
     btns.forEach(function(b){
@@ -9762,15 +10308,13 @@ function handlePublish(){
       b.disabled = false;
       b.style.opacity = '1';
     });
-    showToast('💾 Product saved');
-    var src = window.ADD_PRODUCT_SOURCE || 's8';
-    go('s25', src, 'r');
-    var spScrim = document.getElementById('spScrim');
-    var spPopup = document.getElementById('spPopup');
-    if(spScrim && spPopup){
-      renderSavedProducts();
-      spScrim.classList.add('show');
-      spPopup.classList.add('show');
+    if(isEditingPublished){
+      showToast('✏️ Product updated');
+      if(typeof renderMyPublishedProducts === 'function') renderMyPublishedProducts();
+      go('s25', 's37', 'r');
+    } else {
+      showToast('🎉 Product published to the Marketplace');
+      go('s25', 's7', 'r');
     }
   },500);
 }
@@ -9811,8 +10355,23 @@ function clearProductForm(){
   var campusEl=document.getElementById('campusToggle');
   if(campusEl) campusEl.classList.remove('on');
   var colorsEl=document.getElementById('colorsArea');
-  if(colorsEl) colorsEl.innerHTML='<div class="add-color-btn" id="addColorBtn" onclick="document.getElementById(\'colorPickerInput\').click()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>';
+  if(colorsEl) colorsEl.innerHTML='<div class="add-color-btn" id="addColorBtn" onclick="openColorSheet()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>';
+  var altToggle=document.getElementById('altNameToggle');
+  var altContent=document.getElementById('altNameContent');
+  if(altToggle) altToggle.classList.remove('on');
+  if(altContent) altContent.classList.remove('open');
+  var altNameEl=document.getElementById('prodAltName');
+  if(altNameEl) altNameEl.value='';
+  var langChips=document.querySelectorAll('#altLangChips .ap-lang-chip');
+  langChips.forEach(function(c,i){ c.classList.toggle('active', i===0); });
 }
+
+document.querySelectorAll('#altLangChips .ap-lang-chip').forEach(function(chip){
+  chip.addEventListener('click', function(){
+    document.querySelectorAll('#altLangChips .ap-lang-chip').forEach(function(c){ c.classList.remove('active'); });
+    chip.classList.add('active');
+  });
+});
 
 function loadProductForm(prod){
   if(!prod) return;
@@ -9824,10 +10383,10 @@ function loadProductForm(prod){
   if(oldEl) oldEl.value='';
   var brandEl=document.getElementById('prodBrand');
   if(brandEl) brandEl.value=prod.seller||'';
-  selectedCategory=prod._extras?prod._extras.category:'';
+  selectedCategory=(prod._extras&&prod._extras.category)?prod._extras.category:'General';
   var cl=document.getElementById('catLabel');
   if(cl) cl.textContent=selectedCategory||'Select category...';
-  imgData=prod.images&&prod.images.length?prod.images.slice():[];
+  imgData=prod.images&&prod.images.length?prod.images.slice():(prod._img?[prod._img]:[]);
   if(imgData.length){buildSlots();}
   colors=prod._extras&&prod._extras.colors?prod._extras.colors.slice():[];
   if(typeof renderColors==='function') renderColors();
@@ -9864,6 +10423,20 @@ function loadProductForm(prod){
     if(prod._extras.campus){
       var cpEl=document.getElementById('campusToggle');
       if(cpEl) cpEl.classList.add('on');
+    }
+    var altToggle=document.getElementById('altNameToggle');
+    var altContent=document.getElementById('altNameContent');
+    var altNameEl=document.getElementById('prodAltName');
+    if(prod._extras.altName){
+      if(altToggle) altToggle.classList.add('on');
+      if(altContent) altContent.classList.add('open');
+      if(altNameEl) altNameEl.value=prod._extras.altName;
+      var langChips=document.querySelectorAll('#altLangChips .ap-lang-chip');
+      langChips.forEach(function(c){ c.classList.toggle('active', c.getAttribute('data-lang')===prod._extras.altLang); });
+    } else {
+      if(altToggle) altToggle.classList.remove('on');
+      if(altContent) altContent.classList.remove('open');
+      if(altNameEl) altNameEl.value='';
     }
   }
 }
