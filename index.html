@@ -291,7 +291,7 @@ h2{font-size:20px;font-weight:650;letter-spacing:-.3px;margin:var(--s3) 0 12px}
 .sgi.c{background:rgba(20,150,200,.14);color:#1496C8}.sgi.p{background:rgba(140,80,220,.14);color:#8C50DC}
 [data-theme=dark] .sgi.b{color:#4A9BFF}[data-theme=dark] .sgi.g{color:#4CD08A}[data-theme=dark] .sgi.c{color:#5CC4EC}[data-theme=dark] .sgi.p{color:#B98CF5}
 .composer{position:absolute;left:16px;right:16px;bottom:calc(var(--bot) + 112px);border-radius:30px;padding:14px 12px 10px 20px;display:flex;flex-direction:column;gap:8px;z-index:6;background:var(--glass-strong)}
-.composer input{border:0;background:none;font:inherit;font-size:17px;color:var(--ink);outline:0;width:100%;min-height:36px}
+.composer textarea{display:block;resize:none;overflow-y:auto;max-height:120px;line-height:1.35;padding:6px 0;border:0;background:none;font:inherit;font-size:17px;color:var(--ink);outline:0;width:100%;min-height:36px}
 .crow{display:flex;align-items:center;justify-content:space-between}
 .cbtn{width:44px;height:44px;border-radius:50%;background:rgba(24,119,242,.1);color:var(--acc);display:grid;place-items:center}
 .send{width:44px;height:44px;border-radius:50%;background:#0B0C10;color:#fff;display:grid;place-items:center;box-shadow:0 0 0 2px #fff,0 0 0 3px rgba(14,16,22,.12),0 8px 18px -4px var(--shade);transition:transform .25s var(--spring),opacity .25s}
@@ -317,7 +317,7 @@ h2{font-size:20px;font-weight:650;letter-spacing:-.3px;margin:var(--s3) 0 12px}
 .aiback .ic:nth-child(2){color:var(--acc)}
 .msg.u{align-self:flex-end;max-width:82%;background:#E1ECFF;color:#0B1B3A;border-radius:22px 22px 6px 22px;padding:11px 16px;box-shadow:0 4px 14px -8px rgba(24,119,242,.32)}
 .msg.a{align-self:stretch;max-width:100%;background:none;box-shadow:none;border-radius:0;padding:0 4px;font-size:16px;line-height:1.6;color:var(--ink)}
-.msg.a.cur::after{content:"";display:inline-block;width:2px;height:1.05em;margin-left:2px;vertical-align:-3px;background:var(--acc);animation:blink .9s steps(2) infinite}
+.msg.a.cur .md>:last-child::after{content:"";display:inline-block;width:2px;height:1.05em;margin-left:2px;vertical-align:-3px;background:var(--acc);animation:blink .9s steps(2) infinite}
 @keyframes blink{50%{opacity:0}}
 /* ---- niche profile hero ---- */
 .nhero{position:relative;min-height:640px;display:flex;align-items:flex-end;border-radius:0 0 32px 32px;overflow:hidden;color:#fff;background:#10121a}
@@ -430,6 +430,56 @@ h2{font-size:20px;font-weight:650;letter-spacing:-.3px;margin:var(--s3) 0 12px}
 .mrow{display:flex;align-items:center;gap:12px;min-height:44px;padding:0 14px;border-radius:16px;color:var(--ink2);font-weight:550;font-size:15.5px;cursor:default;-webkit-user-select:none;user-select:none}
 .mrow .ic{width:22px;height:22px}.mrow .grow{flex:1}
 .mrow .bdg{min-width:28px;height:26px;font-size:13px}
+/* ---- Blex AI v1 fixes ---- */
+.ai-scroll{-webkit-mask-image:linear-gradient(transparent 0,#000 64px);mask-image:linear-gradient(transparent 0,#000 64px)}
+.msg.a .md p{margin:0 0 .7em}.msg.a .md p:last-child{margin:0}
+.msg.a .md ul,.msg.a .md ol{margin:0 0 .7em;padding-inline-start:1.3em}.msg.a .md li{margin:.25em 0}
+.msg.a .md code{font-family:ui-monospace,Menlo,monospace;font-size:.92em;background:var(--line);padding:1px 6px;border-radius:6px}
+.mact-row{display:flex;gap:2px;margin:4px 0 0 -8px}.mact-row:empty{display:none}
+.mact{width:36px;height:36px;min-width:0;min-height:0;border-radius:50%;display:grid;place-items:center;color:var(--ink2);transition:background .2s,transform .25s var(--spring)}
+.mact:active{transform:scale(.9);background:var(--line)}
+.msg.a.err .md{color:var(--ink2)}
+.retry{display:inline-flex;align-items:center;min-height:0;min-width:0;height:32px;padding:0 14px;margin-left:8px;border-radius:16px;background:rgba(24,119,242,.12);color:var(--acc);font-weight:650;font-size:14px}
+[data-theme=dark] .msg.u{background:#1E3A66;color:#EAF1FF;box-shadow:none}
+.send.stop .ic{fill:currentColor}.send.stop{opacity:1}
+.cbtn .ic{width:21px;height:21px;stroke-width:2}
+.ch-row{display:flex;align-items:center;gap:2px}.ch-row .ch{flex:1;min-width:0}
+.ch-del{flex:none;width:40px;height:40px;min-width:0;min-height:0;border-radius:12px;display:grid;place-items:center;color:var(--ink2)}.ch-del:active{background:var(--line)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* ---- blexmaps ---- */
+.mp-head{position:sticky;top:0;z-index:6;padding:calc(var(--top) + 12px) 16px 8px;background:color-mix(in srgb,var(--bg) 86%,transparent);-webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%)}
+.mp-title{display:flex;align-items:center;gap:12px;margin-bottom:10px}.mp-title h1{flex:1;font-size:30px;letter-spacing:-.7px}
+.mp-title .gbtn.on{color:var(--acc-ink);background:var(--acc)}
+.mp-head .search{margin:0 0 10px}
+.mp-head .chips{padding-top:0;padding-bottom:6px}
+.chips.sm .chip{min-height:32px;padding:0 12px;font-size:13px;border-radius:16px}
+.mp-body{padding-top:4px}
+.mp-body .sh{margin:20px 0 10px}
+.ad{position:relative;flex:none;display:block;width:300px;height:206px;min-height:0;padding:0;border-radius:24px;overflow:hidden;scroll-snap-align:start;text-align:start}
+.ad .im{position:absolute;inset:0}.ad .im svg,.ad .im img{width:100%;height:100%;object-fit:cover;display:block}
+.ad .adb{position:absolute;top:10px;left:10px;display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:12px;font-size:11.5px;font-weight:700;letter-spacing:.4px;color:#fff;background:rgba(0,0,0,.38);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.ad .cap{position:absolute;left:10px;right:10px;bottom:10px;border-radius:18px;padding:10px 14px;background:var(--glass-strong)}
+.ad .cap b{display:block;font-size:17px;letter-spacing:-.2px}.ad .cap span{display:block;font-size:12.5px;color:var(--ink2);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mp-card{display:block;background:var(--card);border-radius:24px;padding:12px;margin-bottom:12px;cursor:pointer;box-shadow:0 2px 14px -8px var(--shade),inset 0 0 0 1px var(--line);transition:transform .3s var(--spring)}
+.mp-card:active{transform:scale(.985)}
+.mp-row{display:flex;gap:12px}
+.mp-thumb{flex:none;width:92px;height:92px;border-radius:18px;overflow:hidden}.mp-thumb svg,.mp-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.mp-info{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center}
+.mp-info>b{display:block;font-size:17px;font-weight:650;letter-spacing:-.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mp-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:var(--ink2);font-size:13px;margin-top:3px}
+.mp-dist{display:inline-flex;align-items:center;gap:2px;color:var(--acc);font-weight:650}
+.mp-open{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;margin-top:7px;color:var(--ink2)}
+.mp-open i{width:7px;height:7px;border-radius:50%;background:var(--ink2);flex:none}.mp-open.on{color:var(--ok)}.mp-open.on i{background:var(--ok)}
+.mp-acts{display:flex;gap:8px;margin-top:12px}
+.mbtn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:7px;height:42px;border-radius:21px;font-weight:650;font-size:14.5px;text-decoration:none;color:var(--ink);background:var(--line);transition:transform .25s var(--spring)}
+.mbtn.pri{background:var(--acc);color:var(--acc-ink)}.mbtn:active{transform:scale(.97)}
+.mp-badges{display:flex;gap:6px;flex-wrap:wrap}
+.mp-chip{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:12px;background:var(--line);color:var(--ink2);font-size:12px;font-weight:650}
+.mp-chip.is-ad{background:rgba(24,119,242,.12);color:var(--acc)}
+a.prow,a.cta{text-decoration:none}
+.grp a.prow{padding:10px 14px;min-height:60px}
+.hr{display:flex;justify-content:space-between;gap:12px;padding:12px 16px;font-size:15px;color:var(--ink2)}.hr+.hr{border-top:1px solid var(--line)}.hr.on{color:var(--ink);font-weight:650}
+.mp-bar{padding:10px;gap:10px}.mp-bar .cta{flex:1;height:52px}
 </style>
 </head>
 <body>
@@ -473,6 +523,16 @@ h2{font-size:20px;font-weight:650;letter-spacing:-.3px;margin:var(--s3) 0 12px}
 <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></symbol>
 <symbol id="i-live" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.2 19.1 19.1"/></symbol>
 <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
+<symbol id="i-branch" viewBox="0 0 24 24"><path d="M6 3v12"/><path d="M18 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M15 6a9 9 0 0 0-9 9"/><path d="M18 15v6"/><path d="M21 18h-6"/></symbol>
+<symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M10 11v6M14 11v6"/></symbol>
+<symbol id="i-stop" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="3"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+<symbol id="i-nav" viewBox="0 0 24 24"><path d="M3 11l19-9-9 19-2-8z"/></symbol>
+<symbol id="i-ext" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+<symbol id="i-store" viewBox="0 0 24 24"><path d="M4 9l1.5-5h13L20 9"/><path d="M5 12v8h14v-8"/><path d="M4 9c0 1.7 1.3 3 3 3s3-1.3 3-3c0 1.7 1.3 3 3 3s3-1.3 3-3c0 1.7 1.3 3 3 3"/><path d="M10 20v-4h4v4"/></symbol>
+<symbol id="i-locate" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></symbol>
 <symbol id="i-logo" viewBox="0 0 24 24"><path d="M5 4h8a4 4 0 0 1 2.6 7A4.2 4.2 0 0 1 14 20H5z"/><path d="M9 11h4M9 15.5h5"/></symbol>
 </defs></svg>
 
@@ -526,6 +586,7 @@ h2{font-size:20px;font-weight:650;letter-spacing:-.3px;margin:var(--s3) 0 12px}
 
 <script>
 /* ============ 5. MOCK DATA (swap for Supabase tables: sellers, niches, products, videos, orders) ============ */
+const T0=(d=>(d.setHours(0,0,0,0),+d))(new Date());
 const DB={
   me:{id:'s0',name:'You',anon:false},
   sellers:{s1:{name:'Amine Boutique',anon:false,av:{art:'pack',h:150}},s2:{name:'Hidden seller',anon:true},s3:{name:'Nour Atelier',anon:false,av:{art:'mug',h:24}}},
@@ -552,12 +613,13 @@ const DB={
   ],
   stories:[{n:'Nour',art:'mug',h:24},{n:'Amine',art:'pack',h:150},{n:'Maya',art:'tote',h:12},{n:'Sam',art:'lamp',h:200},{n:'Lina',art:'cream',h:330},{n:'Karim',art:'bottle',h:170},{n:'Yara',art:'blanket',h:40}],
   chats:[
-    {id:'c1',title:'Price ideas for my desk lamp',group:'Yesterday',when:'Yesterday',msgs:[['u','What price should I set for my desk lamp?'],['a','Check three similar listings, then price 5 to 10% under the middle one. Add delivery to your cost, not the price.']]},
-    {id:'c2',title:'How do I create a niche?',group:'Earlier',when:'2 days ago',msgs:[['u','How do I create a niche?'],['a','Tap + on the Market page, choose Niche, add a title, a cover and 5 to 8 related products. You can hide your identity with the anonymous switch.']]},
-    {id:'c3',title:'Show my unconfirmed orders',group:'Earlier',when:'3 days ago',msgs:[['u','Show my unconfirmed orders'],['a','You have no unconfirmed orders right now. They appear in My orders once a buyer checks out.']]}],
+    {id:'c1',title:'Price ideas for my desk lamp',ts:T0-12*36e5,msgs:[['u','What price should I set for my desk lamp?'],['a','Check three similar listings, then price 5 to 10% under the middle one. Add delivery to your cost, not the price.']]},
+    {id:'c2',title:'How do I create a niche?',ts:T0-36*36e5,msgs:[['u','How do I create a niche?'],['a','Tap + on the Market page, choose Niche, add a title, a cover and 5 to 8 related products. You can hide your identity with the anonymous switch.']]},
+    {id:'c3',title:'Show my unconfirmed orders',ts:T0-60*36e5,msgs:[['u','Show my unconfirmed orders'],['a','You have no unconfirmed orders right now. They appear in My orders once a buyer checks out.']]}],
   orders:[{id:'o1',product:'p5',status:'In transit',deliveryFee:3.5,feePaid:true,placedAt:Date.now()-36*3600e3,deadlineH:72}]
 };
 
+try{const c=JSON.parse(localStorage.getItem('blex.chats'));if(Array.isArray(c))DB.chats=c}catch(e){}
 /* ============ 6. HELPERS ============ */
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const ic=(n,c='')=>`<svg class="ic ${c}"><use href="#i-${n}"/></svg>`;
@@ -598,7 +660,7 @@ function push(type,id,src){
   const z=zoomState(src);                       /* measure BEFORE inserting, so the first computed style is the zoom start */
   const el=document.createElement('section'); el.className='screen detail '+(z?'zm':'zf'); el.dataset.type=type;
   if(z){el.style.transform=z.t;el.style.clipPath=z.c}
-  el.innerHTML=type==='product'?productView(id):type==='saved'?savedView():nicheView(id);
+  el.innerHTML=type==='product'?productView(id):type==='saved'?savedView():type==='maps'?mapsView():type==='store'?storeView(id):nicheView(id);
   $('#app').appendChild(el); S.stack.push(el); el._src=src;
   void el.offsetWidth; el.classList.add('in');
   if(z){el.style.transform='none';el.style.clipPath='inset(0px 0px 0px 0px round 0px)'}
@@ -708,13 +770,6 @@ function feedView(){
       <button class="gbtn glass" data-toast="Link copied" aria-label="Share">${ic('share')}</button></div></article>`}).join('');
 }
 const GREET='Hi, I can help you shop, name a niche, write a product description or suggest a price. What do you need?';
-function loadChat(m){$('#ai').classList.toggle('has-chat',m.length>0);$('#chat').innerHTML=m.map(x=>`<div class="msg ${x[0]}">${x[1]}</div>`).join('');$('#aiScroll').scrollTo({top:0})}
-function renderChatList(q){
-  const L=DB.chats.filter(c=>c.title.toLowerCase().includes(q.toLowerCase()));
-  if(!L.length){$('#chatList').innerHTML='<div class="empty" style="padding:28px 8px">No chats found.</div>';return}
-  let h='',g='';L.forEach(c=>{if(c.group!==g){g=c.group;h+=`<div class="ch-g">${g}</div>`}h+=`<button class="ch" data-chat="${c.id}">${ic('chat')}<span class="grow">${c.title}</span><span class="when">${c.when}</span></button>`});
-  $('#chatList').innerHTML=h;
-}
 function savedItems(){return{p:DB.products.filter(p=>S.liked[p.id]||S.saved['product:'+p.id]),n:DB.niches.filter(n=>S.saved['niche:'+n.id])}}
 function savedView(){
   const v=savedItems(),empty=!v.p.length&&!v.n.length;
@@ -753,7 +808,7 @@ function hideSub(){S.sub=null;$('#side').classList.remove('sub');const m=$('#sid
 function openAcct(){showSub('account')}
 function openPlan(){showSub('plan')}
 function mapCard(){
-  return `<button class="mapcard" data-toast="blexmaps is coming soon" aria-label="Open blexmaps"><svg class="mapart" viewBox="0 0 320 96" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  return `<button class="mapcard" data-act="maps" aria-label="Open blexmaps"><svg class="mapart" viewBox="0 0 320 96" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
   <rect width="320" height="96" class="m-land"/><path class="m-water" d="M210 96c14-22 40-30 70-34 14-2 28-8 40-18v52z"/><rect class="m-park" x="26" y="8" width="66" height="34" rx="12"/>
   <g class="m-road"><path d="M0 62h320M0 26h320M122 0v96M198 0v96M62 44v52"/><path d="M-10 94 330 4"/></g>
   <path class="m-route" d="M40 82 L122 62 L122 26 L198 26 L246 48"/>
@@ -772,37 +827,269 @@ function aiView(){
   return `<div class="ai-scroll" id="aiScroll"><div class="welcome"><div class="wl"><img alt="Blex" src="${LOGO}"><span class="aibadge">${ic('spark','sm')}</span></div>
   <h1>Blex AI</h1><p class="sub">Your intelligent shopping assistant</p><p class="hint">How can I help you today?</p>
   <div class="sgs">${card('box','b','Show my unconfirmed orders')}${card('user','g','My published products & niches')}${card('layers','c','How do I create a niche?')}${card('spark','p',"What's in my plan?")}</div></div>
-  <div class="chat" id="chat"></div></div>
-  <form class="composer glass" id="aiForm"><input id="aiIn" placeholder="Ask Blex AI anything..." aria-label="Message" autocomplete="off">
-    <div class="crow"><button type="button" class="cbtn" data-toast="Attachments are coming soon" aria-label="Add">${ic('plus')}</button><button class="send" disabled aria-label="Send">${ic('up')}</button></div></form>
+  <div class="chat" id="chat" role="log" aria-live="off" aria-label="Conversation"></div><div class="sr" id="aiSR" aria-live="polite"></div></div>
+  <form class="composer glass" id="aiForm"><textarea id="aiIn" rows="1" placeholder="Ask Blex AI anything..." aria-label="Message" autocomplete="off" enterkeyhint="send"></textarea>
+    <div class="crow"><button type="button" class="cbtn" data-newchat aria-label="New chat" title="New chat">${ic('branch')}</button><button class="send" disabled aria-label="Send">${ic('up')}</button></div></form>
   <p class="disc">Blex AI can make mistakes. Double-check important info.</p>
   <button class="aiback glass" id="aiBack" data-tab="market" aria-label="Back to Market">${ic('fwd','sm nav')}${ic('home','sm nav')}<span>Market</span></button>`;
 }
-/* Single seam for a real model/API call (Stage 5): replace body with fetch to your edge function. */
-async function aiReply(text){
-  await new Promise(r=>setTimeout(r,450));
-  const t=text.toLowerCase();
-  if(t.includes('unconfirmed'))return 'You have no unconfirmed orders right now. New ones appear in My orders as soon as a buyer checks out.';
-  if(t.includes('published'))return 'You have not published any products or niches yet. Tap + on the Market page to create your first one.';
-  if(t.includes('create'))return 'Tap + on the Market page, choose Niche, add a title, a cover and 5 to 8 related products. You can hide your identity with the anonymous switch.';
-  if(t.includes('plan'))return 'You are on the Free plan. Upgrade options will appear here once billing is connected.';
-  if(t.includes('niche'))return 'Try a niche around one routine: "Slow Mornings", "Night Desk" or "Trail Ready". Pick 5 to 8 products that belong together.';
-  if(t.includes('price'))return 'Check three similar listings, then price 5 to 10% under the middle one. Add delivery to your cost, not the price.';
-  if(t.includes('descr'))return 'Lead with what it does, then size and material, then one line on who it is for. Keep it under 60 words.';
-  return 'This is a demo reply. In the next stage a real assistant will answer here.';
+/* ---------- Blex AI: state, markdown, chats, replies ---------- */
+const AI={busy:false,stop:false,stick:true,run:0};
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+/* tiny, safe markdown: input is escaped first, then **bold**, *italic*, `code`, lists and paragraphs */
+function md(src){
+  const inline=t=>t.replace(/`([^`]+)`/g,'<code>$1</code>').replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>').replace(/(^|[\s(])\*([^*\s][^*]*)\*/g,'$1<i>$2</i>');
+  let out='',list=null;const close=()=>{if(list){out+=`</${list}>`;list=null}};
+  for(const ln of esc(src).split('\n')){
+    let m;
+    if(m=ln.match(/^\s*[-*]\s+(.*)/)){if(list!=='ul'){close();out+='<ul>';list='ul'}out+=`<li>${inline(m[1])}</li>`}
+    else if(m=ln.match(/^\s*\d+[.)]\s+(.*)/)){if(list!=='ol'){close();out+='<ol>';list='ol'}out+=`<li>${inline(m[1])}</li>`}
+    else if(!ln.trim())close();
+    else{close();out+=`<p>${inline(ln)}</p>`}
+  }
+  close();return out;
 }
-function say(cls,html){const c=$('#chat');$('#ai').classList.add('has-chat');c.insertAdjacentHTML('beforeend',`<div class="msg ${cls}">${html}</div>`);$('#aiScroll').scrollTo({top:1e5,behavior:'smooth'});return c.lastElementChild}
-/* fast typewriter: ~3 chars every 16ms, instant if the user prefers reduced motion */
-async function typeOut(el,text){
-  if(matchMedia('(prefers-reduced-motion:reduce)').matches){el.textContent=text;return}
-  el.classList.add('cur');
-  for(let i=0;i<text.length;){i=Math.min(text.length,i+3);el.textContent=text.slice(0,i);$('#aiScroll').scrollTop=1e5;await new Promise(r=>setTimeout(r,16))}
+/* one source of truth for "my" numbers: the side menu AND the assistant read from here */
+function myStats(){
+  const p=DB.products.filter(x=>x.seller===DB.me.id),n=DB.niches.filter(x=>x.seller===DB.me.id),o=DB.orders;
+  return{products:p.length,niches:n.length,orders:o.length,pending:o.filter(x=>x.status==='Awaiting confirmation').length};
+}
+const saveChats=()=>{try{localStorage.setItem('blex.chats',JSON.stringify(DB.chats))}catch(e){}};
+const chatGroup=c=>{if(!c.ts)return 'Earlier';const d0=new Date();d0.setHours(0,0,0,0);const d=Math.floor((d0-new Date(c.ts).setHours(0,0,0,0))/864e5);return d<=0?'Today':d===1?'Yesterday':'Earlier'};
+
+const actsHTML=last=>`<button class="mact" data-copy aria-label="Copy reply">${ic('copy','sm')}</button>${last?`<button class="mact" data-regen aria-label="Regenerate reply">${ic('refresh','sm')}</button>`:''}`;
+const msgHTML=(role,text,last)=>role==='u'
+  ?`<div class="msg u">${esc(text).replace(/\n/g,'<br>')}</div>`
+  :`<div class="msg a" data-raw="${esc(text).replace(/"/g,'&quot;')}"><div class="md">${md(text)}</div><div class="mact-row">${actsHTML(last)}</div></div>`;
+const aiEnd=force=>{const s=$('#aiScroll');if(s&&(force||AI.stick))s.scrollTop=s.scrollHeight};
+function fitIn(){const t=$('#aiIn');if(!t)return;t.style.height='auto';t.style.height=Math.min(120,t.scrollHeight)+'px'}
+function setBusy(b){
+  AI.busy=b;const s=$('#aiForm .send');if(!s)return;
+  s.classList.toggle('stop',b);s.innerHTML=ic(b?'stop':'up');s.setAttribute('aria-label',b?'Stop':'Send');
+  s.disabled=!b&&!$('#aiIn').value.trim();
+}
+function loadChat(m,chat=null){
+  AI.run++;AI.stop=false;S.chat=chat;setBusy(false);
+  $('#ai').classList.toggle('has-chat',m.length>0);
+  $('#chat').innerHTML=m.map((x,i)=>msgHTML(x[0],x[1],i===m.length-1&&x[0]==='a')).join('');
+  AI.stick=true;m.length?aiEnd(true):$('#aiScroll').scrollTo({top:0});
+}
+function renderChatList(q){
+  const L=[...DB.chats].sort((a,b)=>(b.ts||0)-(a.ts||0)).filter(c=>c.title.toLowerCase().includes(q.toLowerCase()));
+  if(!L.length){$('#chatList').innerHTML=`<div class="empty" style="padding:28px 8px">${DB.chats.length?'No chats found.':'No chats yet.'}</div>`;return}
+  let h='',g='';
+  L.forEach(c=>{const gg=chatGroup(c);if(gg!==g){g=gg;h+=`<div class="ch-g">${g}</div>`}
+    h+=`<div class="ch-row"><button class="ch" data-chat="${c.id}">${ic('chat')}<span class="grow">${esc(c.title)}</span></button><button class="ch-del" data-delchat="${c.id}" aria-label="Delete chat">${ic('trash','sm')}</button></div>`});
+  $('#chatList').innerHTML=h;
+}
+function delChat(id){
+  const i=DB.chats.findIndex(c=>c.id===id);if(i<0)return;
+  const was=S.chat===DB.chats[i];DB.chats.splice(i,1);saveChats();
+  renderChatList($('#cq')?$('#cq').value:'');if(was)loadChat([],null);toast('Chat deleted');
+}
+async function copyReply(btn){
+  const raw=btn.closest('.msg').getAttribute('data-raw')||'';
+  try{await navigator.clipboard.writeText(raw)}catch(e){const t=document.createElement('textarea');t.value=raw;t.style.cssText='position:fixed;opacity:0';document.body.appendChild(t);t.select();try{document.execCommand('copy')}catch(_){}t.remove()}
+  toast('Copied');
+}
+function regen(){
+  if(AI.busy||!S.chat)return;
+  const ms=S.chat.msgs;if(ms.length&&ms[ms.length-1][0]==='a')ms.pop();
+  const last=$$('#chat .msg.a').pop();if(last)last.remove();
+  const u=[...ms].reverse().find(x=>x[0]==='u');if(u)ask(u[1],true);
+}
+
+/* Mock brain: intent rules read the same data as the app. Replace aiReply() with a real call later. */
+function mockReply(q){
+  const t=q.toLowerCase().trim(),st=myStats();
+  if(/\b(plan|pro|subscription|subscribe|upgrade|billing)\b/.test(t))
+    return "You are on the **Free plan**. **Blex Pro** (990 DA / month) adds:\n- Blex AI assistant\n- Publishing products with AI\n- Unlimited stories and reels\n- Live selling\nOpen the menu and tap **Upgrade** to see it.";
+  if(/unconfirmed|\border|tracking|delivery status/.test(t)){
+    if(!DB.orders.length)return 'You have no orders yet. They appear in **My orders** as soon as you check out.';
+    const lines=DB.orders.map(o=>`- ${DB.products.find(p=>p.id===o.product).name}: ${o.status}`).join('\n');
+    return `You have **${st.orders} order${st.orders>1?'s':''}**, and **${st.pending} waiting for confirmation**.\n${lines}`;
+  }
+  if(/published|my products|my niches|my listings|what am i selling/.test(t))
+    return st.products||st.niches?`You have published **${st.products} product${st.products===1?'':'s'}** and **${st.niches} niche${st.niches===1?'':'s'}**.`
+      :'You have not published anything yet. Tap **+** on the Market page to create your first **product** or **niche**.';
+  if(/(create|make|start|build|set up).*niche|how.*niche/.test(t))
+    return '**Creating a niche**\n1. Tap **+** on the Market page and choose **Niche**.\n2. Add a title and a cover.\n3. Pick 5 to 8 related products.\n4. Optional: switch on **Anonymous selling** to hide your name.';
+  if(/price|pricing|how much (should|to)|charge/.test(t))
+    return '**A simple way to price it**\n1. Check three similar listings.\n2. Price 5 to 10% under the middle one.\n3. Add delivery to your cost, not to the price.';
+  if(/descr|write.*(title|listing|product)/.test(t))
+    return '**A good description**\n- Start with what it does.\n- Then size and material.\n- End with one line on who it is for.\nKeep it under 60 words.';
+  if(/niche|idea|theme/.test(t))
+    return 'Build a niche around **one routine**, for example "Slow Mornings", "Night Desk" or "Trail Ready". Pick 5 to 8 products that belong together.';
+  if(/^(hi|hello|hey|salam)\b/.test(t))return GREET;
+  return 'I am still in demo mode, so I only know a few topics: **orders**, **niches**, **pricing** and **product descriptions**. Try one of those.';
+}
+/* Single seam for the real model. msgs = full history [{role:'user'|'assistant',content}].
+   Later: POST msgs to YOUR edge function (never put an API key in this file), stream the body, call onToken for each chunk. */
+async function aiReply(msgs){
+  if(!navigator.onLine)throw new Error('offline');
+  await sleep(450);
+  if(window.__aiFail){window.__aiFail=false;throw new Error('boom')}
+  return mockReply(msgs[msgs.length-1].content);
+}
+async function typeOut(el,text,run){
+  const box=el.querySelector('.md');
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches){box.innerHTML=md(text);return text}
+  el.classList.add('cur');let i=0;
+  while(i<text.length&&!AI.stop&&AI.run===run){i=Math.min(text.length,i+3);box.innerHTML=md(text.slice(0,i));aiEnd();await sleep(16)}
   el.classList.remove('cur');
+  const shown=(AI.stop&&AI.run===run)?text.slice(0,i):text;box.innerHTML=md(shown);return shown;
 }
-async function ask(text){
-  if(!text.trim())return;$('#aiForm .send').disabled=true; say('u',text.replace(/</g,'&lt;'));
-  const t=say('a','<div class="typing" style="padding:4px"><i></i><i></i><i></i></div>');
-  const r=await aiReply(text); t.innerHTML=''; await typeOut(t,r);
+function addMsg(role,html){
+  $('#ai').classList.add('has-chat');
+  $('#chat').insertAdjacentHTML('beforeend',role==='u'?`<div class="msg u">${html}</div>`:`<div class="msg a"><div class="md">${html}</div><div class="mact-row"></div></div>`);
+  return $('#chat').lastElementChild;
+}
+async function ask(text,isRegen){
+  text=String(text||'').trim();if(!text||AI.busy)return;
+  if(!S.chat){S.chat={id:'c'+Date.now(),title:text.slice(0,40),ts:Date.now(),msgs:[]};DB.chats.unshift(S.chat);if($('#chatList'))renderChatList($('#cq')?$('#cq').value:'')}
+  const chat=S.chat,run=++AI.run;AI.stop=false;AI.stick=true;
+  if(!isRegen){chat.msgs.push(['u',text]);addMsg('u',esc(text).replace(/\n/g,'<br>'))}
+  setBusy(true);
+  const el=addMsg('a','<div class="typing" style="padding:4px"><i></i><i></i><i></i></div>');aiEnd(true);
+  let reply='';
+  try{
+    reply=await aiReply(chat.msgs.map(m=>({role:m[0]==='u'?'user':'assistant',content:m[1]})));
+    if(AI.run!==run){chat.msgs.push(['a',reply]);saveChats();return}          /* user left this chat mid-reply: keep the answer in its history */
+    if(AI.stop){el.remove();if(!$$('#chat .msg').length)$('#ai').classList.remove('has-chat');return}
+    const shown=await typeOut(el,reply,run);
+    if(AI.run!==run){chat.msgs.push(['a',reply]);saveChats();return}
+    chat.msgs.push(['a',shown]);el.setAttribute('data-raw',shown);
+    $$('#chat .mact-row [data-regen]').forEach(b=>b.remove());
+    el.querySelector('.mact-row').innerHTML=actsHTML(true);
+    $('#aiSR').textContent=shown;                                              /* announce the finished reply once, not every typed character */
+  }catch(err){
+    if(AI.run===run){
+      el.classList.add('err');
+      el.querySelector('.md').innerHTML=`${navigator.onLine?'Something went wrong.':'You appear to be offline.'} <button class="retry" data-retry>Try again</button>`;
+    }
+  }finally{
+    if(AI.run===run){setBusy(false);saveChats();aiEnd()}
+  }
+}
+
+/* ============ 8b. BLEXMAPS: store ads, directory, store page ============ */
+/* SAMPLE DATA. Every store below is fictional and every phone number is deliberately not dialable (0500...).
+   Real listings: replace this array (or load a Supabase `stores` table) and set sample:false.
+   `maps` is optional: paste the "Share" link from Google Maps for the exact business page; otherwise a pin is built from lat/lng.
+   `img` is optional: up to 3 photo URLs; without it the procedural art is used. */
+const H=(o,c,days)=>Array.from({length:7},(_,d)=>days.includes(d)?[o*60,c*60]:null);   /* index 0 = Sunday */
+const STORES=[
+  {id:'st1',name:'Atelier Nour',cat:'Home',city:'Algiers',addr:'Centre-ville, Alger-Centre',lat:36.7538,lng:3.0588,phone:'0500 00 00 01',wa:true,hours:H(9,19,[0,1,2,3,4,6]),ad:true,sample:true,art:'mug',h:24,niche:'n1',
+   tagline:'Hand-glazed ceramics and linen for slower mornings.',desc:'A small studio shop with everything from the Slow Mornings niche, plus pieces you can only buy in store.',tags:['Ceramics','Linen','Gifts']},
+  {id:'st2',name:'Urban Thread',cat:'Fashion',city:'Oran',addr:'Centre-ville, Oran',lat:35.6971,lng:-0.6308,phone:'0500 00 00 02',wa:true,hours:H(10,21,[0,1,2,3,4,5,6]),ad:true,sample:true,art:'tote',h:12,
+   tagline:'Everyday streetwear, new drops every Thursday.',desc:'Relaxed fits, heavy cotton and a rotating wall of limited pieces from local makers.',tags:['Streetwear','Totes','Accessories']},
+  {id:'st3',name:'Tech Corner',cat:'Tech',city:'Constantine',addr:'Centre-ville, Constantine',lat:36.3650,lng:6.6147,phone:'0500 00 00 03',hours:H(9,18,[0,1,2,3,4,6]),sample:true,art:'lamp',h:200,
+   tagline:'Lamps, chargers and cable gear for your desk.',desc:'Quiet tech for late work sessions. Ask the team to match a lamp to your desk.',tags:['Desk','Chargers','Cables']},
+  {id:'st4',name:'Maison Rose',cat:'Beauty',city:'Algiers',addr:'Hydra, Alger',lat:36.7439,lng:3.0391,phone:'0500 00 00 04',wa:true,hours:H(10,20,[0,1,2,3,4,6]),ad:true,sample:true,art:'cream',h:330,
+   tagline:'Fragrance-free skincare, tested by the team.',desc:'Hand creams, balms and gift sets. Samples are free in store.',tags:['Skincare','Gifts']},
+  {id:'st5',name:'Trail & Co',cat:'Sport',city:'Blida',addr:'Centre-ville, Blida',lat:36.4703,lng:2.8277,phone:'0500 00 00 05',hours:H(8,19,[0,1,2,3,4,6]),sample:true,art:'pack',h:150,niche:'n3',
+   tagline:'Packs, bottles and repair kits for the weekend loop.',desc:'Everything from the Trail Ready niche on the shelf, with staff who hike the routes they recommend.',tags:['Hiking','Packs','Bottles']},
+  {id:'st6',name:'Petit Monde',cat:'Kids',city:'Annaba',addr:'Centre-ville, Annaba',lat:36.9000,lng:7.7667,phone:'0500 00 00 06',hours:H(10,20,[0,1,2,3,4,6]),sample:true,art:'blanket',h:40,
+   tagline:'Soft blankets and small things for little ones.',desc:'Blankets, tote bags and gifts for newborns and toddlers.',tags:['Blankets','Gifts']},
+  {id:'st7',name:'Dar Linen',cat:'Home',city:'Setif',addr:'Centre-ville, Setif',lat:36.1898,lng:5.4108,phone:'0500 00 00 07',hours:H(9,18,[0,1,2,3,4,6]),sample:true,art:'blanket',h:200,
+   tagline:'Linen throws, cushions and table pieces.',desc:'Stonewashed linen by the metre or ready made.',tags:['Linen','Table']},
+  {id:'st8',name:'Studio Fixe',cat:'Tech',city:'Algiers',addr:'Bab Ezzouar, Alger',lat:36.7167,lng:3.1833,phone:'0500 00 00 08',wa:true,hours:H(9,19,[0,1,2,3,4]),sample:true,art:'organiser',h:260,
+   tagline:'Organisers and accessories for a tidy workspace.',desc:'Cable docks, stands and small accessories, with quick repairs while you wait.',tags:['Organisers','Accessories']}
+];
+const DAYN=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],DAYORDER=[6,0,1,2,3,4,5];   /* Algerian week: Saturday first */
+const hm=m=>String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');
+function openState(s,now=new Date()){
+  const d=now.getDay(),m=now.getHours()*60+now.getMinutes(),t=s.hours[d];
+  if(t&&m>=t[0]&&m<t[1])return{open:true,text:`Open now · closes ${hm(t[1])}`};
+  for(let i=0;i<=7;i++){const dd=(d+i)%7,h=s.hours[dd];if(h&&(i>0||m<h[0]))return{open:false,text:`Closed · opens ${i===0?'':i===1?'tomorrow ':DAYN[dd].slice(0,3)+' '}${hm(h[0])}`}}
+  return{open:false,text:'Closed'};
+}
+const kmBetween=(a,b)=>{const R=6371,r=x=>x*Math.PI/180,dLa=r(b.lat-a.lat),dLo=r(b.lng-a.lng),q=Math.sin(dLa/2)**2+Math.cos(r(a.lat))*Math.cos(r(b.lat))*Math.sin(dLo/2)**2;return 2*R*Math.asin(Math.sqrt(q))};
+const fmtKm=k=>k<1?Math.round(k*1000)+' m':k<10?k.toFixed(1)+' km':Math.round(k)+' km';
+const digits=p=>p.replace(/\D/g,'').replace(/^0/,'');                 /* 0500 00 00 01 -> 500000001 (Algeria +213) */
+const telUrl=s=>'tel:+213'+digits(s.phone), waUrl=s=>'https://wa.me/213'+digits(s.phone);
+const mapsUrl=s=>s.maps||`https://www.google.com/maps/search/?api=1&query=${s.lat},${s.lng}`;
+const dirUrl=s=>`https://www.google.com/maps/dir/?api=1&destination=${s.lat},${s.lng}`;
+const storeImg=(s,i)=>s.img&&s.img[i]?`<img src="${esc(s.img[i])}" alt="${esc(s.name)} photo ${i+1}" loading="lazy">`:scene(s.art,s.h,i%3);
+const mpCats=()=>['All',...DB.categories.slice(1).filter(c=>STORES.some(s=>s.cat===c))];
+const mpCities=()=>['All',...new Set(STORES.map(s=>s.city))];
+S.mp={cat:'All',city:'All',q:'',near:null};
+
+function mpFiltered(){
+  const m=S.mp,q=m.q.trim().toLowerCase();
+  let L=STORES.filter(s=>(m.cat==='All'||s.cat===m.cat)&&(m.city==='All'||s.city===m.city)&&(!q||[s.name,s.cat,s.city,s.addr,s.tagline,(s.tags||[]).join(' ')].join(' ').toLowerCase().includes(q)));
+  if(m.near)L=L.map(s=>({...s,_km:kmBetween(m.near,s)})).sort((a,b)=>a._km-b._km);
+  return L;
+}
+const adCard=s=>`<button class="ad" data-open="store:${s.id}" aria-label="${esc(s.name)}, advertisement"><div class="im">${storeImg(s,0)}</div><span class="adb">Ad</span>
+  <div class="cap glass"><div><b>${esc(s.name)}</b><span>${esc(s.tagline)}</span></div></div></button>`;
+function storeCard(s){
+  const o=openState(s);
+  return `<article class="mp-card" data-open="store:${s.id}" tabindex="0" role="link" aria-label="${esc(s.name)}, ${esc(s.cat)}, ${esc(s.city)}">
+    <div class="mp-row"><div class="mp-thumb">${storeImg(s,0)}</div>
+      <div class="mp-info"><b>${esc(s.name)}</b>
+        <div class="mp-meta"><span>${esc(s.cat)} · ${esc(s.city)}</span>${s._km!==undefined?`<span class="mp-dist">${ic('pin','sm')}${fmtKm(s._km)}</span>`:''}${s.sample?'<span class="mp-chip">Sample</span>':''}</div>
+        <div class="mp-open ${o.open?'on':'off'}"><i></i>${o.text}</div></div></div>
+    <div class="mp-acts"><a class="mbtn" href="${telUrl(s)}" aria-label="Call ${esc(s.name)}">${ic('phone','sm')}Call</a>
+      <a class="mbtn pri" href="${dirUrl(s)}" target="_blank" rel="noopener" aria-label="Directions to ${esc(s.name)} in Google Maps">${ic('nav','sm')}Directions</a></div></article>`;
+}
+function mpBodyHTML(){
+  const L=mpFiltered(),ads=L.filter(s=>s.ad);
+  if(!L.length)return `<div class="empty">${ic('store')}<h2>No stores found</h2><p>Try another city, category or word.</p></div>`;
+  return (ads.length?`<div class="sh"><h2>Featured</h2><span class="muted">Ad</span></div><div class="car">${ads.map(adCard).join('')}</div>`:'')
+    +`<div class="sh"><h2>${S.mp.near?'Near you':'Stores'}</h2><span class="muted">${L.length}</span></div>${L.map(storeCard).join('')}`;
+}
+function mapsView(){
+  const m=S.mp;
+  return `<div class="scroll" id="mpScroll"><div class="mp-head">
+    <div class="mp-title"><button class="gbtn glass" data-act="back" aria-label="Back">${ic('back')}</button><h1>blexmaps</h1>
+      <button class="gbtn glass ${m.near?'on':''}" id="mpNear" data-near aria-label="Sort by distance from me" aria-pressed="${!!m.near}">${ic('locate')}</button></div>
+    <label class="search">${ic('search','sm')}<input id="mq" value="${esc(m.q)}" placeholder="Search stores, products, cities" aria-label="Search stores" enterkeyhint="search"></label>
+    <div class="chips" id="mpCats" role="group" aria-label="Categories">${mpCats().map(c=>`<button class="chip" aria-pressed="${c===m.cat}" data-mcat="${c}">${c}</button>`).join('')}</div>
+    <div class="chips sm" id="mpCities" role="group" aria-label="Cities">${mpCities().map(c=>`<button class="chip" aria-pressed="${c===m.city}" data-mcity="${c}">${c==='All'?'All cities':c}</button>`).join('')}</div></div>
+    <div class="body mp-body" id="mpBody">${mpBodyHTML()}</div></div>`;
+}
+function renderMp(){
+  const b=$('#mpBody');if(!b)return;
+  b.innerHTML=mpBodyHTML();
+  $$('#mpCats .chip').forEach(x=>x.setAttribute('aria-pressed',x.dataset.mcat===S.mp.cat));
+  $$('#mpCities .chip').forEach(x=>x.setAttribute('aria-pressed',x.dataset.mcity===S.mp.city));
+  const n=$('#mpNear');if(n){n.classList.toggle('on',!!S.mp.near);n.setAttribute('aria-pressed',!!S.mp.near)}
+}
+/* "Near me": the position is used on this device only, to sort the list. It is never stored or sent anywhere. */
+function nearMe(){
+  if(S.mp.near){S.mp.near=null;renderMp();return}
+  if(!navigator.geolocation){toast('Location is not available here');return}
+  toast('Finding stores near you');
+  navigator.geolocation.getCurrentPosition(
+    p=>{S.mp.near={lat:p.coords.latitude,lng:p.coords.longitude};renderMp();toast('Sorted by distance')},
+    ()=>toast('Allow location to sort by distance'),{timeout:8000,maximumAge:60000});
+}
+function storeView(id){
+  const s=STORES.find(x=>x.id===id),o=openState(s),n=s.niche&&DB.niches.find(x=>x.id===s.niche),today=new Date().getDay();
+  const row=(href,i,main,sub,ext)=>`<a class="prow" href="${href}"${href.startsWith('http')?' target="_blank" rel="noopener"':''}>${ic(i)}<span class="grow"><b>${main}</b><span class="muted">${sub}</span></span>${ic(ext?'ext':'chevr','sm')}</a>`;
+  const hrs=DAYORDER.map(d=>`<div class="hr ${d===today?'on':''}"><span>${DAYN[d]}</span><span>${s.hours[d]?hm(s.hours[d][0])+' – '+hm(s.hours[d][1]):'Closed'}</span></div>`).join('');
+  return `<div class="scroll"><div class="galw"><div class="gal" id="gal">${[0,1,2].map(i=>`<div class="slide">${storeImg(s,i)}</div>`).join('')}</div><div class="dots"><i class="on"></i><i></i><i></i></div></div>
+  <div class="body"><div class="mp-badges">${s.ad?'<span class="mp-chip is-ad">Ad</span>':''}<span class="mp-chip">${esc(s.cat)}</span>${s.sample?'<span class="mp-chip">Sample listing</span>':''}</div>
+    <h1 style="font-size:28px;letter-spacing:-.6px;margin-top:10px">${esc(s.name)}</h1>
+    <div class="mp-open ${o.open?'on':'off'}" style="margin-top:8px"><i></i>${o.text}</div>
+    <p style="margin-top:14px;line-height:1.5">${esc(s.desc||s.tagline)}</p>
+    ${(s.tags||[]).length?`<div class="mp-badges" style="margin-top:12px">${s.tags.map(t=>`<span class="mp-chip">${esc(t)}</span>`).join('')}</div>`:''}
+    <div class="grp" style="margin-top:20px">
+      ${row(mapsUrl(s),'pin',`${esc(s.addr)}`,'Open in Google Maps',true)}
+      ${row(telUrl(s),'phone',esc(s.phone),'Tap to call')}
+      ${s.wa?row(waUrl(s),'chat','WhatsApp','Message the store',true):''}
+      ${s.web?row(esc(s.web),'globe',esc(s.web.replace(/^https?:\/\//,'')),'Website',true):''}</div>
+    <div class="sh"><h2>Opening hours</h2></div><div class="grp">${hrs}</div>
+    ${n?`<button class="note" style="width:100%;text-align:start" data-open="niche:${n.id}">${ic('grid')}<span>Shop this store online in the niche <b>${esc(n.name)}</b>.</span></button>`:''}</div></div>
+  <div class="topbtns"><button class="gbtn glass" data-act="back" aria-label="Back">${ic('back')}</button><button class="gbtn glass" data-store-share="${s.id}" aria-label="Share store">${ic('share')}</button></div>
+  <div class="abar glass mp-bar"><a class="cta ghost" href="${telUrl(s)}">${ic('phone','sm')}Call</a><a class="cta" href="${dirUrl(s)}" target="_blank" rel="noopener">${ic('nav','sm')}Directions</a></div>`;
+}
+async function shareStore(id){
+  const s=STORES.find(x=>x.id===id),data={title:s.name,text:`${s.name}, ${s.addr}`,url:mapsUrl(s)};
+  if(navigator.share){try{await navigator.share(data);return}catch(e){if(e&&e.name==='AbortError')return}}
+  try{await navigator.clipboard.writeText(data.url);toast('Link copied')}catch(e){toast(data.url)}
 }
 
 /* ============ 9. SIDE SHEET MENU ============ */
@@ -811,20 +1098,28 @@ function renderMenu(){
   if(!$('#menu'))return;
   const row=(i,l,a,x='')=>`<div class="mrow">${ic(i)}<span class="grow">${l}</span>${x}</div>`;
   const bd=n=>`<span class="bdg">${n}</span>`;
-  $('#menu').innerHTML=row('box','My orders','orders',bd(DB.orders.length))+row('tag','My products','products',bd(DB.products.length))+row('grid','My niches','niches',bd(DB.niches.length));
+  {const st=myStats();$('#menu').innerHTML=row('box','My orders','orders',bd(st.orders))+row('tag','My products','products',bd(st.products))+row('grid','My niches','niches',bd(st.niches))}
 }
 
 /* ============ 10. EVENTS ============ */
 document.addEventListener('click',e=>{
+  if(e.target.closest('a.mbtn,a.prow,a.cta'))return;          /* real links (tel:, Google Maps, WhatsApp) behave as links */
   if(!e.target.closest('button')&&e.target.closest('[data-acct]')){openAcct();return}
   const t=e.target.closest('button,[data-open]'); if(!t)return;
   const d=t.dataset;
+  if(d.copy!==undefined){copyReply(t);return}
+  if(d.regen!==undefined||d.retry!==undefined){regen();return}
+  if(d.delchat){delChat(d.delchat);return}
+  if(d.mcat!==undefined){S.mp.cat=d.mcat;renderMp();return}
+  if(d.mcity!==undefined){S.mp.city=d.mcity;renderMp();return}
+  if(d.near!==undefined){nearMe();return}
+  if(d.storeShare){shareStore(d.storeShare);return}
   if(d.tab){ if(S.stack.length)return; setTab(d.tab); return }
   if(d.heart){S.liked[d.heart]=!S.liked[d.heart];t.classList.toggle('on',S.liked[d.heart]);return}
   if(d.follow!==undefined){const on=!S.followed.has(d.follow);on?S.followed.add(d.follow):S.followed.delete(d.follow);t.classList.toggle('on',on);t.textContent=on?'Following':'Follow';toast(on?'You follow this niche':'Unfollowed');return}
   if(d.ftab){S.fmode=d.ftab;$$('#feedTop [data-ftab]').forEach(b=>b.classList.toggle('on',b.dataset.ftab===d.ftab));$('#feed').innerHTML=feedView();$('#feed').scrollTop=0;S.lastFeed=0;return}
-  if(d.chat){const c=DB.chats.find(x=>x.id===d.chat);setTab('ai');loadChat(c.msgs);openSide(false);return}
-  if(d.newchat!==undefined){setTab('ai');loadChat([]);openSide(false);return}
+  if(d.chat){const c=DB.chats.find(x=>x.id===d.chat);if(c){setTab('ai');loadChat(c.msgs,c);openSide(false)}return}
+  if(d.newchat!==undefined){setTab('ai');loadChat([],null);openSide(false);$('#aiIn').focus();return}
   if(d.story!==undefined){t.classList.add('seen');toast('Stories are coming soon');return}
   if(d.plan!==undefined){openPlan();return}
   if(d.sub==='back'){hideSub();return}
@@ -837,6 +1132,7 @@ document.addEventListener('click',e=>{
     toast({profile:'Profiles are coming soon',addr:'Delivery addresses are coming soon',pay:'Payments are coming soon',notif:'Notification settings are coming soon',settings:'Settings are coming soon',help:'Help centre is coming soon',signin:'Sign-in is coming soon'}[d.p]);return}
   if(d.open){const[a,b]=d.open.split(':'); push(a,b,t); return}
   if(d.cat){renderMarket(d.cat,$('#q').value);return}
+  if(d.act==='maps'){openSide(false);S.mp={cat:'All',city:'All',q:'',near:S.mp.near};push('maps',undefined,t);return}
   if(d.act==='side'){renderSide();openSide(true);return}
   if(d.act==='back'){pop();return}
   if(d.act==='create'){openSheet(`<h3>Create</h3><p class="muted">Publish something new to Blex.</p>
@@ -861,8 +1157,8 @@ $('#scrim').onclick=()=>openSide(false); $('#scrim2').onclick=closeSheet;
 $('#seg').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setTab(b.dataset.t)});
 document.addEventListener('input',e=>{if(e.target.id==='q'){const v=e.target.value;renderMarket(S.cat,v);const i=$('#q');i.focus();i.setSelectionRange(v.length,v.length)}});
 document.addEventListener('input',e=>{if(e.target.id==='cq')renderChatList(e.target.value)});
-document.addEventListener('input',e=>{if(e.target.id==='aiIn')$('#aiForm .send').disabled=!e.target.value.trim()});
-document.addEventListener('submit',e=>{if(e.target.id==='aiForm'){e.preventDefault();const i=$('#aiIn');ask(i.value);i.value=''}});
+document.addEventListener('input',e=>{if(e.target.id==='aiIn'){fitIn();if(!AI.busy)$('#aiForm .send').disabled=!e.target.value.trim()}});
+document.addEventListener('submit',e=>{if(e.target.id==='aiForm'){e.preventDefault();if(AI.busy){AI.stop=true;return}const i=$('#aiIn'),v=i.value;if(!v.trim())return;i.value='';fitIn();$('#aiForm .send').disabled=true;ask(v)}});
 document.addEventListener('scroll',e=>{const g=e.target;if(g.id==='gal'){const i=Math.round(g.scrollLeft/g.clientWidth);$$('.dots i',g.parentNode).forEach((d,k)=>d.classList.toggle('on',k===i))}},true);
 document.addEventListener('scroll',e=>{const g=e.target;if(g.id==='market'||g.id==='aiScroll')$('#top').classList.toggle('sm',g.scrollTop>24);if(g.id==='feed'){const st=g.scrollTop,d=st-S.lastFeed;if(d>6&&st>20)feedHdr(false);else if(d<-6)feedHdr(true);S.lastFeed=st}},true);
 /* Liquid Glass tab bar. Rest: flat thumb behind the active tab. Press/drag: a glass lens grows, follows the finger
@@ -940,6 +1236,14 @@ document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.dataset&&e.
   s.addEventListener('pointermove',e=>{if(x0===null)return;dx=Math.max(0,x0-e.clientX);if(dx>8){s.style.transition='none';s.style.transform=`translateX(${-dx}px)`}});
   const end=()=>{if(x0===null)return;s.style.transition='';s.style.transform='';if(dx>90)openSide(false);x0=null};
   s.addEventListener('pointerup',end);s.addEventListener('pointercancel',end)})();
+
+document.addEventListener('keydown',e=>{if(e.target.id==='aiIn'&&e.key==='Enter'&&!e.shiftKey&&!e.isComposing&&!matchMedia('(pointer:coarse)').matches){e.preventDefault();if(!AI.busy&&e.target.value.trim())$('#aiForm').requestSubmit()}});
+document.addEventListener('scroll',e=>{const t=e.target;if(t.id==='aiScroll')AI.stick=t.scrollHeight-t.scrollTop-t.clientHeight<90},true);
+document.addEventListener('focusin',e=>{if(e.target.id==='aiIn'){AI.stick=true;setTimeout(()=>aiEnd(true),300)}});
+/* keep the composer above the iOS keyboard: size the app to the visual viewport while the keyboard is open */
+if(window.visualViewport){const vv=visualViewport,A=$('#app');const fit=()=>{const kb=innerWidth<500&&vv.height<innerHeight-120;A.style.height=kb?vv.height+'px':'';A.style.transform=kb?`translateY(${vv.offsetTop}px)`:'';if(kb)aiEnd()};vv.addEventListener('resize',fit);vv.addEventListener('scroll',fit)}
+
+document.addEventListener('input',e=>{if(e.target.id==='mq'){S.mp.q=e.target.value;renderMp()}});
 
 /* ============ 11. THEME + BOOT ============ */
 function applyTheme(t){S.theme=t;document.documentElement.dataset.theme=t}
