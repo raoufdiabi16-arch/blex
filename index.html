@@ -221,7 +221,7 @@ h2{font-size:20px;font-weight:650;letter-spacing:-.3px;margin:var(--s3) 0 12px}
 .hdr{justify-content:flex-start;gap:12px}
 .side{right:auto;left:0;border-radius:0 var(--r-xl) var(--r-xl) 0;transform:translateX(-104%)}
 /* top bar */
-#top{position:absolute;top:0;left:0;right:0;z-index:25;display:flex;align-items:center;gap:10px;padding:calc(var(--top) + 10px) 16px 10px;pointer-events:none;transition:transform .5s var(--ease),opacity .3s,padding .35s var(--ease)}
+#top{position:absolute;top:0;left:0;right:0;z-index:25;display:flex;flex-direction:column;align-items:stretch;padding:calc(var(--top) + 10px) 16px 10px;pointer-events:none;transition:transform .5s var(--ease),opacity .3s,padding .35s var(--ease)}
 #top>*{pointer-events:auto}
 #top.hide{transform:translateY(-100px);opacity:0}#top.hide>*{pointer-events:none}
 #top.sm{padding-top:calc(var(--top) + 6px);padding-bottom:6px}
@@ -532,6 +532,100 @@ textarea.np-in{height:auto;min-height:96px;padding:13px 14px;resize:vertical;lin
 .np-txt{height:48px;min-height:0;font-size:15px;font-weight:650;color:var(--ink2)}
 .np-sr{display:flex;align-items:baseline;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);font-size:14.5px}.np-sr:last-child{border:0}.np-sr span{flex:none;width:96px;color:var(--ink2)}.np-sr b{flex:1;min-width:0;font-weight:600}.np-sr button{flex:none;min-height:0;min-width:0;height:30px;padding:0 4px;font-size:13.5px;font-weight:650;color:var(--acc)}
 .np-rv{margin:18px 16px 0}
+
+/* side menu accordions + seller orders page */
+.menu .mx{width:100%}.mx-ar{display:grid;place-items:center;color:var(--ink2);transition:transform .35s var(--ease)}.mx-ar .ic{width:16px;height:16px}.mx.open .mx-ar{transform:rotate(180deg)}.mx.open{color:var(--ink)}
+.mx-w{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease)}.mx-w.open{grid-template-rows:1fr}.mx-w>div{overflow:hidden;min-height:0}
+.mx-l{display:flex;flex-direction:column;gap:4px;padding:2px 0 8px 12px}
+.menu .mx-i{width:100%;display:flex;align-items:center;gap:10px;min-height:38px;padding:0 10px 0 6px;gap:8px;border-radius:12px;font-size:13px;font-weight:600;color:var(--ink);background:var(--card);box-shadow:inset 0 0 0 1px var(--line)}
+.menu .mx-i.all{background:color-mix(in srgb,var(--acc) 10%,var(--card));color:color-mix(in srgb,var(--acc) 78%,#000)}[data-theme=dark] .menu .mx-i.all{color:#8DBBFF}
+.mx-i .th{flex:none;width:26px;height:26px;border-radius:8px;overflow:hidden;display:grid;place-items:center;background:color-mix(in srgb,var(--acc) 14%,transparent);color:var(--acc)}.mx-i .th .ic{width:15px;height:15px}.mx-i .th img,.mx-i .th svg:not(.ic){width:100%;height:100%;object-fit:cover;display:block}
+.mx-i b{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}.mx-i small{flex:none;font-size:11.5px;font-weight:700;color:var(--ink2)}
+.mx-e{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;margin:2px 0 8px 12px;padding:14px 14px 12px;border-radius:16px;background:var(--card);box-shadow:inset 0 0 0 1px var(--line)}
+.mx-e>.ic{width:22px;height:22px;color:var(--acc);margin-bottom:2px}.mx-e b{font-size:13.5px}.mx-e span{font-size:12px;line-height:1.4;color:var(--ink2)}
+.menu .mx-cta{width:auto;min-height:36px;margin-top:8px;padding:0 16px;border-radius:18px;justify-content:center;font-size:13px;font-weight:700;color:color-mix(in srgb,var(--acc) 76%,#000);background:color-mix(in srgb,var(--acc) 17%,var(--bg));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--acc) 30%,transparent)}[data-theme=dark] .menu .mx-cta{color:#8DBBFF}
+.od-wrap{padding:8px 16px 0}
+.od-pc{display:flex;align-items:center;gap:14px;padding:14px;border-radius:24px;background:var(--card);box-shadow:inset 0 0 0 1px var(--line)}.od-pc b{display:block;font-size:17px}.od-pc span{font-size:13.5px;color:var(--ink2)}
+.od-th{flex:none;width:46px;height:46px;border-radius:14px;overflow:hidden;background:var(--bg)}.od-th.lg{width:60px;height:60px;border-radius:16px}.od-th img,.od-th svg{width:100%;height:100%;object-fit:cover;display:block}
+.od-st{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.od-st div{padding:14px 12px;border-radius:20px;background:var(--card);box-shadow:inset 0 0 0 1px var(--line)}.od-st b{display:block;font-size:26px;letter-spacing:-.5px;line-height:1}.od-st span{display:block;font-size:12.5px;color:var(--ink2);margin-top:6px}
+.od-st .warn b{color:var(--warn)}.od-st .acc b{color:var(--acc)}.od-st .ok b{color:var(--ok)}
+.od-g{display:flex;align-items:baseline;justify-content:space-between;margin:24px 2px 10px}.od-g b{font-size:15px;font-weight:650}.od-g span{font-size:13px;color:var(--ink2)}
+.od-c{display:flex;align-items:center;gap:12px;padding:14px;margin-bottom:10px;border-radius:22px;background:var(--card);box-shadow:inset 0 0 0 1px var(--line)}
+.od-i{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}.od-i b{font-size:15.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.od-i span{font-size:13px;color:var(--ink2)}.od-i .od-w{color:var(--warn);font-weight:650}
+.od-s{flex:none;align-self:flex-start;padding:4px 10px;border-radius:12px;font-size:12px;font-weight:700;background:var(--line);color:var(--ink2)}
+.od-s.warn{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}.od-s.acc{background:color-mix(in srgb,var(--acc) 14%,transparent);color:var(--acc)}.od-s.ok{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
+
+/* compact menu rows + standalone Upgrade */
+.menu{gap:0}
+.menu .mx{min-height:40px;padding:0 10px;gap:10px;border-radius:14px;font-size:14.5px}.mx .ic{width:18px;height:18px}.mx .bdg{min-width:22px;height:20px;padding:0 7px;font-size:11.5px}
+.mx-l{padding:2px 0 6px 12px}
+.upg-bar{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:46px;border-radius:23px;font-size:15px;font-weight:700;letter-spacing:-.1px;color:color-mix(in srgb,var(--acc) 76%,#000);background:color-mix(in srgb,var(--acc) 15%,var(--bg));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--acc) 28%,transparent);transition:transform .25s var(--spring)}
+.upg-bar:active{transform:scale(.97)}.upg-bar .ic{width:17px;height:17px}[data-theme=dark] .upg-bar{color:#8DBBFF}
+
+/* search page (opens when the Market search field is tapped) */
+.spg{position:absolute;inset:0;z-index:50;display:flex;flex-direction:column;background:var(--bg);opacity:0;transform:translateY(10px);transition:opacity .3s,transform .45s var(--ease)}.spg.in{opacity:1;transform:none}
+.sr-top{flex:none;display:flex;align-items:center;gap:10px;padding:calc(var(--top) + 10px) 16px 10px}.sr-top .search{flex:1;margin:0;min-width:0}
+.sr-x{flex:none;min-height:44px;min-width:0;padding:0 4px;font-size:15px;font-weight:650;color:var(--acc)}
+.sr-body{flex:1;min-height:0;overflow-y:auto;padding:6px 16px calc(var(--bot) + 28px);scrollbar-width:none}.sr-body::-webkit-scrollbar{display:none}
+.sr-h{display:flex;align-items:center;justify-content:space-between;margin:22px 2px 6px}.sr-h:first-child{margin-top:8px}.sr-h b{font-size:15px;font-weight:650}.sr-h button{min-height:36px;min-width:0;padding:0 4px;font-size:13.5px;font-weight:600;color:var(--acc)}
+.sr-map{margin-top:2px}.sr-map .mapcard{height:112px}.sr-map p{font-size:13px;color:var(--ink2);margin:8px 4px 0}
+.sr-r{display:flex;align-items:center;gap:12px;width:100%;min-height:50px;padding:0 2px;border-bottom:1px solid var(--line);text-align:start;font-size:15.5px;font-weight:500}.sr-r:last-child{border:0}
+.sr-ic{flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--line);color:var(--ink2)}.sr-ic .ic{width:16px;height:16px}
+.sr-r span.t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sr-d{flex:none;min-height:44px;min-width:44px;display:grid;place-items:center;color:var(--ink2)}.sr-d .ic{width:16px;height:16px}
+.sr-e{padding:18px 2px;font-size:14px;color:var(--ink2)}
+
+/* Market top panel: location row + search */
+#top .pn{display:flex;flex-direction:column;padding:8px;border-radius:30px;background:var(--glass);box-shadow:inset 0 0 0 1px var(--edge-dim),inset 0 1.5px 0 var(--edge),0 10px 30px var(--shade);-webkit-backdrop-filter:blur(var(--blur)) saturate(var(--sat));backdrop-filter:blur(var(--blur)) saturate(var(--sat));transition:padding .35s var(--ease)}
+#top .trow{display:flex;align-items:center;gap:8px}
+#top:not(.noloc):not([data-tab=ai]) .search{background:color-mix(in srgb,var(--bg) 52%,transparent);box-shadow:inset 0 0 0 1px var(--line);-webkit-backdrop-filter:none;backdrop-filter:none}
+#top .search{position:relative}#top .search input{padding-right:2px}
+#top .sl{flex:none;width:36px;height:36px;min-height:0;min-width:0;margin-right:-8px;border-radius:50%;display:grid;place-items:center;color:var(--ink)}#top .sl::after{content:"";position:absolute;right:-4px;top:0;bottom:0;width:48px}
+.loc-w{display:grid;grid-template-rows:1fr;transition:grid-template-rows .4s var(--ease),opacity .25s}.loc-w>.loc{overflow:hidden;min-height:0}
+.loc{display:flex;align-items:center;gap:6px}
+.loc-b{flex:1;min-width:0;display:flex;align-items:center;gap:12px;min-height:56px;padding:0 6px;text-align:start}
+.loc-i{flex:none;width:36px;height:36px;display:grid;place-items:center;color:var(--ink2)}.loc-i .ic{width:22px;height:22px}
+.loc-t{min-width:0;display:flex;flex-direction:column;gap:1px}.loc-t small{font-size:12px;color:var(--ink2);font-weight:500}.loc-t b{font-size:16px;font-weight:700;letter-spacing:-.2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.loc-x{flex:none;width:40px;height:40px;min-height:0;min-width:0;border-radius:50%;display:grid;place-items:center;color:var(--ink);background:color-mix(in srgb,var(--ink) 8%,transparent);margin-right:2px;position:relative}.loc-x::after{content:"";position:absolute;inset:-4px}
+#top.noloc .loc-w,#top[data-tab=ai] .loc-w{display:none}
+#top.noloc .pn,#top[data-tab=ai] .pn{padding:0;background:none;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+#top.noloc .sl,#top[data-tab=ai] .sl{display:none}
+#top.sm .pn{padding:5px}#top.sm .loc-w{grid-template-rows:0fr;opacity:0}
+#top.noloc.sm .pn{padding:0}
+#app.hasloc #market{padding-top:calc(var(--top) + 148px)}
+
+/* Blex AI: attach products / niches */
+.cl{display:flex;gap:8px}.cbtn[aria-expanded=true]{background:var(--acc);color:var(--acc-ink)}
+.pw{position:relative;height:0;margin-bottom:-8px}
+.apop{position:absolute;left:-6px;right:-6px;bottom:6px;z-index:9;padding:8px;border-radius:26px;background:var(--bg);box-shadow:inset 0 0 0 1px var(--line),0 22px 50px -12px var(--shade),0 2px 8px rgba(0,0,0,.06);opacity:0;transform:translateY(16px) scale(.92);transform-origin:bottom left;transition:opacity .22s,transform .55s var(--spring)}.apop.in{opacity:1;transform:none}.apop[hidden]{display:none}
+.apop.in .ap-m,.apop.in .ap-r,.apop.in .ap-h,.apop.in .ap-e{animation:apRow .5s var(--ease) both;animation-delay:calc(var(--i,0)*50ms + 60ms)}@keyframes apRow{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.ap-m{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:0 10px 0 8px;border-radius:18px;text-align:start;font-size:15.5px;font-weight:650}.ap-m:active{background:var(--line)}
+.ap-i{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--acc) 14%,transparent);color:var(--acc)}
+.ap-m small{margin-left:auto;font-size:12.5px;font-weight:700;color:var(--ink2)}.ap-m .ic.c{width:16px;height:16px;color:var(--ink2)}
+.ap-h{display:flex;align-items:center;gap:6px;padding:0 2px 6px}.ap-h b{flex:1;font-size:15.5px}.ap-h button{min-height:40px;min-width:0;padding:0 10px;border-radius:20px;font-size:14px;font-weight:650;color:var(--acc)}.ap-h .bk{width:40px;padding:0;display:grid;place-items:center;color:var(--ink)}
+.ap-l{max-height:min(46vh,300px);overflow-y:auto;display:flex;flex-direction:column;gap:4px;scrollbar-width:none}.ap-l::-webkit-scrollbar{display:none}
+.ap-r{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:0 10px 0 8px;border-radius:18px;text-align:start}.ap-r:active{background:var(--line)}
+.ap-t{flex:none;width:40px;height:40px;border-radius:12px;overflow:hidden;display:grid;place-items:center;background:color-mix(in srgb,var(--acc) 14%,transparent);color:var(--acc)}.ap-t img,.ap-t svg:not(.ic){width:100%;height:100%;object-fit:cover;display:block}
+.ap-x{flex:1;min-width:0}.ap-x b{display:block;font-size:14.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ap-x span{font-size:12.5px;color:var(--ink2)}
+.ap-ck{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 0 0 1.5px var(--ink2);color:transparent;transition:background .2s,box-shadow .2s}.ap-ck .ic{width:14px;height:14px}.ap-r[aria-pressed=true] .ap-ck{background:var(--acc);box-shadow:none;color:var(--acc-ink)}
+.ap-e{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:18px 14px 12px}.ap-e>.ic{width:26px;height:26px;color:var(--acc)}.ap-e b{font-size:14.5px}.ap-e span{font-size:12.5px;color:var(--ink2);line-height:1.4}
+.ap-e button{margin-top:8px;min-height:38px;padding:0 18px;border-radius:19px;font-size:13.5px;font-weight:700;color:color-mix(in srgb,var(--acc) 76%,#000);background:color-mix(in srgb,var(--acc) 17%,var(--bg))}[data-theme=dark] .ap-e button{color:#8DBBFF}
+.atts{display:flex;gap:6px;overflow-x:auto;margin:-2px 0 0;padding-right:8px;scrollbar-width:none}.atts::-webkit-scrollbar{display:none}.atts[hidden]{display:none}
+.achip{flex:none;display:inline-flex;align-items:center;gap:8px;max-width:200px;height:38px;padding:0 4px 0 5px;border-radius:19px;background:color-mix(in srgb,var(--acc) 11%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--acc) 24%,transparent);animation:achIn .35s var(--spring)}@keyframes achIn{from{transform:scale(.8);opacity:0}to{transform:none;opacity:1}}
+.achip .at{flex:none;width:28px;height:28px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:var(--bg);color:var(--acc)}.achip .at img,.achip .at svg:not(.ic){width:100%;height:100%;object-fit:cover;display:block}.achip .at .ic{width:15px;height:15px}
+.achip b{min-width:0;font-size:13px;font-weight:650;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.achip button{flex:none;width:28px;height:28px;min-height:0;min-width:0;border-radius:50%;display:grid;place-items:center;color:var(--ink2);position:relative}.achip button::after{content:"";position:absolute;inset:-8px}.achip button .ic{width:14px;height:14px}
+.amsg{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}.msg.u .achip{height:34px;max-width:100%;background:rgba(255,255,255,.55);box-shadow:none;animation:none}[data-theme=dark] .msg.u .achip{background:rgba(255,255,255,.12)}
+
+/* product page: price on top, pay-delivery-fee bar */
+.pprice{align-self:center;display:flex;align-items:center;height:44px;padding:0 20px;border-radius:22px;font-size:18px;font-weight:750;letter-spacing:-.3px;background:var(--glass-strong);box-shadow:inset 0 0 0 1px var(--edge-dim),0 8px 22px -8px var(--shade);-webkit-backdrop-filter:blur(var(--blur)) saturate(var(--sat));backdrop-filter:blur(var(--blur)) saturate(var(--sat))}
+.abar{padding:8px!important;justify-content:center!important}
+.pay-fee{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;height:56px;min-height:0;border-radius:28px;font-size:17px;font-weight:700;letter-spacing:-.15px;color:color-mix(in srgb,var(--acc) 76%,#000);background:color-mix(in srgb,var(--acc) 17%,var(--bg));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--acc) 30%,transparent);transition:transform .25s var(--spring)}.pay-fee:active{transform:scale(.97)}
+.pay-fee em{font-style:normal;font-size:14px;font-weight:700;padding:4px 12px;border-radius:14px;background:color-mix(in srgb,var(--acc) 20%,transparent)}[data-theme=dark] .pay-fee{color:#8DBBFF}
+.pay-p{display:flex;align-items:center;gap:14px;margin:6px 0 14px}.pay-p b{display:block;font-size:17px}.pay-p span{font-size:13.5px;color:var(--ink2)}
+.pay-t{flex:none;width:60px;height:60px;border-radius:16px;overflow:hidden;background:var(--card)}.pay-t img,.pay-t svg{width:100%;height:100%;object-fit:cover;display:block}
+.pay-r{display:flex;justify-content:space-between;align-items:baseline;padding:13px 2px;border-top:1px solid var(--line);font-size:15px}.pay-r span{color:var(--ink2)}.pay-r b{font-weight:650}
+.pay-n{font-size:13px;line-height:1.5;color:var(--ink2);margin:10px 2px 16px}
 /* ---- blexmaps ---- */
 /* blexmaps: own identity. Top half = map (search + back float on it). Bottom half = sheet with wordmark, city, tabs and a flat directory.
    Scrolling the list lifts the sheet a little, hides the wordmark and moves the city pill into the tabs row. */
@@ -682,8 +776,10 @@ a.prow,a.cta{text-decoration:none}
   <section class="screen" id="ai" aria-label="Blex AI"></section>
 
   <!-- Global top bar: menu button + glass search (shrinks on scroll) -->
-  <div id="top" data-tab="market"><button class="gbtn glass" data-act="side" aria-label="Open menu"><svg class="ic nav"><use href="#i-menu"/></svg></button>
-    <label class="search"><svg class="ic sm"><use href="#i-search"/></svg><input id="q" placeholder="Search products and niches" aria-label="Search" enterkeyhint="search"></label><span class="ttl">Blex AI</span></div>
+  <div id="top" data-tab="market"><div class="pn">
+    <div class="loc-w"><div class="loc"><button class="loc-b" data-loc aria-label="Change location"><span class="loc-i"><svg class="ic"><use href="#i-pin"/></svg></span><span class="loc-t"><small>Current location</small><b id="locT">Algeria</b></span></button><button class="loc-x" data-locx aria-label="Remove location"><svg class="ic sm"><use href="#i-x"/></svg></button></div></div>
+    <div class="trow"><button class="gbtn glass" data-act="side" aria-label="Open menu"><svg class="ic nav"><use href="#i-menu"/></svg></button>
+      <label class="search"><svg class="ic sm"><use href="#i-search"/></svg><input id="q" placeholder="Search products and niches" aria-label="Search" enterkeyhint="search"><button type="button" class="sl" data-loc aria-label="Filter by location"><svg class="ic sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 4h-7M10 4H3M21 12h-9M8 12H3M21 20h-5M12 20H3M14 2v4M8 10v4M16 18v4"/></svg></button></label><span class="ttl">Blex AI</span></div></div></div>
   <!-- Feed header (centered title + Explore / Following), hides on scroll down -->
   <div id="feedTop"><div class="ft-title"><span>Feed</span></div>
     <div class="ft-tabs"><button class="on" data-ftab="all">Explore</button><button data-ftab="fol">Following</button></div></div>
@@ -710,7 +806,7 @@ a.prow,a.cta{text-decoration:none}
       <button role="tab" data-t="ai" aria-selected="false">Blex AI</button>
     </div>
     <div class="side-body" id="sideBody"></div>
-    <div class="acct"><div id="mapSlot"></div><div class="card2" data-acct role="button" tabindex="0" aria-label="Open account menu"><span class="av2">B</span><div class="grow"><b>Guest</b><span class="muted">Free plan</span></div><button class="upg" data-plan>Upgrade</button></div></div>
+    <div class="acct"><div class="card2" data-acct role="button" tabindex="0" aria-label="Open account menu"><span class="av2">B</span><div class="grow"><b>Guest</b><span class="muted">Free plan</span></div></div><button class="upg-bar" data-plan><svg class="ic sm" aria-hidden="true"><use href="#i-spark"/></svg>Upgrade</button></div>
   </div>
     <div class="side-sub" id="sideSub"></div>
   </aside>
@@ -782,7 +878,7 @@ S.storySeen=new Set();S.sv=null;
 function storyProduct(st){return DB.products.find(p=>p.art===st.art&&p.h===st.h)||DB.products.find(p=>p.art===st.art)||null}
 function renderSv(){
   const v=$('#sv');if(!v)return;const st=DB.stories[S.sv],pr=storyProduct(st);S.storySeen.add(S.sv);
-  $('.sv-art',v).innerHTML=scene(pr?pr.art:st.art,pr?pr.h:st.h,0);
+  const su=pr&&prodImg(pr);$('.sv-art',v).innerHTML=su?`<img src="${su}" alt="" style="width:100%;height:100%;object-fit:cover;display:block">`:scene(pr?pr.art:st.art,pr?pr.h:st.h,0);
   const art=$('.sv-art',v);art.classList.remove('swap');void art.offsetWidth;art.classList.add('swap');
   $('.sv-seg',v).innerHTML=DB.stories.map((_,i)=>`<i class="${i<=S.sv?'on':''}"></i>`).join('');
   $('.sv-who .av3',v).innerHTML=scene(st.art,st.h,2);$('.sv-who b',v).textContent=st.n;
@@ -991,7 +1087,7 @@ function push(type,id,src){
   const z=zoomState(src);                       /* measure BEFORE inserting, so the first computed style is the zoom start */
   const el=document.createElement('section'); el.className='screen detail '+(z?'zm':'zf'); el.dataset.type=type;
   if(z){el.style.transform=z.t;el.style.clipPath=z.c}
-  el.innerHTML=type==='newproduct'?newProdView():type==='product'?productView(id):type==='saved'?savedView():type==='maps'?mapsView():type==='store'?storeView(id):nicheView(id);
+  el.innerHTML=type==='orders'?ordersView(id):type==='newproduct'?newProdView():type==='product'?productView(id):type==='saved'?savedView():type==='maps'?mapsView():type==='store'?storeView(id):nicheView(id);
   $('#app').appendChild(el); S.stack.push(el); el._src=src; if(type==='newproduct')npInit(el);
   void el.offsetWidth; el.classList.add('in');
   if(z){el.style.transform='none';el.style.clipPath='inset(0px 0px 0px 0px round 0px)'}
@@ -1038,12 +1134,13 @@ function scene(art,h0=200,v=0){
 }
 const collage=n=>{const p=DB.products.filter(x=>x.niche===n.id);return `<div class="collage"><div>${scene(p[0].art,p[0].h,0)}</div><div>${scene(p[1].art,p[1].h,1)}</div><div>${scene(p[0].art,p[0].h,2)}</div></div>`};
 const creator=n=>seller(n.seller).anon||n.anon?`<span class="cr">${ic('eyeoff','sm')}Anonymous</span>`:`<span class="cr"><span class="av">${seller(n.seller).name[0]}</span>${seller(n.seller).name}</span>`;
-const topBtns=(heartId)=>`<div class="topbtns"><button class="gbtn glass" data-act="back" aria-label="Back">${ic('back')}</button>${heartId?`<button class="gbtn glass ${S.liked[heartId]?'on':''}" style="position:static" data-heart="${heartId}" aria-label="Favourite">${ic('heart')}</button>`:''}</div>`;
+const topBtns=(heartId,price)=>`<div class="topbtns"><button class="gbtn glass" data-act="back" aria-label="Back">${ic('back')}</button>${price?`<span class="pprice" aria-label="Price ${price}">${price}</span>`:''}${heartId?`<button class="gbtn glass ${S.liked[heartId]?'on':''}" style="position:static" data-heart="${heartId}" aria-label="Favourite">${ic('heart')}</button>`:''}</div>`;
 const sh=(t,link)=>`<div class="sh"><h2>${t}</h2>${link?`<button class="link" data-toast="${link}">See all</button>`:''}</div>`;
-const prodCard=p=>`<article class="pc" data-open="product:${p.id}" tabindex="0" role="link" aria-label="${p.name}, ${money(p.price)}"><div class="img">${p.photos?`<img src="${p.photos[0]}" alt="" style="width:100%;height:100%;object-fit:cover;display:block">`:scene(p.art,p.h)}<button class="gbtn glass heart ${S.liked[p.id]?'on':''}" data-heart="${p.id}" aria-label="Favourite">${ic('heart','sm')}</button></div><b class="t">${p.name}</b><div class="p">${money(p.price)}</div>${sellerLabel(p.seller)}</article>`;
+const prodCard=p=>`<article class="pc" data-open="product:${p.id}" tabindex="0" role="link" aria-label="${p.name}, ${money(p.price)}"><div class="img">${prodImg(p)?`<img src="${prodImg(p)}" alt="" style="width:100%;height:100%;object-fit:cover;display:block">`:scene(p.art,p.h)}<button class="gbtn glass heart ${S.liked[p.id]?'on':''}" data-heart="${p.id}" aria-label="Favourite">${ic('heart','sm')}</button></div><b class="t">${p.name}</b><div class="p">${money(p.price)}</div>${sellerLabel(p.seller)}</article>`;
 
 function marketView(cat='All',q=''){
-  const list=DB.products.filter(p=>(cat==='All'||p.cat===cat)&&p.name.toLowerCase().includes(q.toLowerCase()));
+  const loc=S.loc&&S.loc!=='Algeria'?S.loc:null;
+  const list=DB.products.filter(p=>(cat==='All'||p.cat===cat)&&p.name.toLowerCase().includes(q.toLowerCase())&&(!loc||!p.city||p.city===loc));
   return `
   
   
@@ -1061,14 +1158,14 @@ function renderMarket(cat,q){ $('#market').innerHTML=marketView(cat,q); S.cat=ca
 
 function productView(id){
   const p=DB.products.find(x=>x.id===id), n=DB.niches.find(x=>x.id===p.niche);
-  return `<div class="scroll"><div class="galw"><div class="gal" id="gal">${(p.photos||[0,1,2]).map((v,i)=>`<div class="slide">${p.photos?`<img src="${v}" alt="" style="width:100%;height:100%;object-fit:cover;display:block">`:scene(p.art,p.h,i)}</div>`).join('')}</div><div class="dots">${(p.photos||[0,1,2]).map((_,i)=>`<i class="${i?'':'on'}"></i>`).join('')}</div></div>
+  return `<div class="scroll"><div class="galw"><div class="gal" id="gal">${(p.photos||[0,1,2]).map((v,i)=>`<div class="slide">${prodImg(p,i)?`<img src="${prodImg(p,i)}" alt="" style="width:100%;height:100%;object-fit:cover;display:block">`:scene(p.art,p.h,i)}</div>`).join('')}</div><div class="dots">${(p.photos||[0,1,2]).map((_,i)=>`<i class="${i?'':'on'}"></i>`).join('')}</div></div>
   <div class="body"><h1 style="font-size:28px;letter-spacing:-.6px">${p.name}</h1><div style="margin:6px 0 0">${sellerLabel(p.seller)}</div>
   <p style="margin-top:14px;line-height:1.5">${p.desc}</p>
   ${n?`<button class="note" style="width:100%;text-align:start" data-open="niche:${n.id}">${ic('grid')}<span>Part of the niche <b>${n.name}</b>. See everything in it.</span></button>`:''}
   <div class="note">${ic('truck')}<span><b>Pay the product on delivery.</b> Only the $2.50 delivery fee is paid in the app at checkout.</span></div>
   <div class="note">${ic('shield')}<span><b>Delivery fee protection.</b> If it arrives late, you can claim the fee back.</span></div></div></div>
-  ${topBtns(p.id)}
-  <div class="abar glass"><div><span class="muted">Price</span><b>${money(p.price)}</b></div><button class="cta" data-add="${p.id}">Add to cart</button></div>`;
+  ${topBtns(p.id,money(p.price))}
+  <div class="abar glass"><button class="pay-fee" data-payfee="${p.id}"><span>Pay delivery fee</span><em>${money(DELIVERY_FEE)}</em></button></div>`;
 }
 function nicheView(id){
   const n=DB.niches.find(x=>x.id===id), ps=DB.products.filter(p=>p.niche===id), on=S.followed.has(n.id), sl=seller(n.seller);
@@ -1160,8 +1257,8 @@ function aiView(){
   <h1>Blex AI</h1><p class="sub">Your intelligent shopping assistant</p><p class="hint">How can I help you today?</p>
   <div class="sgs">${card('box','b','Show my unconfirmed orders')}${card('user','g','My published products & niches')}${card('layers','c','How do I create a niche?')}${card('spark','p',"What's in my plan?")}</div></div>
   <div class="chat" id="chat" role="log" aria-live="off" aria-label="Conversation"></div><div class="sr" id="aiSR" aria-live="polite"></div></div>
-  <form class="composer glass" id="aiForm"><textarea id="aiIn" rows="1" placeholder="Ask Blex AI anything..." aria-label="Message" autocomplete="off" enterkeyhint="send"></textarea>
-    <div class="crow"><button type="button" class="cbtn" data-newchat aria-label="New chat" title="New chat">${ic('branch')}</button><button class="send" disabled aria-label="Send">${ic('up')}</button></div></form>
+  <form class="composer glass" id="aiForm"><div class="pw"><div class="apop" id="apop" hidden></div></div><div class="atts" id="aiAtt" hidden></div><textarea id="aiIn" rows="1" placeholder="Ask Blex AI anything..." aria-label="Message" autocomplete="off" enterkeyhint="send"></textarea>
+    <div class="crow"><button type="button" class="cbtn" data-aiplus aria-label="Attach a product or niche" aria-expanded="false" title="My products and niches">${ic('branch')}</button><button class="send" disabled aria-label="Send">${ic('up')}</button></div></form>
   <p class="disc">Blex AI can make mistakes. Double-check important info.</p>
   <button class="aiback glass" id="aiBack" data-tab="market" aria-label="Back to Market">${ic('fwd','sm nav')}${ic('home','sm nav')}<span>Market</span></button>`;
 }
@@ -1183,8 +1280,15 @@ function md(src){
   close();return out;
 }
 /* one source of truth for "my" numbers: the side menu AND the assistant read from here */
+const myProducts=()=>DB.products.filter(x=>x.seller===DB.me.id),myNiches=()=>DB.niches.filter(x=>x.seller===DB.me.id);
+/* orders placed on the products I published (optionally one product) */
+const sellerOrders=pid=>{const ids=myProducts().map(p=>p.id);return DB.orders.filter(o=>pid?o.product===pid:ids.includes(o.product))};
+/* real photos of the sample products: 'p1' = main, 'p1-2' / 'p1-3' = other angles (data URIs, filled when the photos are added) */
+const PROD_IMG={};
+const prodImg=(p,i=0)=>p.photos?(p.photos[i]||null):(PROD_IMG[i?p.id+'-'+(i+1):p.id]||null);
+const pimg=p=>{const u=prodImg(p);return u?`<img src="${u}" alt="">`:scene(p.art,p.h)};
 function myStats(){
-  const p=DB.products.filter(x=>x.seller===DB.me.id),n=DB.niches.filter(x=>x.seller===DB.me.id),o=DB.orders;
+  const p=myProducts(),n=myNiches(),o=sellerOrders();
   return{products:p.length,niches:n.length,orders:o.length,pending:o.filter(x=>x.status==='Awaiting confirmation').length};
 }
 const saveChats=()=>{try{localStorage.setItem('blex.chats',JSON.stringify(DB.chats))}catch(e){}};
@@ -1192,14 +1296,14 @@ const chatGroup=c=>{if(!c.ts)return 'Earlier';const d0=new Date();d0.setHours(0,
 
 const actsHTML=last=>`<button class="mact" data-copy aria-label="Copy reply">${ic('copy','sm')}</button>${last?`<button class="mact" data-regen aria-label="Regenerate reply">${ic('refresh','sm')}</button>`:''}`;
 const msgHTML=(role,text,last)=>role==='u'
-  ?`<div class="msg u">${esc(text).replace(/\n/g,'<br>')}</div>`
+  ?`<div class="msg u">${userHTML(text)}</div>`
   :`<div class="msg a" data-raw="${esc(text).replace(/"/g,'&quot;')}"><div class="md">${md(text)}</div><div class="mact-row">${actsHTML(last)}</div></div>`;
 const aiEnd=force=>{const s=$('#aiScroll');if(s&&(force||AI.stick))s.scrollTop=s.scrollHeight};
 function fitIn(){const t=$('#aiIn');if(!t)return;t.style.height='auto';t.style.height=Math.min(120,t.scrollHeight)+'px'}
 function setBusy(b){
   AI.busy=b;const s=$('#aiForm .send');if(!s)return;
   s.classList.toggle('stop',b);s.innerHTML=ic(b?'stop':'up');s.setAttribute('aria-label',b?'Stop':'Send');
-  s.disabled=!b&&!$('#aiIn').value.trim();
+  s.disabled=!b&&!$('#aiIn').value.trim()&&!S.att.length;
 }
 function loadChat(m,chat=null){
   AI.run++;AI.stop=false;S.chat=chat;setBusy(false);
@@ -1234,12 +1338,19 @@ function regen(){
 
 /* Mock brain: intent rules read the same data as the app. Replace aiReply() with a real call later. */
 function mockReply(q){
+  const am=q.match(/\[Attached (product|niche): ([^\]|]+)\|([^\]]*)\]/),own=q.replace(/\[Attached[^\]]*\]/g,'').trim();
+  if(am&&!own){
+    const nm=am[2].trim();
+    if(am[1]==='product'){const p=DB.products.find(x=>x.name===nm),n=p&&DB.niches.find(x=>x.id===p.niche);
+      if(p)return `**${p.name}** is listed in **${p.cat}** at **${money(p.price)}**${n?`, inside the niche **${n.name}**`:''}. It has **${sellerOrders(p.id).length}** order${sellerOrders(p.id).length===1?'':'s'}.\nWould you like help with its description, its price, or its orders?`}
+    else{const n=DB.niches.find(x=>x.name===nm);if(n)return `**${n.name}** groups **${DB.products.filter(p=>p.niche===n.id).length}** product${DB.products.filter(p=>p.niche===n.id).length===1?'':'s'}.\nWould you like ideas to grow it or to add products to it?`}
+  }
   const t=q.toLowerCase().trim(),st=myStats();
   if(/\b(plan|pro|subscription|subscribe|upgrade|billing)\b/.test(t))
     return "You are on the **Free plan**. **Blex Pro** (990 DA / month) adds:\n- Blex AI assistant\n- Publishing products with AI\n- Unlimited stories and reels\n- Live selling\nOpen the menu and tap **Upgrade** to see it.";
   if(/unconfirmed|\border|tracking|delivery status/.test(t)){
-    if(!DB.orders.length)return 'You have no orders yet. They appear in **My orders** as soon as you check out.';
-    const lines=DB.orders.map(o=>`- ${DB.products.find(p=>p.id===o.product).name}: ${o.status}`).join('\n');
+    if(!sellerOrders().length)return 'You have no orders yet. They appear in **My orders** when a buyer orders one of your products.';
+    const lines=sellerOrders().map(o=>`- ${DB.products.find(p=>p.id===o.product).name}: ${o.status}`).join('\n');
     return `You have **${st.orders} order${st.orders>1?'s':''}**, and **${st.pending} waiting for confirmation**.\n${lines}`;
   }
   if(/published|my products|my niches|my listings|what am i selling/.test(t))
@@ -1279,14 +1390,14 @@ function addMsg(role,html){
 }
 async function ask(text,isRegen){
   text=String(text||'').trim();if(!text||AI.busy)return;
-  if(!S.chat){S.chat={id:'c'+Date.now(),title:text.slice(0,40),ts:Date.now(),msgs:[]};DB.chats.unshift(S.chat);if($('#chatList'))renderChatList($('#cq')?$('#cq').value:'')}
+  if(!S.chat){S.chat={id:'c'+Date.now(),title:titleOf(text),ts:Date.now(),msgs:[]};DB.chats.unshift(S.chat);if($('#chatList'))renderChatList($('#cq')?$('#cq').value:'')}
   const chat=S.chat,run=++AI.run;AI.stop=false;AI.stick=true;
-  if(!isRegen){chat.msgs.push(['u',text]);addMsg('u',esc(text).replace(/\n/g,'<br>'))}
+  if(!isRegen){chat.msgs.push(['u',text]);addMsg('u',userHTML(text))}
   setBusy(true);
   const el=addMsg('a','<div class="typing" style="padding:4px"><i></i><i></i><i></i></div>');aiEnd(true);
   let reply='';
   try{
-    reply=await aiReply(chat.msgs.map(m=>({role:m[0]==='u'?'user':'assistant',content:m[1]})));
+    reply=await aiReply(chat.msgs.map(m=>({role:m[0]==='u'?'user':'assistant',content:ctxText(m[1])})));
     if(AI.run!==run){chat.msgs.push(['a',reply]);saveChats();return}          /* user left this chat mid-reply: keep the answer in its history */
     if(AI.stop){el.remove();if(!$$('#chat .msg').length)$('#ai').classList.remove('has-chat');return}
     const shown=await typeOut(el,reply,run);
@@ -1461,12 +1572,45 @@ async function shareStore(id){
 
 /* ============ 9. SIDE SHEET MENU ============ */
 function renderAnon(){if(!$('#anonCard'))return;const a=DB.me.anon;$('#anonCard').innerHTML=`<span class="dot ${a?'on':''}"></span><div class="grow"><b>Anonymous selling</b><span class="muted">${a?'Your name is hidden':'Your name is visible'}</span></div><button class="swb" data-m="anon" role="switch" aria-checked="${a}" aria-label="Anonymous selling"><span class="sw ${a?'on':''}"></span></button>`}
+S.menuOpen=null;
 function renderMenu(){
   if(!$('#menu'))return;
-  const row=(i,l,a,x='')=>`<div class="mrow">${ic(i)}<span class="grow">${l}</span>${x}</div>`;
-  const bd=n=>`<span class="bdg">${n}</span>`;
-  {const st=myStats();$('#menu').innerHTML=row('box','My orders','orders',bd(st.orders))+row('tag','My products','products',bd(st.products))+row('grid','My niches','niches',bd(st.niches))}
+  const bd=n=>`<span class="bdg">${n}</span>`,st=myStats(),P=myProducts(),N=myNiches(),o=S.menuOpen;
+  const head=(k,i,l,n)=>`<button class="mx ${o===k?'open':''}" data-mx="${k}" aria-expanded="${o===k}">${ic(i)}<span class="grow">${l}</span>${bd(n)}<span class="mx-ar">${ic('chev','sm')}</span></button>`;
+  const wrap=(k,inner)=>`<div class="mx-w ${o===k?'open':''}" data-mx="${k}"><div>${inner}</div></div>`;
+  const empty=(i,t,sub,btn,act)=>`<div class="mx-e">${ic(i)}<b>${t}</b><span>${sub}</span><button class="mx-cta" data-mxa="${act}">${btn}</button></div>`;
+  const noProd=empty('box','You have no products','Publish a product and it will show up here.','Publish a product','publish');
+  const prow=(p,act,right)=>`<button class="mx-i" data-mxa="${act}"><span class="th">${pimg(p)}</span><b>${esc(p.name)}</b>${right}</button>`;
+  const orders=P.length?`<div class="mx-l"><button class="mx-i all" data-mxa="orders:all"><span class="th">${ic('grid')}</span><b>All</b><small>${st.orders}</small></button>${P.map(p=>prow(p,'orders:'+p.id,`<small>${sellerOrders(p.id).length}</small>`)).join('')}</div>`:noProd;
+  const prods=P.length?`<div class="mx-l">${P.map(p=>prow(p,'product:'+p.id,`<small>${money(p.price)}</small>`)).join('')}</div>`:noProd;
+  const niches=N.length?`<div class="mx-l">${N.map(n=>`<button class="mx-i" data-mxa="niche:${n.id}"><span class="th">${ic('grid')}</span><b>${esc(n.name)}</b><small>${DB.products.filter(p=>p.niche===n.id).length}</small></button>`).join('')}</div>`:empty('grid','You have no niches','Group related products on one page.','Create a niche','niche-new');
+  $('#menu').innerHTML=head('orders','box','My orders',st.orders)+wrap('orders',orders)+head('products','tag','My products',st.products)+wrap('products',prods)+head('niches','grid','My niches',st.niches)+wrap('niches',niches);
 }
+function mxToggle(k){
+  S.menuOpen=S.menuOpen===k?null:k;
+  $$('#menu .mx').forEach(b=>{const on=b.dataset.mx===S.menuOpen;b.classList.toggle('open',on);b.setAttribute('aria-expanded',on)});
+  $$('#menu .mx-w').forEach(w=>w.classList.toggle('open',w.dataset.mx===S.menuOpen))}
+function mxAct(a){
+  const [k,id]=a.split(':');
+  if(k==='niche-new'){toast('Niches are coming soon');return}
+  openSide(false);
+  if(k==='publish')push('newproduct');
+  else if(k==='orders')push('orders',id);
+  else if(k==='product')push('product',id,null);
+  else if(k==='niche')push('niche',id,null)}
+/* seller orders page: one product or all of them, grouped by status */
+const ODS={'Awaiting confirmation':'warn','Confirmed':'acc','In transit':'acc','Delivered':'ok','Cancelled':'mut'};
+const ago=ts=>{const h=Math.floor((Date.now()-ts)/36e5);return h<1?'Just now':h<24?h+'h ago':Math.floor(h/24)+'d ago'};
+function ordersView(id){
+  const all=id==='all',pr=all?null:DB.products.find(p=>p.id===id),L=sellerOrders(all?null:id).sort((a,b)=>b.placedAt-a.placedAt),cnt=x=>L.filter(o=>o.status===x).length;
+  const card=o=>{const p=DB.products.find(x=>x.id===o.product),left=Math.max(0,Math.round(o.deadlineH-(Date.now()-o.placedAt)/36e5));
+    return `<article class="od-c">${all?`<div class="od-th">${pimg(p)}</div>`:''}<div class="od-i"><b>${all?esc(p.name):'Order #'+o.id.toUpperCase()}</b><span>${all?'Order #'+o.id.toUpperCase()+' · ':''}${ago(o.placedAt)}</span><span>Delivery ${money(o.deliveryFee)} · ${o.feePaid?'paid':'not paid yet'}</span>${o.status==='Awaiting confirmation'?`<span class="od-w">Confirm within ${left}h</span>`:''}</div><span class="od-s ${ODS[o.status]||''}">${o.status}</span></article>`};
+  const keys=[...Object.keys(ODS),...new Set(L.map(o=>o.status).filter(x=>!(x in ODS)))].filter(k=>cnt(k));
+  const body=L.length?`<div class="od-st"><div class="warn"><b>${cnt('Awaiting confirmation')}</b><span>Awaiting</span></div><div class="acc"><b>${cnt('In transit')}</b><span>In transit</span></div><div class="ok"><b>${cnt('Delivered')}</b><span>Delivered</span></div></div>`
+    +keys.map(k=>`<div class="od-g"><b>${k}</b><span>${cnt(k)}</span></div>${L.filter(o=>o.status===k).map(card).join('')}`).join('')
+    :`<div class="empty">${ic('box')}<h2>No orders yet</h2><p>When a buyer orders ${all?'one of your products':'this product'}, it will appear here.</p></div>`;
+  return `<div class="scroll np"><div class="np-top"><div class="np-tr"><button class="gbtn glass" data-act="back" aria-label="Back">${ic('back')}</button><div><h1>${all?'All orders':'Orders'}</h1><small>${L.length} order${L.length===1?'':'s'}${all?' · '+myProducts().length+' product'+(myProducts().length===1?'':'s'):''}</small></div></div></div>
+    <div class="od-wrap">${pr?`<div class="od-pc"><div class="od-th lg">${pimg(pr)}</div><div><b>${esc(pr.name)}</b><span>${money(pr.price)} · ${pr.cat}</span></div></div>`:''}${body}</div></div>`}
 
 /* ============ 10. EVENTS ============ */
 document.addEventListener('click',e=>{
@@ -1509,8 +1653,16 @@ document.addEventListener('click',e=>{
     <button class="cta ghost" style="width:100%;margin-top:12px" data-act="close">Cancel</button>`);return}
   if(d.act==='close'){closeSheet();return}
   if(d.create){closeSheet();if(d.create==='product'){push('newproduct');return}toast('Niches are coming soon');return}
+  if(d.payfee){openPay(d.payfee);return}
   if(d.add){S.cart.push(d.add);toast(`Added to cart (${S.cart.length})`);return}
   if(d.like){S.liked[d.like]=!S.liked[d.like];t.classList.toggle('on',S.liked[d.like]);return}
+  if(d.aiplus!==undefined){const el=$('#apop');el&&!el.hidden?apClose():apOpen();return}
+  if(d.ap!==undefined){apAct(d.ap);return}
+  if(d.attrm!==undefined){S.att=S.att.filter(x=>x.k+':'+x.id!==d.attrm);attRender();return}
+  if(d.loc!==undefined){openLoc();return}
+  if(d.locx!==undefined){S.loc=null;applyLoc(true);return}
+  if(d.mx!==undefined){mxToggle(d.mx);return}
+  if(d.mxa!==undefined){mxAct(d.mxa);return}
   if(d.toast){toast(d.toast);return}
   if(d.ask){ask(d.ask);return}
   if(d.t){setTab(d.t);return}
@@ -1526,7 +1678,7 @@ $('#seg').addEventListener('click',e=>{const b=e.target.closest('button');if(b)s
 document.addEventListener('input',e=>{if(e.target.id==='q'){const v=e.target.value;renderMarket(S.cat,v);const i=$('#q');i.focus();i.setSelectionRange(v.length,v.length)}});
 document.addEventListener('input',e=>{if(e.target.id==='cq')renderChatList(e.target.value)});
 document.addEventListener('input',e=>{if(e.target.id==='aiIn'){fitIn();if(!AI.busy)$('#aiForm .send').disabled=!e.target.value.trim()}});
-document.addEventListener('submit',e=>{if(e.target.id==='aiForm'){e.preventDefault();if(AI.busy){AI.stop=true;return}const i=$('#aiIn'),v=i.value;if(!v.trim())return;i.value='';fitIn();$('#aiForm .send').disabled=true;ask(v)}});
+document.addEventListener('submit',e=>{if(e.target.id==='aiForm'){e.preventDefault();if(AI.busy){AI.stop=true;return}const i=$('#aiIn'),v=i.value;if(!v.trim()&&!S.att.length)return;const full=S.att.map(a=>`[[${a.k}:${a.id}]]`).join('')+(v.trim()?'\n'+v.trim():'');i.value='';S.att=[];attRender();apClose();fitIn();$('#aiForm .send').disabled=true;ask(full)}});
 document.addEventListener('scroll',e=>{const g=e.target;if(g.id==='gal'){const i=Math.round(g.scrollLeft/g.clientWidth);$$('.dots i',g.parentNode).forEach((d,k)=>d.classList.toggle('on',k===i))}},true);
 document.addEventListener('scroll',e=>{const g=e.target;if(g.id==='market'||g.id==='aiScroll')$('#top').classList.toggle('sm',g.scrollTop>24);if(g.id==='feed'){const st=g.scrollTop,d=st-S.lastFeed;if(d>6&&st>20)feedHdr(false);else if(d<-6)feedHdr(true);S.lastFeed=st}},true);
 /* Liquid Glass tab bar. Rest: flat thumb behind the active tab. Press/drag: a glass lens grows, follows the finger
@@ -1552,7 +1704,7 @@ const barUI=(()=>{
   bar.addEventListener('pointerdown',e=>{
     if(!e.isPrimary)return;
     bar.setPointerCapture(e.pointerId);clearTimeout(releaseT);
-    St.drag=true;St.moved=false;St.tk=1;St.tx=clampX(localX(e));setActive(nearest(St.tx));
+    St.drag=true;St.moved=false;St.tk=1;St.tx=centers[nearest(localX(e))];setActive(nearest(St.tx));
   });
   bar.addEventListener('pointermove',e=>{
     if(!St.drag)return;
@@ -1562,8 +1714,8 @@ const barUI=(()=>{
     if(!St.drag)return;St.drag=false;
     const i=e.type==='pointercancel'?selected:nearest(St.tx);
     selected=i;setActive(i);St.tx=centers[i];
-    releaseT=setTimeout(()=>{St.tk=0},St.moved?0:140);   /* a plain tap keeps the lens up for a beat */
-    if(e.type==='pointerup'&&!S.stack.length)setTab(i?'feed':'market');
+    releaseT=setTimeout(()=>{St.tk=0},St.moved?0:30);   /* a plain tap keeps the lens up for a beat */
+    if(e.type==='pointerup'&&!S.stack.length)setTimeout(()=>setTab(i?'feed':'market'),0);
   };
   bar.addEventListener('pointerup',end);bar.addEventListener('pointercancel',end);
   let last=performance.now();
@@ -1571,9 +1723,10 @@ const barUI=(()=>{
     const dt=Math.min(.033,(now-last)/1000);last=now;
     if(RM||!W){St.x=St.tx;St.k=St.tk;St.vx=St.vk=0}
     else{
-      const kx=St.drag?700:320,cx=St.drag?46:21;
-      St.vx+=(-(St.x-St.tx)*kx-St.vx*cx)*dt;St.x+=St.vx*dt;
-      St.vk+=(-(St.k-St.tk)*380-St.vk*24)*dt;St.k+=St.vk*dt;
+      const kx=St.drag?1500:1500,cx=St.drag?78:76,h=dt/2;            /* stiffer + near critical damping: quick, no wobble */
+      for(let n=0;n<2;n++){
+        St.vx+=(-(St.x-St.tx)*kx-St.vx*cx)*h;St.x+=St.vx*h;
+        St.vk+=(-(St.k-St.tk)*1100-St.vk*64)*h;St.k+=St.vk*h}
     }
     const k=Math.max(0,Math.min(1.04,St.k)),kk=Math.min(1,k);
     const restW=tw-8,restH=H-10,lensW=tw+16,lensH=H+12;
@@ -1606,6 +1759,99 @@ document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.dataset&&e.
   s.addEventListener('pointerup',end);s.addEventListener('pointercancel',end)})();
 
 document.addEventListener('keydown',e=>{if(e.target.id==='aiIn'&&e.key==='Enter'&&!e.shiftKey&&!e.isComposing&&!matchMedia('(pointer:coarse)').matches){e.preventDefault();if(!AI.busy&&e.target.value.trim())$('#aiForm').requestSubmit()}});
+/* ---- Blex AI: attachments ---- */
+S.att=[];S.apMode=null;
+const MK=/\[\[(p|n):([\w-]+)\]\]/g;
+const attObj=a=>a.k==='p'?DB.products.find(x=>x.id===a.id):DB.niches.find(x=>x.id===a.id);
+const attChip=(a,rm)=>{const o=attObj(a);if(!o)return'';return `<span class="achip"><span class="at">${a.k==='p'?pimg(o):ic('grid')}</span><b>${esc(o.name)}</b>${rm?`<button type="button" data-attrm="${a.k}:${a.id}" aria-label="Remove ${esc(o.name)}">${ic('x','sm')}</button>`:''}</span>`};
+const splitAtt=t=>{const at=[];const rest=String(t).replace(MK,(m,k,id)=>{at.push({k,id});return''}).trim();return{at,rest}};
+const userHTML=t=>{const{at,rest}=splitAtt(t);return(at.length?`<div class="amsg">${at.map(a=>attChip(a)).join('')}</div>`:'')+esc(rest).replace(/\n/g,'<br>')};
+const ctxText=t=>String(t).replace(MK,(m,k,id)=>{const o=attObj({k,id});if(!o)return'';return k==='p'?`[Attached product: ${o.name} | ${money(o.price)} | ${o.cat}]`:`[Attached niche: ${o.name} | ${DB.products.filter(p=>p.niche===o.id).length} products]`}).trim();
+const titleOf=t=>{const{at,rest}=splitAtt(t);const o=at.length&&attObj(at[0]);return(rest||(o?o.name:'New chat')).slice(0,40)};
+function attRender(){
+  const b=$('#aiAtt');if(!b)return;b.hidden=!S.att.length;b.innerHTML=S.att.map(a=>attChip(a,1)).join('');
+  const s=$('#aiForm .send');if(s&&!AI.busy)s.disabled=!$('#aiIn').value.trim()&&!S.att.length;
+  if(S.apMode&&S.apMode!=='menu')apRender()}
+function apRender(){
+  const el=$('#apop');if(!el)return;const m=S.apMode,P=myProducts(),N=myNiches(),ck='<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>';
+  if(m==='menu'){
+    el.innerHTML=`<button type="button" class="ap-m" style="--i:0" data-ap="go:products"><span class="ap-i">${ic('tag')}</span>My products<small>${P.length}</small>${ic('chevr','sm c')}</button><button type="button" class="ap-m" style="--i:1" data-ap="go:niches"><span class="ap-i">${ic('grid')}</span>My niches<small>${N.length}</small>${ic('chevr','sm c')}</button>`;return}
+  const prod=m==='products',L=prod?P:N,on=o=>S.att.some(a=>a.k===(prod?'p':'n')&&a.id===o.id);
+  el.innerHTML=`<div class="ap-h"><button type="button" class="bk" data-ap="go:menu" aria-label="Back">${ic('back','sm')}</button><b>${prod?'My products':'My niches'}</b><button type="button" data-ap="close">Done</button></div>`
+    +(L.length?`<div class="ap-l">${L.map((o,ix)=>`<button type="button" class="ap-r" style="--i:${Math.min(ix+1,6)}" data-ap="pick:${prod?'p':'n'}:${o.id}" aria-pressed="${on(o)}"><span class="ap-t">${prod?pimg(o):ic('grid')}</span><span class="ap-x"><b>${esc(o.name)}</b><span>${prod?money(o.price)+' · '+o.cat:DB.products.filter(p=>p.niche===o.id).length+' products'}</span></span><span class="ap-ck">${ck}</span></button>`).join('')}</div>`
+      :`<div class="ap-e">${ic(prod?'box':'grid')}<b>${prod?'You have no products':'You have no niches'}</b><span>${prod?'Publish a product and you can attach it here.':'Create a niche and you can attach it here.'}</span>${prod?'<button type="button" data-ap="publish">Publish a product</button>':''}</div>`)}
+function apOpen(){const el=$('#apop');S.apMode='menu';apRender();el.hidden=false;requestAnimationFrame(()=>el.classList.add('in'));$('[data-aiplus]').setAttribute('aria-expanded','true')}
+function apClose(){const el=$('#apop');if(!el||el.hidden)return;S.apMode=null;el.classList.remove('in');$('[data-aiplus]')?.setAttribute('aria-expanded','false');setTimeout(()=>{if(!S.apMode)el.hidden=true},260)}
+function apAct(a){
+  const[k,x,y]=a.split(':');
+  if(k==='go'){S.apMode=x;apRender()}
+  else if(k==='close')apClose();
+  else if(k==='publish'){apClose();push('newproduct')}
+  else if(k==='pick'){const i=S.att.findIndex(z=>z.k===x&&z.id===y);if(i>=0)S.att.splice(i,1);else if(S.att.length<3)S.att.push({k:x,id:y});else toast('You can attach up to 3 items');attRender()}}
+document.addEventListener('pointerdown',e=>{const el=$('#apop');if(el&&!el.hidden&&!e.target.closest('#apop,[data-aiplus]'))apClose()});
+/* ---- pay the delivery fee (the product itself is paid on delivery) ---- */
+const DELIVERY_FEE=2.5;
+function openPay(id){
+  const p=DB.products.find(x=>x.id===id);if(!p)return;
+  openSheet(`<h3>Pay the delivery fee</h3><div class="pay-p"><div class="pay-t">${pimg(p)}</div><div><b>${esc(p.name)}</b><span>${esc(p.cat)}</span></div></div>
+    <div class="pay-r"><span>Delivery fee, paid now</span><b>${money(DELIVERY_FEE)}</b></div>
+    <div class="pay-r"><span>Product, paid on delivery</span><b>${money(p.price)}</b></div>
+    <p class="pay-n">If the order arrives late, you can claim the delivery fee back.</p>
+    <button class="pay-fee" id="payGo"><span>Pay</span><em>${money(DELIVERY_FEE)}</em></button>`);
+  $('#payGo').onclick=()=>{
+    DB.orders.unshift({id:'o'+(DB.orders.length+1)+Date.now().toString(36).slice(-3),product:p.id,status:'Awaiting confirmation',deliveryFee:DELIVERY_FEE,feePaid:true,placedAt:Date.now(),deadlineH:72});
+    closeSheet();toast('Delivery fee paid. The seller will confirm your order.');renderMenu&&renderMenu()}}
+/* ---- location (Market top panel) ---- */
+const LOC_KEY='blex.loc';
+S.loc=(()=>{try{const v=localStorage.getItem(LOC_KEY);return v===null?'Algeria':(v===''?null:v)}catch(e){return'Algeria'}})();
+function applyLoc(rerender){
+  const on=!!S.loc;$('#top').classList.toggle('noloc',!on);$('#app').classList.toggle('hasloc',on);
+  const e=$('#locT');if(e)e.textContent=S.loc||'Algeria';
+  try{localStorage.setItem(LOC_KEY,S.loc===null?'':S.loc)}catch(x){}
+  if(rerender)renderMarket(S.cat,$('#q').value)}
+function openLoc(){
+  if($('#cs'))return;
+  const ck='<svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>';
+  const opt=(v,l,all)=>`<button class="cs-opt ${all?'all':''}" data-sc="${esc(v)}" aria-pressed="${S.loc===v}"><span>${l}</span>${S.loc===v?ck:''}</button>`;
+  const el=document.createElement('div');el.id='cs';el.className='cs';
+  el.innerHTML=`<div class="cs-scrim" data-sc-close></div><div class="cs-sheet glass" role="dialog" aria-modal="true" aria-label="Choose your location"><div class="cs-grab"></div>
+    <div class="cs-head"><div><b>Choose your location</b><span>Show products from all of Algeria or one wilaya</span></div><button class="cs-x" data-sc-close aria-label="Close">${ic('x')}</button></div>
+    <div class="cs-list">${opt('Algeria','All Algeria',1)}${WILAYAS.map(w=>opt(w,esc(w))).join('')}</div></div>`;
+  el.addEventListener('click',e=>{
+    if(e.target.closest('[data-sc-close]')){closeCity();return}
+    const b=e.target.closest('[data-sc]');if(b){S.loc=b.dataset.sc;applyLoc(true);closeCity()}});
+  $('#app').appendChild(el);requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('in')))}
+/* ---- search page ---- */
+const RECENT_KEY='blex.recent';
+const getRecent=()=>{try{return JSON.parse(localStorage.getItem(RECENT_KEY)||'[]')}catch(e){return[]}};
+const setRecent=a=>{try{localStorage.setItem(RECENT_KEY,JSON.stringify(a.slice(0,8)))}catch(e){}};
+function srBody(q){
+  const t=q.trim().toLowerCase(),R=getRecent(),row=(v,i,del)=>`<div class="sr-r" style="padding:0"><button class="sr-r" style="border:0;flex:1;min-width:0" data-sr="${esc(v)}"><span class="sr-ic">${ic(i,'sm')}</span><span class="t">${esc(v)}</span></button>${del?`<button class="sr-d" data-srdel="${esc(v)}" aria-label="Remove ${esc(v)}">${ic('x','sm')}</button>`:''}</div>`;
+  if(t){
+    const names=[...DB.products.map(p=>p.name),...DB.niches.map(n=>n.name)].filter(n=>n.toLowerCase().includes(t)).slice(0,5);
+    return `<div class="sr-h"><b>Suggestions</b></div>`+row(q.trim(),'search')+names.filter(n=>n.toLowerCase()!==t).map(n=>row(n,'tag')).join('')}
+  return `<div class="sr-h"><b>Explore</b></div><div class="sr-map">${mapCard()}<p>Find stores near you, call them or get directions.</p></div>`
+    +`<div class="sr-h"><b>Recent searches</b>${R.length?'<button data-srclear>Clear</button>':''}</div>`
+    +(R.length?R.map(v=>row(v,'search',1)).join(''):'<p class="sr-e">Your recent searches will appear here.</p>')}
+function openSearch(){
+  if($('#sr'))return;
+  const el=document.createElement('div');el.id='sr';el.className='spg';el.setAttribute('role','dialog');el.setAttribute('aria-label','Search');
+  const cur=$('#q').value;
+  el.innerHTML=`<div class="sr-top"><label class="search">${ic('search','sm')}<input id="srIn" value="${esc(cur)}" placeholder="Search products and niches" aria-label="Search" enterkeyhint="search" autocomplete="off"></label><button class="sr-x" data-srx>Cancel</button></div><div class="sr-body" id="srBody">${srBody(cur)}</div>`;
+  $('#app').appendChild(el);requestAnimationFrame(()=>requestAnimationFrame(()=>{el.classList.add('in');const i=$('#srIn');i.focus();i.setSelectionRange(i.value.length,i.value.length)}));
+  const run=v=>{v=v.trim();if(v){const R=getRecent().filter(x=>x.toLowerCase()!==v.toLowerCase());R.unshift(v);setRecent(R)}$('#q').value=v;renderMarket(S.cat,v);closeSearch()};
+  el.addEventListener('input',e=>{if(e.target.id==='srIn')$('#srBody').innerHTML=srBody(e.target.value)});
+  el.addEventListener('keydown',e=>{if(e.target.id==='srIn'&&e.key==='Enter'){e.preventDefault();run(e.target.value)}});
+  el.addEventListener('click',e=>{
+    const b=e.target.closest('button');if(!b)return;
+    if(b.dataset.srx!==undefined){closeSearch();return}
+    if(b.dataset.sr!==undefined){e.stopPropagation();run(b.dataset.sr);return}
+    if(b.dataset.srdel!==undefined){e.stopPropagation();setRecent(getRecent().filter(x=>x!==b.dataset.srdel));$('#srBody').innerHTML=srBody($('#srIn').value);return}
+    if(b.dataset.srclear!==undefined){e.stopPropagation();setRecent([]);$('#srBody').innerHTML=srBody($('#srIn').value);return}
+    if(b.dataset.act==='maps')closeSearch()})}
+function closeSearch(){const el=$('#sr');if(!el)return;el.classList.remove('in');el.querySelector('input')?.blur();setTimeout(()=>el.remove(),450)}
+document.addEventListener('focusin',e=>{if(e.target.id==='q'){e.target.blur();openSearch()}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSearch()});
 /* blexmaps: scrolling the list lifts the sheet, hides the wordmark and moves the city pill into the tabs; scrolling back up restores it */
 document.addEventListener('scroll',e=>{const g=e.target;if(g.id!=='mpList')return;const h=$('#mpSheet');if(!h)return;const st=g.scrollTop,d=st-(S.mpLast||0);S.mpLast=st;if(d>6&&st>24)h.classList.add('up');else if(d<-6||st<8)h.classList.remove('up')},true);
 document.addEventListener('scroll',e=>{const t=e.target;if(t.id==='aiScroll')AI.stick=t.scrollHeight-t.scrollTop-t.clientHeight<90},true);
@@ -1619,7 +1865,7 @@ document.addEventListener('input',e=>{if(e.target.id==='mq'){S.mp.q=e.target.val
 function applyTheme(t){S.theme=t;document.documentElement.dataset.theme=t}
 applyTheme(SAVED.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
 $('#market').innerHTML=skeleton();                     // loading state
-$('#feed').innerHTML=feedView(); $('#ai').innerHTML=aiView(); renderSide();renderStories();$('#mapSlot').innerHTML=mapCard();
+$('#feed').innerHTML=feedView(); $('#ai').innerHTML=aiView(); renderSide();renderStories();applyLoc(true);
 setTimeout(()=>renderMarket('All',''),700);
 </script>
 </body>
