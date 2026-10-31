@@ -886,6 +886,22 @@ a.prow,a.cta{text-decoration:none}
 .sub-g{display:flex;align-items:baseline;justify-content:space-between;margin:8px 6px 0}.sub-g:first-child{margin-top:2px}.sub-g b{font-size:14px;font-weight:650}.sub-g span{font-size:12.5px;color:var(--ink2)}
 .grp .nt-r{padding:13px 14px;gap:11px;border-bottom:0}.grp .nt-r+.nt-r{border-top:1px solid var(--line)}.grp .nt-i{width:38px;height:38px}
 .sub-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;color:var(--ink2);padding:24px 12px}.sub-empty .ic{width:44px;height:44px;margin-bottom:6px;opacity:.55}.sub-empty b{color:var(--ink);font-size:17px}.sub-empty span{font-size:14px;line-height:1.45}
+/* ---- reels & stories ---- */
+.sheet{max-height:calc(100% - 72px);overflow-y:auto;overscroll-behavior:contain}
+.rl-drop{width:100%;margin-top:12px;min-height:96px;padding:14px;border-radius:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;color:var(--acc);background:color-mix(in srgb,var(--acc) 8%,var(--bg));box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--acc) 35%,transparent)}
+.rl-drop .ic{width:26px;height:26px;margin-bottom:2px}.rl-drop b{font-size:15.5px;color:var(--ink)}.rl-drop span{font-size:12.5px;color:var(--ink2)}
+.rl-drop.has{flex-direction:row;justify-content:flex-start;gap:14px;text-align:start;min-height:0}
+.rl-pv{flex:none;width:54px;height:76px;border-radius:14px;overflow:hidden;background:#000;display:block}.rl-pv video,.rl-pv img{width:100%;height:100%;object-fit:cover;display:block}
+.rl-tx{flex:1;min-width:0}.rl-tx b{display:block}
+.sp-e{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:18px 8px 10px;color:var(--ink2)}.sp-e .ic{width:34px;height:34px;color:var(--acc);margin-bottom:4px}.sp-e b{color:var(--ink);font-size:16.5px}.sp-e span{font-size:14px;line-height:1.45}
+.st-pl{max-height:210px;overflow-y:auto}
+.mg-rv{background:#000}.mg-rv video{width:100%;height:100%;object-fit:cover;display:block}
+.reel .bg video{width:100%;height:100%;object-fit:cover;display:block}
+.reel .acts .rsnd .w,.reel .acts .rsnd .x{display:none}.reel .acts .rsnd[data-snd="1"] .w{display:inline}.reel .acts .rsnd[data-snd="0"] .x{display:inline}
+.ft-add{position:absolute;right:16px;top:calc(var(--top) + 8px);width:44px;height:44px;min-height:0;min-width:0;border-radius:50%;display:grid;place-items:center;color:#fff;background:rgba(20,22,30,.38);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:inset 0 0 0 1.5px #8FD3FF}.ft-add .ic{width:22px;height:22px}
+.sv-art video,.sv-art img{width:100%;height:100%;object-fit:cover;display:block}
+.sv-cap{margin:0 4px 8px;font-size:15px;line-height:1.4;text-shadow:0 1px 10px rgba(0,0,0,.45)}
+.st.mine .ring,.st.mine.seen .ring{border-color:var(--acc)}.st .av3 img{width:100%;height:100%;object-fit:cover;display:block}
 </style>
 </head>
 <body>
@@ -954,7 +970,7 @@ a.prow,a.cta{text-decoration:none}
     <div class="trow"><button class="gbtn glass" data-act="side" aria-label="Open menu"><svg class="ic nav"><use href="#i-menu"/></svg></button>
       <label class="search"><svg class="ic sm"><use href="#i-search"/></svg><input id="q" placeholder="Search products and niches" aria-label="Search" enterkeyhint="search"><button type="button" class="sl" data-filt aria-label="Filters"><svg class="ic sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 4h-7M10 4H3M21 12h-9M8 12H3M21 20h-5M12 20H3M14 2v4M8 10v4M16 18v4"/></svg></button></label><span class="ttl">Blex AI</span></div></div></div>
   <!-- Feed header (centered title + Explore / Following), hides on scroll down -->
-  <div id="feedTop"><div class="ft-title"><span>Feed</span></div>
+  <div id="feedTop"><div class="ft-title"><span>Feed</span></div><button class="ft-add" data-addstory aria-label="Add a story"><svg class="ic"><use href="#i-plus"/></svg></button>
     <div class="ft-tabs"><button class="on" data-ftab="all">Explore</button><button data-ftab="fol">Following</button></div></div>
   <!-- Stories strip: glass blur, replaces the Feed header while scrolling down -->
   <div id="stories" aria-label="Stories"><div class="st-row" id="stRow"></div></div>
@@ -1056,13 +1072,13 @@ function saveState(){LS.save({liked:S.liked,saved:S.saved,followed:[...S.followe
 function feedHdr(show){$('#feedTop').classList.toggle('hide',!show);$('#stories').classList.toggle('on',!show&&S.tab==='feed'&&!S.stack.length)}
 /* stories */
 S.storySeen=new Set();S.sv=null;
-function storyProduct(st){return DB.products.find(p=>p.art===st.art&&p.h===st.h)||DB.products.find(p=>p.art===st.art)||null}
+function storyProduct(st){if(st.pid)return DB.products.find(p=>p.id===st.pid)||null;return DB.products.find(p=>p.art===st.art&&p.h===st.h)||DB.products.find(p=>p.art===st.art)||null}
 function renderSv(){
   const v=$('#sv');if(!v)return;const st=DB.stories[S.sv],pr=storyProduct(st);S.storySeen.add(S.sv);
-  const su=pr&&prodImg(pr);$('.sv-art',v).innerHTML=su?`<img src="${su}" alt="" style="width:100%;height:100%;object-fit:cover;display:block">`:scene(pr?pr.art:st.art,pr?pr.h:st.h,0);
+  const su=pr&&prodImg(pr);const sm=st.media;$('.sv-art',v).innerHTML=sm?(sm.type==='video'?`<video src="${sm.url}" autoplay loop muted playsinline></video>`:`<img src="${sm.url}" alt="">`):su?`<img src="${su}" alt="" style="width:100%;height:100%;object-fit:cover;display:block">`:scene(pr?pr.art:st.art,pr?pr.h:st.h,0);
   const art=$('.sv-art',v);art.classList.remove('swap');void art.offsetWidth;art.classList.add('swap');
   $('.sv-seg',v).innerHTML=DB.stories.map((_,i)=>`<i class="${i<=S.sv?'on':''}"></i>`).join('');
-  $('.sv-who .av3',v).innerHTML=scene(st.art,st.h,2);$('.sv-who b',v).textContent=st.n;
+  $('.sv-who .av3',v).innerHTML=st.pid&&pr?pimg(pr):scene(st.art,st.h,2);$('.sv-who b',v).textContent=st.mine?'Your story':st.n;const cp=$('.sv-cap',v);cp.textContent=st.cap||'';cp.style.display=st.cap?'':'none';
   $('.sv-info b',v).textContent=pr?pr.name:'';$('.sv-info span',v).textContent=pr?money(pr.price)+' · '+pr.cat:'';
   $('.sv-go',v).style.display=pr?'':'none';
 }
@@ -1072,7 +1088,7 @@ function openStory(i){
   v.innerHTML=`<div class="sv-art"></div><div class="sv-shade t"></div><div class="sv-shade b"></div>
     <button class="sv-zone p" data-sv="prev" aria-label="Previous product"></button><button class="sv-zone n" data-sv="next" aria-label="Next product"></button>
     <div class="sv-top"><div class="sv-seg"></div><div class="sv-who"><span class="av3"></span><b></b><button class="sv-x" data-sv="close" aria-label="Close">${ic('x')}</button></div></div>
-    <div class="sv-bot"><div class="sv-info"><b></b><span></span></div><button class="sv-go" data-sv="visit">Visit product${ic('chevr','sm')}</button></div>`;
+    <div class="sv-bot"><div class="sv-cap"></div><div class="sv-info"><b></b><span></span></div><button class="sv-go" data-sv="visit">Visit product${ic('chevr','sm')}</button></div>`;
   v.addEventListener('click',e=>{const b=e.target.closest('[data-sv]');if(!b)return;e.stopPropagation();const a=b.dataset.sv;
     if(a==='close')closeStory();
     else if(a==='next'){S.sv+1<DB.stories.length?(S.sv++,renderSv()):closeStory()}
@@ -1086,8 +1102,8 @@ function closeStory(now){
   v.classList.remove('in');if(now)v.remove();else setTimeout(()=>v.remove(),320);
 }
 document.addEventListener('keydown',e=>{const sv=$('#sv');if(!sv||sv.classList.contains('away'))return;if(e.key==='Escape')closeStory();else if(e.key==='ArrowRight')$('.sv-zone.n').click();else if(e.key==='ArrowLeft')$('.sv-zone.p').click()});
-function renderStories(){const L=DB.stories.map((p,i)=>({p,i})).filter(x=>!S.storySeen.has(x.i));$('#stories').classList.toggle('empty',!L.length);$('#stRow').innerHTML=L.map(({p,i})=>`<button class="st" data-story="${i}" aria-label="${p.n}'s story"><span class="ring"><span class="av3">${scene(p.art,p.h,2)}</span></span><span class="nm">${p.n}</span></button>`).join('')}
-function syncChrome(){const root=!S.stack.length;$('#bar').classList.toggle('hide',!root||S.tab==='ai');$('#fab').classList.toggle('hide',!(root&&S.tab==='market'));$('#top').classList.toggle('hide',!(root&&S.tab!=='feed'));$('#top').dataset.tab=S.tab;const fo=root&&S.tab==='feed';$('#feedTop').classList.toggle('on',fo);if(fo){S.lastFeed=$('#feed').scrollTop;feedHdr(true)}else $('#stories').classList.remove('on');const sc=document.getElementById(S.tab==='ai'?'aiScroll':S.tab);$('#top').classList.toggle('sm',!!sc&&S.tab!=='feed'&&sc.scrollTop>24)}
+function renderStories(){const L=DB.stories.map((p,i)=>({p,i})).filter(x=>(!S.storySeen.has(x.i)||x.p.mine)&&!(x.p.pid&&(storyProduct(x.p)||{}).hidden));$('#stories').classList.toggle('empty',!L.length);$('#stRow').innerHTML=L.map(({p,i})=>`<button class="st ${p.mine?'mine':''}" data-story="${i}" aria-label="${p.mine?'Your story':p.n+'\'s story'}"><span class="ring"><span class="av3">${p.pid&&storyProduct(p)?pimg(storyProduct(p)):scene(p.art,p.h,2)}</span></span><span class="nm">${p.mine?'You':p.n}</span></button>`).join('')}
+function syncChrome(){reelSync();const root=!S.stack.length;$('#bar').classList.toggle('hide',!root||S.tab==='ai');$('#fab').classList.toggle('hide',!(root&&S.tab==='market'));$('#top').classList.toggle('hide',!(root&&S.tab!=='feed'));$('#top').dataset.tab=S.tab;const fo=root&&S.tab==='feed';$('#feedTop').classList.toggle('on',fo);if(fo){S.lastFeed=$('#feed').scrollTop;feedHdr(true)}else $('#stories').classList.remove('on');const sc=document.getElementById(S.tab==='ai'?'aiScroll':S.tab);$('#top').classList.toggle('sm',!!sc&&S.tab!=='feed'&&sc.scrollTop>24)}
 function setTab(t){
   const was=S.tab;S.tab=t;if(t==='feed'&&was!=='feed')renderStories();$('#bar').classList.toggle('onfeed',t==='feed');syncChrome();if(S.side)renderSide();
   $$('.screen:not(.detail)').forEach(s=>s.classList.toggle('active',s.id===t));
@@ -1374,8 +1390,8 @@ function nicheView(id){
   return `<div class="scroll nv">${nicheBody(n,ps,S.followed.has(n.id))}</div>
     <div class="nv-top"><button class="gbtn glass" data-act="back" aria-label="Back">${ic('back')}</button><button class="gbtn glass" data-toast="Link copied" aria-label="Share">${ic('share')}</button></div>`}
 function feedView(){
-  const nid=v=>v.ref[0]==='niche'?v.ref[1]:DB.products.find(p=>p.id===v.ref[1]).niche;
-  const vids=DB.videos.filter(v=>S.fmode!=='fol'||S.followed.has(nid(v)));
+  const nid=v=>v.ref[0]==='niche'?v.ref[1]:(DB.products.find(p=>p.id===v.ref[1])||{}).niche;
+  const vids=DB.videos.filter(v=>!(v.mine&&(DB.products.find(p=>p.id===v.ref[1])||{}).hidden)).filter(v=>S.fmode!=='fol'||S.followed.has(nid(v)));
   if(!vids.length)return `<div class="empty" style="height:100%;display:grid;place-content:center;color:#fff"><h2 style="margin:0 0 8px">Nothing here yet</h2><p>Follow a niche and its videos will show up here.</p></div>`;
   return vids.map(v=>{
     const o=v.ref[0]==='niche'?DB.niches.find(n=>n.id===v.ref[1]):DB.products.find(p=>p.id===v.ref[1]);
@@ -1383,14 +1399,14 @@ function feedView(){
     const isN=v.ref[0]==='niche',sl=seller(o.seller),nn=DB.niches.find(n=>n.id===o.niche)||{};
     const who=sl.anon?(isN?o.name:(nn.name||'Anonymous')):sl.name;
     const av=sl.av?`<span class="av3">${scene(sl.av.art,sl.av.h,2)}</span>`:`<span class="av3 anon">${ic('eyeoff','sm')}</span>`;
-    return `<article class="reel"><div class="bg">${scene(pr.art,pr.h,1)}</div>
+    return `<article class="reel" data-vid="${v.id}"><div class="bg">${v.media?`<video class="rv" src="${v.media.url}" loop muted playsinline preload="auto"></video>`:scene(pr.art,pr.h,1)}</div>
     <div class="info"><button class="visit" data-open="${v.ref.join(':')}">${isN?'Visit niche':'Visit product'}${ic('arrow','sm')}</button>
       <button class="poster" data-toast="Creator profiles are coming soon">${av}<b>${who}</b></button>
-      <p><b>${v.title}.</b> ${v.text}</p></div>
+      <p><b>${esc(v.title)}.</b> ${esc(v.text||'')}</p></div>
     <div class="acts">
       <button class="gbtn glass ${S.liked[v.id]?'on':''}" data-like="${v.id}" aria-label="Like">${ic('heart')}</button>
       <button class="gbtn glass sv ${S.saved[v.ref.join(':')]?'on':''}" data-save="${v.ref.join(':')}" aria-label="Save">${ic('save')}</button>
-      <button class="gbtn glass" data-toast="Link copied" aria-label="Share">${ic('share')}</button></div></article>`}).join('');
+      <button class="gbtn glass" data-toast="Link copied" aria-label="Share">${ic('share')}</button>${v.media?`<button class="gbtn glass rsnd" data-rsound data-snd="${S.reelSound?1:0}" aria-label="Sound">${SND_IC}</button>`:''}</div></article>`}).join('');
 }
 const GREET='Hi, I can help you shop, name a niche, write a product description or suggest a price. What do you need?';
 function savedItems(){return{p:DB.products.filter(p=>S.liked[p.id]||S.saved['product:'+p.id]),n:DB.niches.filter(n=>S.saved['niche:'+n.id])}}
@@ -1841,7 +1857,7 @@ document.addEventListener('click',e=>{
   if(d.tab){ if(S.stack.length)return; setTab(d.tab); return }
   if(d.heart){S.liked[d.heart]=!S.liked[d.heart];t.classList.toggle('on',S.liked[d.heart]);return}
   if(d.follow!==undefined){const on=!S.followed.has(d.follow);on?S.followed.add(d.follow):S.followed.delete(d.follow);t.classList.toggle('on',on);t.textContent=on?'Following':(t.classList.contains('nv-fol')?'+ Follow Niche':'Follow');toast(on?'You follow this niche':'Unfollowed');return}
-  if(d.ftab){S.fmode=d.ftab;$$('#feedTop [data-ftab]').forEach(b=>b.classList.toggle('on',b.dataset.ftab===d.ftab));$('#feed').innerHTML=feedView();$('#feed').scrollTop=0;S.lastFeed=0;return}
+  if(d.ftab){S.fmode=d.ftab;$$('#feedTop [data-ftab]').forEach(b=>b.classList.toggle('on',b.dataset.ftab===d.ftab));refreshFeed(true);S.lastFeed=0;return}
   if(d.chat){const c=DB.chats.find(x=>x.id===d.chat);if(c){setTab('ai');loadChat(c.msgs,c);openSide(false)}return}
   if(d.newchat!==undefined){setTab('ai');loadChat([],null);openSide(false);$('#aiIn').focus();return}
   if(d.story!==undefined){openStory(+d.story);return}
@@ -1868,6 +1884,8 @@ document.addEventListener('click',e=>{
   if(d.qk!==undefined){openSide(false);push(d.qk==='chats'?'chats':'buys');return}
   if(d.newniche!==undefined){push('newniche');return}
   if(d.addniche!==undefined){S.npPreNiche=d.addniche;push('newproduct');return}
+  if(d.addstory!==undefined){storySheet();return}
+  if(d.rsound!==undefined){S.reelSound=!S.reelSound;$$('.rsnd').forEach(b=>b.dataset.snd=S.reelSound?'1':'0');reelSync();return}
   if(d.hd!==undefined){openHd(d.hd);return}
   if(d.sopen!==undefined){openSide(false);push('product',d.sopen,null);return}
   if(d.sclose!==undefined){openSide(false);return}
@@ -3093,7 +3111,7 @@ S.impAt={};const imp=id=>{const n=Date.now();if(n-(S.impAt[id]||0)>60000){S.impA
 const stSum=(id,k,days)=>{const o=(STATS[id]||{})[k]||{},now=Date.now();let n=0;for(const d in o)if(!days||now-new Date(d)<=days*864e5)n+=o[d];return n};
 const stSeries=(id,k,days)=>Array.from({length:days},(_,i)=>((STATS[id]||{})[k]||{})[dayKey(Date.now()-(days-1-i)*864e5)]||0);
 DB.reqs=DB.reqs||[];S.mgPer=30;
-const MG_I={edit:'<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>',link:'<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>',eye:'<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',trash:'<path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/>',users:'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/>',plus:'<path d="M12 5v14M5 12h14"/>',inbox:'<path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5h13L22 12v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6z"/>'};
+const MG_I={edit:'<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>',link:'<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>',eye:'<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',trash:'<path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/>',users:'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/>',plus:'<path d="M12 5v14M5 12h14"/>',play:'<rect x="2" y="3" width="20" height="18" rx="4"/><path d="M10 9l5 3-5 3z"/>',inbox:'<path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5h13L22 12v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6z"/>'};
 const mgIc=k=>`<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${MG_I[k]}</svg>`;
 const mgTop=(t,sub)=>`<div class="np-top"><div class="np-tr"><button class="gbtn glass" data-act="back" aria-label="Back">${ic('back')}</button><div><h1>${t}</h1><small>${sub}</small></div></div></div>`;
 const mgCard=(t,body,sub='')=>`<section class="mg-c"><div class="mg-h"><b>${t}</b>${sub?`<span>${sub}</span>`:''}</div>${body}</section>`;
@@ -3113,6 +3131,7 @@ function manageView(id){
       ${mgCard('Statistics',mgPer()+mgTiles([['Visits',v],['Views',w],['Favourites',fav],['Orders',o]])+`<div class="mg-cv"><span>Visit to order rate</span><b>${pctr(o,v)}</b></div>`+`<div class="mg-cap">Visits, last 7 days</div>${mgChart(p.id,'v')}<p class="mg-n">Counting starts when you publish. Views are times it appeared in the market.</p>`)}
       ${mgCard('Niche',`<div class="mg-nr">${n?`<span class="mg-chip on">${esc(n.name)}</span>`:'<span class="mg-chip off">No niche</span>'}${feat.map(f=>`<span class="mg-chip feat">Featured in ${esc(f.name)}</span>`).join('')}${pend.map(r=>`<span class="mg-chip pen">Pending · ${esc((DB.niches.find(x=>x.id===r.nid)||{}).name||'')}</span>`).join('')}</div>`
         +mgRow('niche','link','Link to a niche','Choose one of your niches, or ask another niche to feature this product'))}
+      ${mgFeed(p)}
       ${mgCard('Listing',mgRow('edit','edit','Edit product','Name, price, description, category')+`<div class="np-sw mg-sw"><div><b>Show in the market</b><span>Turn off to hide it without deleting</span></div><button type="button" role="switch" aria-checked="${!p.hidden}" aria-label="Show in the market" data-mg="hide"><i></i></button></div>`)}
       <section class="mg-c mg-d">${mgRow('del','trash','Delete product','This cannot be undone','danger')}</section></div>`}
   const n=DB.niches.find(x=>x.id===rid);if(!n)return mgTop('Niche','Not found');
@@ -3164,13 +3183,90 @@ function mgConfirm(t,sub,fn){openSheet(`<h3>${t}</h3><p class="muted">${sub}</p>
 function mgInit(el){
   el.addEventListener('click',e=>{const b=e.target.closest('[data-mg]');if(!b)return;e.stopPropagation();const a=b.dataset.mg,id=el.dataset.id.split(':')[1];
     if(a==='per'){S.mgPer=+b.dataset.v;mgRefresh();return}
+    if(a==='reel'){reelSheet(id);return}
+    if(a==='rview'){showReel(b.dataset.id);return}
+    if(a==='rdel'){const rid=b.dataset.id;mgConfirm('Delete this reel?','It is removed from Feed.',()=>{const v=DB.videos.find(x=>x.id===rid);if(v&&v.media)URL.revokeObjectURL(v.media.url);DB.videos=DB.videos.filter(x=>x.id!==rid);refreshFeed();mgRefresh();toast('Reel deleted')});return}
     if(a==='edit'){mgEditProduct(id);return}if(a==='niche'){mgNicheSheet(id);return}
     if(a==='hide'){const p=DB.products.find(x=>x.id===id);p.hidden=!p.hidden;renderMarket(S.cat,$('#q').value);mgRefresh();return}
-    if(a==='del'){mgConfirm('Delete this product?','It disappears from the market and from its niches.',()=>{DB.products=DB.products.filter(x=>x.id!==id);pop();renderMarket(S.cat,$('#q').value);toast('Product deleted')});return}
+    if(a==='del'){mgConfirm('Delete this product?','It disappears from the market and from its niches.',()=>{DB.products=DB.products.filter(x=>x.id!==id);dropProdMedia(id);pop();renderMarket(S.cat,$('#q').value);toast('Product deleted')});return}
     if(a==='nedit'){mgEditNiche(id);return}if(a==='addp'){mgAddProducts(id);return}
     if(a==='rmp'){const p=DB.products.find(x=>x.id===b.dataset.id);if(p.niche===id)p.niche=null;if(p.feat)p.feat=p.feat.filter(x=>x!==id);mgRefresh();return}
     if(a==='appr'||a==='decl'){const r=DB.reqs.find(x=>x.id===b.dataset.id);r.status=a==='appr'?'approved':'declined';if(a==='appr'){const p=DB.products.find(x=>x.id===r.pid);p.feat=p.feat||[];p.feat.push(r.nid)}mgRefresh();return}
     if(a==='ndel'){mgConfirm('Delete this niche?','Its products stay published.',()=>{DB.products.forEach(p=>{if(p.niche===id)p.niche=null;if(p.feat)p.feat=p.feat.filter(x=>x!==id)});DB.niches=DB.niches.filter(x=>x.id!==id);pop();renderMarket(S.cat,$('#q').value);toast('Niche deleted')});return}})}
+/* ---- reels & stories (Feed) ---- */
+S.reelSound=false;
+const SND_IC='<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/><path class="x" d="M16 9l5 6M21 9l-5 6"/></svg>';
+let reelT;
+function reelSync(){
+  const f=document.getElementById('feed');if(!f)return;
+  const on=S.tab==='feed'&&!S.stack.length,i=Math.round(f.scrollTop/(f.clientHeight||1));
+  f.querySelectorAll('.reel').forEach((a,j)=>{const v=a.querySelector('video.rv');if(!v)return;
+    if(on&&j===i){v.muted=!S.reelSound;const pr=v.play();if(pr&&pr.catch)pr.catch(()=>{})}else v.pause()})}
+function refreshFeed(top){const f=$('#feed'),y=f.scrollTop;f.innerHTML=feedView();if(!top)f.scrollTop=y;setTimeout(reelSync,60)}
+document.getElementById('feed').addEventListener('scroll',()=>{clearTimeout(reelT);reelT=setTimeout(reelSync,90)},{passive:true});
+function pickMedia(file,o,ok){
+  if(!file)return;
+  const vid=file.type.startsWith('video/'),img=file.type.startsWith('image/');
+  if(!(vid||(o.image&&img))){toast(o.image?'Choose a photo or a video':'Choose a video file');return}
+  if(vid&&file.size>80*1048576){toast('The video must be under 80 MB');return}
+  if(img&&file.size>5*1048576){toast('The photo must be under 5 MB');return}
+  const url=URL.createObjectURL(file);
+  if(img){ok({type:'image',url});return}
+  const v=document.createElement('video');v.preload='metadata';v.muted=true;
+  v.onloadedmetadata=()=>{if(v.duration>o.max+.5){URL.revokeObjectURL(url);toast('Videos can be up to '+o.max+' seconds');return}ok({type:'video',url,dur:v.duration})};
+  v.onerror=()=>{URL.revokeObjectURL(url);toast('This video cannot be read. Try an MP4 or MOV file')};
+  v.src=url}
+const mediaPv=m=>m.type==='video'?`<video src="${m.url}" muted autoplay loop playsinline></video>`:`<img src="${m.url}" alt="">`;
+function mgFeed(p){
+  const R=DB.videos.filter(v=>v.mine&&v.ref[0]==='product'&&v.ref[1]===p.id);
+  const row=v=>`<div class="mg-pr"><span class="mg-pt mg-rv"><video src="${v.media.url}#t=0.1" muted playsinline preload="metadata"></video></span><span class="mg-pn"><b>${esc(v.text||'Reel')}</b><span>${agoLabel(v.at)} · ${esc(v.likes)} likes</span></span><button class="mg-rm" data-mg="rview" data-id="${v.id}">View</button><button class="mg-rm" data-mg="rdel" data-id="${v.id}" aria-label="Delete reel">Delete</button></div>`;
+  return mgCard('Feed',(R.length?`<div class="mg-pl">${R.map(row).join('')}</div>`:'<p class="mg-n" style="margin-top:0">No reels yet. A reel is a short video in Feed with a button to this product.</p>')+mgRow('reel','play','Add a reel','Short video in Feed, linked to this product'),R.length?R.length+' reel'+(R.length===1?'':'s'):'')}
+function reelSheet(pid){
+  const p=DB.products.find(x=>x.id===pid);if(!p)return;let media=null;
+  openSheet(`<h3>Add a reel</h3><p class="muted">A short video in Feed, linked to ${esc(p.name)}.</p>
+    <button type="button" class="rl-drop" id="rlDrop">${ic('play')}<b>Choose a video</b><span>MP4 or MOV, up to 60 seconds</span></button>
+    <input type="file" id="rlF" accept="video/*" hidden>
+    <div class="np-f"><label class="np-l" for="rl-t"><span>Caption</span><small id="rlN">0 / 120</small></label><textarea class="np-in" id="rl-t" rows="2" maxlength="120" dir="auto" placeholder="What should buyers notice?"></textarea></div>
+    <button class="np-go" id="rlGo" style="width:100%;margin-top:16px" disabled>Publish reel</button>
+    <button class="np-txt" style="width:100%" data-act="close">Cancel</button>`);
+  $('#sheet').onclick=null;
+  const drop=$('#rlDrop'),go=$('#rlGo'),f=$('#rlF');
+  drop.onclick=()=>f.click();
+  $('#rl-t').oninput=e=>{$('#rlN').textContent=e.target.value.length+' / 120'};
+  f.onchange=()=>{pickMedia(f.files[0],{max:60},m=>{if(media)URL.revokeObjectURL(media.url);media=m;drop.classList.add('has');drop.innerHTML=`<span class="rl-pv">${mediaPv(m)}</span><span class="rl-tx"><b>Video ready</b><span>${Math.round(m.dur)} seconds · tap to change</span></span>`;go.disabled=false});f.value=''};
+  go.onclick=()=>{if(!media)return;const cap=$('#rl-t').value.trim();
+    DB.videos.unshift({id:'v'+Date.now().toString(36),ref:['product',p.id],title:p.name,text:cap,likes:'0',mine:true,at:Date.now(),media});
+    closeSheet();refreshFeed(true);mgRefresh();toast('Reel published in Feed')}}
+function storySheet(){
+  const P=myProducts().filter(p=>!p.hidden);
+  if(!P.length){openSheet(`<h3>Add a story</h3><div class="sp-e">${ic('box')}<b>You have no products</b><span>Publish a product, then share it as a story.</span></div><button class="np-go" id="stNew" style="width:100%;margin-top:12px">Publish a product</button><button class="np-txt" style="width:100%" data-act="close">Cancel</button>`);$('#stNew').onclick=()=>{closeSheet();push('newproduct')};return}
+  let sel=P.length===1?P[0].id:null,media=null;
+  openSheet(`<h3>Add a story</h3><p class="muted" style="margin-bottom:8px">Pick the product this story is about.</p>
+    <div class="ap-l mg-sl st-pl">${P.map(p=>`<button type="button" class="ap-r" data-sp="${p.id}" aria-pressed="${p.id===sel}"><span class="ap-t">${pimg(p)}</span><span class="ap-x"><b>${esc(p.name)}</b><span>${money(p.price)}</span></span><span class="ap-ck">${NN_CK}</span></button>`).join('')}</div>
+    <button type="button" class="rl-drop" id="stDrop">${ic('plus')}<b>Add a photo or video</b><span>Optional. Without one, the product photo is used</span></button>
+    <input type="file" id="stF" accept="image/*,video/*" hidden>
+    <div class="np-f"><label class="np-l" for="st-t"><span>Caption</span><small id="stN">0 / 60</small></label><input class="np-in" id="st-t" maxlength="60" dir="auto" placeholder="Optional"></div>
+    <button class="np-go" id="stGo" style="width:100%;margin-top:16px" ${sel?'':'disabled'}>Share story</button>
+    <button class="np-txt" style="width:100%" data-act="close">Cancel</button>`);
+  const go=$('#stGo'),drop=$('#stDrop'),f=$('#stF');
+  $('#sheet').onclick=e=>{const b=e.target.closest('[data-sp]');if(!b)return;e.stopPropagation();sel=b.dataset.sp;$$('#sheet [data-sp]').forEach(x=>x.setAttribute('aria-pressed',x===b));go.disabled=false};
+  drop.onclick=()=>f.click();
+  $('#st-t').oninput=e=>{$('#stN').textContent=e.target.value.length+' / 60'};
+  f.onchange=()=>{pickMedia(f.files[0],{max:30,image:true},m=>{if(media)URL.revokeObjectURL(media.url);media=m;drop.classList.add('has');drop.innerHTML=`<span class="rl-pv">${mediaPv(m)}</span><span class="rl-tx"><b>${m.type==='video'?'Video ready':'Photo ready'}</b><span>Tap to change</span></span>`});f.value=''};
+  go.onclick=()=>{if(!sel)return;const p=DB.products.find(x=>x.id===sel);
+    DB.stories.unshift({n:'You',pid:p.id,mine:true,at:Date.now(),cap:$('#st-t').value.trim(),media});
+    S.storySeen=new Set([...S.storySeen].map(i=>i+1));
+    closeSheet();renderStories();toast('Story shared');setTimeout(()=>openStory(0),300)}}
+function dropProdMedia(pid){
+  DB.videos.filter(v=>v.mine&&v.ref[1]===pid&&v.media).forEach(v=>URL.revokeObjectURL(v.media.url));
+  DB.videos=DB.videos.filter(v=>!(v.ref[0]==='product'&&v.ref[1]===pid));
+  const keep=[],map={};DB.stories.forEach((s,i)=>{if(s.pid===pid){if(s.media)URL.revokeObjectURL(s.media.url)}else{map[i]=keep.length;keep.push(s)}});
+  DB.stories=keep;S.storySeen=new Set([...S.storySeen].filter(i=>i in map).map(i=>map[i]));
+  refreshFeed(true);renderStories()}
+function showReel(vid){
+  closeSheet();while(S.stack.length)pop();S.fmode='all';$$('#feedTop [data-ftab]').forEach(b=>b.classList.toggle('on',b.dataset.ftab==='all'));
+  setTab('feed');refreshFeed(true);
+  setTimeout(()=>{const a=$('#feed .reel[data-vid="'+vid+'"]');if(a)a.scrollIntoView({block:'start'});setTimeout(reelSync,120)},160)}
 /* ---- notifications & cart ---- */
 DB.notifs=[{id:'n0',i:'truck',t:'Your order is on its way',s:'Order #O1 · '+((DB.products.find(x=>x.id==='p5')||{}).name||'your product'),at:Date.now()-30*36e5,unread:true}];
 function hdrUpdate(){const b=document.getElementById('hdBell'),c=document.getElementById('hdCart'),u=DB.notifs.filter(n=>n.unread).length;
@@ -3260,7 +3356,7 @@ document.addEventListener('input',e=>{if(e.target.id==='mq'){S.mp.q=e.target.val
 function applyTheme(t){S.theme=t;document.documentElement.dataset.theme=t}
 applyTheme(SAVED.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
 $('#market').innerHTML=skeleton();                     // loading state
-$('#feed').innerHTML=feedView(); $('#ai').innerHTML=aiView(); renderSide();renderStories();applyLoc(true);
+refreshFeed(true); $('#ai').innerHTML=aiView(); renderSide();renderStories();applyLoc(true);
 setTimeout(()=>renderMarket('All',''),700);
 </script>
 </body>
