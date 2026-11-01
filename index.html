@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#F0F1F5">
 <meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Blex"><meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,600&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 /* ============ 1. DESIGN TOKENS ============ */
 :root{
@@ -902,6 +902,79 @@ a.prow,a.cta{text-decoration:none}
 .sv-art video,.sv-art img{width:100%;height:100%;object-fit:cover;display:block}
 .sv-cap{margin:0 4px 8px;font-size:15px;line-height:1.4;text-shadow:0 1px 10px rgba(0,0,0,.45)}
 .st.mine .ring,.st.mine.seen .ring{border-color:var(--acc)}.st .av3 img{width:100%;height:100%;object-fit:cover;display:block}
+/* ---- Prime Console ---- */
+.prime{flex:none;display:flex;align-items:center;gap:10px;width:100%;min-height:48px;padding:0 14px;text-align:start;color:var(--ink);background:none;border-radius:16px;transition:transform .25s var(--spring)}
+.prime:active{transform:scale(.97)}
+.pr-ic{flex:none;width:24px;height:24px;color:var(--acc)}
+.pr-n{position:relative;display:inline-block;font-family:"Playfair Display","Iowan Old Style",Georgia,serif;font-style:italic;font-weight:600;font-size:23px;line-height:1.25;letter-spacing:.2px;white-space:nowrap;color:var(--ink)}
+.pr-n::after{content:attr(data-t);position:absolute;left:0;top:0;white-space:nowrap;pointer-events:none;color:transparent;background:linear-gradient(90deg,var(--acc) 0,var(--acc) 42%,transparent 58%) no-repeat;background-size:260% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;animation:prSweep 2s ease-in-out infinite}
+@keyframes prSweep{0%{background-position:100% 0;opacity:1}50%{background-position:0 0;opacity:1}78%{background-position:0 0;opacity:1}100%{background-position:0 0;opacity:0}}
+@media (prefers-reduced-motion:reduce){.pr-n::after{animation:none;opacity:0}}
+.pc-top .np-tr{margin-bottom:4px}
+.pc-tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;margin:8px -16px -10px;padding:0 28px 0 10px;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 26px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 26px),transparent);border-bottom:1px solid var(--line)}.pc-tabs::-webkit-scrollbar{display:none}
+.pc-tabs button{position:relative;flex:none;min-height:46px;min-width:0;padding:0 14px;font-size:15.5px;font-weight:600;color:var(--ink2);white-space:nowrap}
+.pc-tabs button[aria-selected=true]{color:var(--ink);font-weight:700}
+.pc-tabs button[aria-selected=true]::after{content:"";position:absolute;left:14px;right:14px;bottom:-1px;height:2px;border-radius:2px;background:var(--ink)}
+.pc-body{padding-bottom:calc(var(--bot) + 36px)}
+.pc-sub{font-size:13.5px;line-height:1.45;color:var(--ink2);margin:-4px 2px 12px}
+.pc-op{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--line)}.mg-h+.pc-op{border-top:0;padding-top:2px}
+.pc-dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--warn)}.pc-op>div{flex:1;min-width:0}.pc-op b{display:block;font-size:14.5px;line-height:1.3}.pc-op .s{display:block;font-size:12.5px;line-height:1.4;color:var(--ink2);margin-top:2px}
+.pc-av{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:17px;color:var(--acc);background:color-mix(in srgb,var(--acc) 15%,var(--bg))}
+.pc-mh{display:flex;align-items:center;gap:12px}.pc-mt{flex:1;min-width:0}.pc-mt b{display:block;font-size:16px}.pc-mt span{font-size:13px;color:var(--ink2)}
+.pc-ms{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0 12px}.pc-ms div{padding:10px 6px;border-radius:16px;background:var(--bg);text-align:center}.pc-ms b{display:block;font-size:18px}.pc-ms span{font-size:12px;color:var(--ink2)}
+.pc-ma{display:flex;flex-wrap:wrap;gap:8px}.pc-m.off .pc-av{filter:grayscale(1);opacity:.6}
+.pc-perm{display:grid;grid-template-columns:1fr 1fr;gap:10px}.pc-perm>div{padding:12px;border-radius:16px;background:var(--bg)}.pc-perm b{display:block;font-size:13px;margin-bottom:8px}
+.pc-perm ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px;font-size:12.5px;line-height:1.35;color:var(--ink2)}.pc-perm li{position:relative;padding-left:17px}.pc-perm li::before{position:absolute;left:0;font-weight:700}
+.pc-perm>div:first-child li::before{content:"\2713";color:var(--ok)}.pc-perm>div:last-child li::before{content:"\2715";color:#E5484D}
+.pc-add{width:100%;margin-top:14px}
+.pc-sh{display:flex;justify-content:space-between;align-items:center;margin:16px 2px 6px}.pc-sh b{font-size:14px}.pc-all{min-height:32px;min-width:0;padding:0 4px;font-size:13px;font-weight:650;color:var(--acc)}
+.pc-sl{max-height:176px;overflow-y:auto}
+.pc-code{margin:16px 0;padding:18px;border-radius:20px;text-align:center;font-size:34px;font-weight:700;letter-spacing:6px;font-variant-numeric:tabular-nums;background:var(--bg);box-shadow:inset 0 0 0 1px var(--line)}
+.pc-cr{display:flex;align-items:center;gap:8px;margin-top:14px;padding:10px 12px;border-radius:16px;background:var(--bg)}.pc-cr span{flex:1;min-width:0;font-size:13.5px;color:var(--ink2)}.pc-cr b{font-size:15px;letter-spacing:1.5px;font-variant-numeric:tabular-nums}
+.empv{position:absolute;inset:0;z-index:85;display:flex;flex-direction:column;gap:0;padding:calc(var(--top) + 10px) 16px calc(var(--bot) + 16px);background:var(--bg);color:var(--ink)}
+.ev-top{display:flex;align-items:center;gap:12px}.ev-who{flex:1;min-width:0;display:flex;align-items:center;gap:12px}.ev-who b{display:block;font-size:17px}.ev-who span{font-size:13px;color:var(--ink2)}
+.ev-x{flex:none;min-height:40px;min-width:0;padding:0 16px;border-radius:20px;font-size:14px;font-weight:700;background:var(--line)}
+.ev-note{display:flex;gap:10px;align-items:flex-start;margin:14px 0;padding:12px 14px;border-radius:18px;font-size:13.5px;line-height:1.4;background:color-mix(in srgb,var(--warn) 14%,var(--bg))}.ev-note .ic{flex:none;width:20px;height:20px;color:var(--warn)}
+.ev-body{flex:1;overflow-y:auto;margin-top:14px}
+.pc-ch{display:flex;flex-wrap:wrap;gap:8px}
+.pc-ch button{min-height:40px;min-width:0;padding:0 14px;border-radius:20px;font-size:14.5px;font-weight:600;color:var(--ink2);background:var(--bg);box-shadow:inset 0 0 0 1px var(--line)}
+.pc-ch button[aria-checked=true]{color:var(--acc-ink);background:var(--acc);box-shadow:none}
+.pc-cl{font-size:13px;font-weight:650;color:var(--ink2);margin:16px 2px 8px}
+.pc-ch .pc-sw{width:40px;height:40px;min-height:0;padding:4px;border-radius:50%;background:transparent;box-shadow:inset 0 0 0 1px var(--line)}.pc-sw i{display:block;width:100%;height:100%;border-radius:50%;background:var(--c)}.pc-ch .pc-sw[aria-checked=true]{background:transparent;box-shadow:0 0 0 2px var(--card),0 0 0 4px var(--c)}
+.pc-pv{pointer-events:none}.pc-pvx>div{padding:14px 0;border-top:1px solid var(--line)}.pc-pvx>div:first-child{border-top:0;padding-top:0}
+.pc-pl{display:block;font-size:11.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--ink2)}
+.pc-pvx h3{font-size:22px;margin:4px 0 2px}.pc-pvx .pp{display:block;margin-bottom:12px}.pc-pvp{font-family:var(--pc-fp,var(--font))}.pc-pvn{font-family:var(--pc-fn,var(--font))}.pc-pvn .muted{margin-bottom:12px}.pc-pf .np-in{margin-top:8px}
+html[data-pc-ac] .pc-pv{--acc:var(--pc-ac-l)}
+html[data-pc-ac][data-theme=dark] .pc-pv{--acc:var(--pc-ac-d)}
+.screen[data-type=product]{font-family:var(--pc-fp,var(--font))}.screen[data-type=niche]{font-family:var(--pc-fn,var(--font))}
+html[data-pc-ac] :is(.screen[data-type=product],.screen[data-type=niche]){--acc:var(--pc-ac-l)}
+html[data-pc-ac][data-theme=dark] :is(.screen[data-type=product],.screen[data-type=niche]){--acc:var(--pc-ac-d)}
+html[data-pc-ac][data-theme=dark]:not([data-pc-bs=solid]):not([data-pc-bs=outline]) :is(.screen[data-type=product],.screen[data-type=niche],.pc-pv) :is(.pay-fee,.nv-fol.on,.np-go){color:color-mix(in srgb,var(--acc) 55%,#fff)}
+html[data-pc-br] :is(.pay-fee,.nv-fol,.np-go){border-radius:var(--pc-br)}
+html .ch-f .np-go{border-radius:50%}
+html[data-pc-bs=solid] :is(.pay-fee,.nv-fol:not(.on),.np-go){color:var(--acc-ink);background:var(--acc);box-shadow:0 10px 22px -12px var(--acc)}
+html[data-pc-bs=solid] .pay-fee em{background:rgba(255,255,255,.22)}
+html[data-pc-bs=soft] :is(.pay-fee,.nv-fol:not(.on),.np-go){color:color-mix(in srgb,var(--acc) 76%,#000);background:color-mix(in srgb,var(--acc) 17%,var(--bg));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--acc) 30%,transparent)}
+html[data-theme=dark][data-pc-bs=soft] :is(.pay-fee,.nv-fol:not(.on),.np-go){color:#8DBBFF}
+html[data-pc-bs=outline] :is(.pay-fee,.nv-fol:not(.on),.np-go){color:var(--acc);background:transparent;box-shadow:inset 0 0 0 2px var(--acc)}
+html[data-pc-bs=outline] .pay-fee em{background:color-mix(in srgb,var(--acc) 14%,transparent)}
+html[data-pc-ir] .np-in{border-radius:var(--pc-ir)}
+html[data-pc-is=outline] .np-in{background:transparent;box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--ink2) 50%,transparent)}
+html[data-pc-is=outline] .np-in:focus{box-shadow:inset 0 0 0 2px var(--acc)}
+html[data-pc-is=underline] .np-in{border-radius:0;background:transparent;box-shadow:inset 0 -1.5px 0 color-mix(in srgb,var(--ink2) 45%,transparent)}
+html[data-pc-is=underline] .np-in:focus{box-shadow:inset 0 -2.5px 0 var(--acc)}
+.pc-pills{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:14px 16px 2px}.pc-pills::-webkit-scrollbar{display:none}
+.pc-pill{flex:none;min-height:40px;min-width:0;max-width:220px;padding:0 16px;border-radius:20px;font-weight:650;font-size:14.5px;color:var(--ink2);background:var(--card);box-shadow:inset 0 0 0 1px var(--line);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pc-pill[aria-pressed=true]{color:var(--acc-ink);background:var(--acc);box-shadow:none}
+.pc-sp{display:flex;align-items:flex-end;gap:2px;height:64px}.pc-sp i{flex:1;min-width:0;border-radius:2px;background:var(--acc)}.pc-sp i.z{opacity:.22}
+.pc-geo{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;max-height:280px;overflow-y:auto}
+.pc-g{min-height:36px;min-width:0;padding:0 12px;border-radius:18px;font-size:13.5px;font-weight:600;background:var(--bg);box-shadow:inset 0 0 0 1px var(--line)}.pc-g[aria-pressed=true]{color:var(--acc-ink);background:var(--acc);box-shadow:none}
+.pc-ti{display:flex;gap:8px;align-items:center;margin-top:12px}.pc-ti .np-in{height:46px;flex:1;min-width:0}
+.pc-sug{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.pc-sug button{min-height:32px;min-width:0;padding:0 12px;border-radius:16px;font-size:13px;font-weight:600;color:var(--acc);background:color-mix(in srgb,var(--acc) 12%,var(--bg))}
+.pc-sr{display:flex;align-items:center;gap:10px;padding:11px 0;border-top:1px solid var(--line);font-size:14.5px}.mg-h+.pc-sr{border-top:0}.pc-sr span{flex:1;min-width:0}
+.pc-rr{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line)}.mg-h+.pc-rr{border-top:0}.pc-rn{flex:none;width:44px;text-align:center}.pc-rn b{display:block;font-size:14.5px}.pc-rn span{font-size:11px;color:var(--ink2)}
+.pc-em{padding:36px 24px}
+.sh2 b{white-space:nowrap}.sh-g{display:flex;align-items:center;gap:2px;flex:none;margin-left:auto}.sh-g .sh-a{white-space:nowrap;padding:0 8px}
 </style>
 </head>
 <body>
@@ -996,6 +1069,7 @@ a.prow,a.cta{text-decoration:none}
     </div>
     <div class="qk"><button class="qk-i" data-qk="chats"><span class="qk-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.086 17.509a2 2 0 00-.094-1.167 10 10 0 114.777 4.719 2 2 0 00-1.099-.092l-3.413.998a1 1 0 01-1.236-1.168z"/><path d="M8 12h9"/><path d="M8 16h5"/><path d="M8 8h7"/></svg></span><b>Chats</b><span class="bdg" id="qkChats"></span><svg class="ic sm qk-ch" aria-hidden="true"><use href="#i-chevr"/></svg></button><button class="qk-i" data-qk="buys"><span class="qk-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span><b>My purchases</b><span class="bdg" id="qkBuys"></span><svg class="ic sm qk-ch" aria-hidden="true"><use href="#i-chevr"/></svg></button></div>
     <div class="side-body" id="sideBody"></div>
+    <button class="prime" data-prime aria-label="Open Prime Console"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pr-ic" aria-hidden="true"><path d="m12.342 9.316 1.764-3.527"/><path d="m12.59 14.545 2.35 3.759"/><path d="m13.982 12.332 4.03.447"/><path d="M5.414 17.586 8.88 14.12"/><path d="M9.025 9.742 5.317 5.505"/><circle cx="11" cy="12" r="3"/><circle cx="15" cy="4" r="2"/><circle cx="16" cy="20" r="2"/><circle cx="20" cy="13" r="2"/><circle cx="4" cy="19" r="2"/><circle cx="4" cy="4" r="2"/></svg><span class="pr-n" data-t="Prime Console">Prime Console</span></button>
     <div class="acct"><div class="card2" data-acct role="button" tabindex="0" aria-label="Open account menu"><span class="av2">B</span><div class="grow"><b>Guest</b><span class="muted">Free plan</span></div></div><button class="upg-bar" data-plan><svg class="ic sm" aria-hidden="true"><use href="#i-spark"/></svg>Upgrade</button></div>
   </div>
     <div class="side-sub" id="sideSub"></div>
@@ -1286,8 +1360,8 @@ function push(type,id,src){
   const el=document.createElement('section'); el.className='screen detail '+(z?'zm':'zf'); el.dataset.type=type;el.dataset.id=id||'';
   if(z){el.style.transform=z.t;el.style.clipPath=z.c}
   if(type==='product')trk(id,'v');if(type==='niche')trk('n:'+id,'v');
-  el.innerHTML=type==='notifs'?notifsView():type==='cart'?cartView():type==='manage'?manageView(id):type==='chat'?chatView(id):type==='chats'?chatsView():type==='buys'?buysView():type==='newniche'?newNicheView():type==='orders'?ordersView(id):type==='newproduct'?newProdView():type==='product'?productView(id):type==='saved'?savedView():type==='maps'?mapsView():type==='store'?storeView(id):nicheView(id);
-  $('#app').appendChild(el); S.stack.push(el); el._src=src; if(type==='newproduct')npInit(el);if(type==='newniche')nnInit(el);if(type==='chat')chatInit(el,id);if(type==='manage')mgInit(el);if(type==='cart')cartInit(el);if(type==='buys')buysInit(el);
+  el.innerHTML=type==='prime'?primeView():type==='notifs'?notifsView():type==='cart'?cartView():type==='manage'?manageView(id):type==='chat'?chatView(id):type==='chats'?chatsView():type==='buys'?buysView():type==='newniche'?newNicheView():type==='orders'?ordersView(id):type==='newproduct'?newProdView():type==='product'?productView(id):type==='saved'?savedView():type==='maps'?mapsView():type==='store'?storeView(id):nicheView(id);
+  $('#app').appendChild(el); S.stack.push(el); el._src=src; if(type==='newproduct')npInit(el);if(type==='newniche')nnInit(el);if(type==='chat')chatInit(el,id);if(type==='manage')mgInit(el);if(type==='prime')primeInit(el);if(type==='cart')cartInit(el);if(type==='buys')buysInit(el);
   void el.offsetWidth; el.classList.add('in');
   if(z){el.style.transform='none';el.style.clipPath='inset(0px 0px 0px 0px round 0px)'}
   $('#bar').classList.add('hide');syncChrome();
@@ -1347,10 +1421,10 @@ const nAv=n=>{const sl=seller(n.seller);if(n.avatar&&!n.anon)return `<span class
 const sh2=(i,t,right='')=>`<div class="sh2"><span class="sh2-i ${i}">${i==='flame'?'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c.6 3.6-1.8 5.2-3.4 7.2C7.2 11.4 6.5 13 6.5 14.7A5.5 5.5 0 0 0 12 20.5a5.5 5.5 0 0 0 5.5-5.8c0-2.2-1-3.7-2.1-5-.3 1.3-.9 2.2-1.9 2.7.5-3.1-.2-6.3-1.5-9.9z"/></svg>':ic(i)}</span><b>${t}</b><span class="sh2-r">${right}</span></div>`;
 function marketView(cat='All',q=''){
   const loc=S.loc&&S.loc!=='Algeria'?S.loc:null;
-  const list=DB.products.filter(p=>!p.hidden&&fMatch(p,S.f)&&p.name.toLowerCase().includes(q.toLowerCase())&&(!loc||!p.city||p.city===loc));
+  const list=DB.products.filter(p=>!p.hidden&&fMatch(p,S.f)&&pMatch(p,q)&&(!loc||!p.city||p.city===loc));
   return `
-  ${sh2('store','Curated Niches','<button class="sh-a" data-newniche>+ New Niche</button>')}
-  <div class="car">${DB.niches.map(n=>`<button class="niche" data-open="niche:${n.id}" aria-label="${n.name}">${collage(n)}
+  ${sh2('store','Curated Niches','<span class="sh-g"><button class="sh-a" data-invite aria-label="Enter an invite code">Invite</button><button class="sh-a" data-newniche>+ New Niche</button></span>')}
+  <div class="car">${DB.niches.filter(nVisible).map(n=>`<button class="niche" data-open="niche:${n.id}" aria-label="${n.name}">${collage(n)}
     <div class="cap glass">${nAv(n)}<div class="cm"><b>${n.name}</b><span>${nProds(n.id).length} products</span></div>
     ${n.anon?`<span class="badge glass">${ic('eyeoff','sm')}Anonymous</span>`:''}</div></button>`).join('')}</div>
   ${(list.forEach(p=>imp(p.id)),'')}${sh2('flame',fActive(S.f)?'Results':'Popular now',list.length+' item'+(list.length===1?'':'s'))}
@@ -1391,7 +1465,7 @@ function nicheView(id){
     <div class="nv-top"><button class="gbtn glass" data-act="back" aria-label="Back">${ic('back')}</button><button class="gbtn glass" data-toast="Link copied" aria-label="Share">${ic('share')}</button></div>`}
 function feedView(){
   const nid=v=>v.ref[0]==='niche'?v.ref[1]:(DB.products.find(p=>p.id===v.ref[1])||{}).niche;
-  const vids=DB.videos.filter(v=>!(v.mine&&(DB.products.find(p=>p.id===v.ref[1])||{}).hidden)).filter(v=>S.fmode!=='fol'||S.followed.has(nid(v)));
+  const vids=DB.videos.filter(v=>!(v.mine&&(DB.products.find(p=>p.id===v.ref[1])||{}).hidden)).filter(v=>S.fmode!=='fol'||S.followed.has(nid(v))).filter(v=>v.ref[0]!=='niche'||nVisible(DB.niches.find(n=>n.id===v.ref[1])));
   if(!vids.length)return `<div class="empty" style="height:100%;display:grid;place-content:center;color:#fff"><h2 style="margin:0 0 8px">Nothing here yet</h2><p>Follow a niche and its videos will show up here.</p></div>`;
   return vids.map(v=>{
     const o=v.ref[0]==='niche'?DB.niches.find(n=>n.id===v.ref[1]):DB.products.find(p=>p.id===v.ref[1]);
@@ -1884,6 +1958,8 @@ document.addEventListener('click',e=>{
   if(d.qk!==undefined){openSide(false);push(d.qk==='chats'?'chats':'buys');return}
   if(d.newniche!==undefined){push('newniche');return}
   if(d.addniche!==undefined){S.npPreNiche=d.addniche;push('newproduct');return}
+  if(d.prime!==undefined){openSide(false);push('prime');return}
+  if(d.invite!==undefined){inviteSheet();return}
   if(d.addstory!==undefined){storySheet();return}
   if(d.rsound!==undefined){S.reelSound=!S.reelSound;$$('.rsnd').forEach(b=>b.dataset.snd=S.reelSound?'1':'0');reelSync();return}
   if(d.hd!==undefined){openHd(d.hd);return}
@@ -3147,6 +3223,7 @@ function mgRefresh(){const el=S.stack[S.stack.length-1];if(!el||el.dataset.type!
 function reqJoin(pid,nid){
   if(DB.reqs.find(r=>r.pid===pid&&r.nid===nid&&r.status==='pending'))return;
   const r={id:'r'+Date.now(),pid,nid,status:'pending',at:Date.now()},n=DB.niches.find(x=>x.id===nid);DB.reqs.push(r);
+  if(n.collab){r.status='approved';const p0=DB.products.find(x=>x.id===pid);if(p0){p0.feat=p0.feat||[];if(!p0.feat.includes(nid))p0.feat.push(nid)}toast(n.name+' added your product');notify('grid',n.name+' added your product','Collaborative niche: no approval needed');mgRefresh();return}
   toast('Request sent to '+sellerName(seller(n.seller)));
   /* demo only: there is no server, so the other seller "approves" after a few seconds */
   setTimeout(()=>{if(r.status!=='pending')return;r.status='approved';const p=DB.products.find(x=>x.id===pid);if(p){p.feat=p.feat||[];if(!p.feat.includes(nid))p.feat.push(nid)}toast(n.name+' approved your product');notify('grid',n.name+' approved your product','It now appears with their products');mgRefresh()},7000)}
@@ -3267,6 +3344,231 @@ function showReel(vid){
   closeSheet();while(S.stack.length)pop();S.fmode='all';$$('#feedTop [data-ftab]').forEach(b=>b.classList.toggle('on',b.dataset.ftab==='all'));
   setTab('feed');refreshFeed(true);
   setTimeout(()=>{const a=$('#feed .reel[data-vid="'+vid+'"]');if(a)a.scrollIntoView({block:'start'});setTimeout(reelSync,120)},160)}
+/* ============ PRIME CONSOLE (advanced controls) ============ */
+const PCK='blex.prime';
+const PC_FONTS=[['default','Default',null],['system','System','system-ui,-apple-system,"Segoe UI",Roboto,sans-serif'],['serif','Serif','"Iowan Old Style",Palatino,Georgia,serif'],['playfair','Playfair','"Playfair Display","Iowan Old Style",Georgia,serif'],['rounded','Rounded','ui-rounded,"SF Pro Rounded","Varela Round",system-ui,sans-serif'],['mono','Mono','ui-monospace,SFMono-Regular,Menlo,Consolas,monospace'],['tajawal','Tajawal','"Tajawal",system-ui,sans-serif']];
+const PC_ACC=[['default','Blue',null,null],['violet','Violet','#6D4AFF','#A18CFF'],['emerald','Emerald','#0E9F6E','#3DD6A0'],['orange','Orange','#E8590C','#FF8A4C'],['rose','Rose','#D6336C','#FF7AA8'],['graphite','Graphite','#3B4252','#B9C0D0']];
+const PC_BR=[['default','Default',null],['square','Square','8px'],['soft','Soft','14px'],['round','Round','22px'],['pill','Pill','999px']];
+const PC_IR=[['default','Default',null],['square','Square','8px'],['soft','Soft','14px'],['round','Round','24px']];
+const PC_DEF={fp:'default',fn:'default',ac:'default',br:'default',bs:'default',ir:'default',is:'default',syn:[]};
+let PC=Object.assign({},PC_DEF);try{PC=Object.assign({},PC_DEF,JSON.parse(localStorage.getItem(PCK)||'{}'))}catch(e){}
+function pcSave(){try{localStorage.setItem(PCK,JSON.stringify(PC))}catch(e){}}
+function applyPrime(){
+  const r=document.documentElement,st=r.style,fam=k=>(PC_FONTS.find(x=>x[0]===k)||[])[2],set=(n,v)=>v?st.setProperty(n,v):st.removeProperty(n),flag=(a,on)=>on?r.setAttribute(a,''):r.removeAttribute(a),val=(a,v)=>v&&v!=='default'?r.setAttribute(a,v):r.removeAttribute(a);
+  set('--pc-fp',fam(PC.fp));set('--pc-fn',fam(PC.fn));
+  const ac=PC_ACC.find(x=>x[0]===PC.ac)||[];set('--pc-ac-l',ac[2]);set('--pc-ac-d',ac[3]);flag('data-pc-ac',!!ac[2]);
+  const br=(PC_BR.find(x=>x[0]===PC.br)||[])[2];set('--pc-br',br);flag('data-pc-br',!!br);
+  const ir=(PC_IR.find(x=>x[0]===PC.ir)||[])[2];set('--pc-ir',ir);flag('data-pc-ir',!!ir);
+  val('data-pc-bs',PC.bs);val('data-pc-is',PC.is)}
+const pcCustom=()=>['fp','fn','ac','br','bs','ir','is'].some(k=>PC[k]!=='default');
+applyPrime();
+DB.team=DB.team||[];
+S.invited=new Set();try{JSON.parse(localStorage.getItem('blex.inv')||'[]').forEach(x=>S.invited.add(x))}catch(e){}
+const saveInv=()=>{try{localStorage.setItem('blex.inv',JSON.stringify([...S.invited]))}catch(e){}};
+/* niche visibility for buyers: private niches need an invite code, geo niches need a matching wilaya */
+function nVisible(n){if(!n)return false;if(n.seller===DB.me.id)return true;if(n.priv)return S.invited.has(n.id);if(n.geo&&n.geo.length){const loc=S.loc&&S.loc!=='Algeria'?S.loc:null;return !!loc&&n.geo.includes(loc)}return true}
+/* search: tags + synonyms */
+function pcTerms(q){q=q.trim().toLowerCase();const out=[q];(PC.syn||[]).forEach(g=>{const L=g.map(x=>x.toLowerCase());if(L.some(x=>x===q||(q.length>1&&x.startsWith(q))))L.forEach(x=>{if(!out.includes(x))out.push(x)})});return out}
+function pMatch(p,q){if(!q||!q.trim())return true;const T=pcTerms(q),h=p.name.toLowerCase(),tg=(p.tags||[]).map(t=>t.toLowerCase());return T.some(t=>h.includes(t)||tg.some(x=>x.includes(t)))}
+function inviteSheet(){
+  openSheet(`<h3>Have an invite code?</h3><p class="muted">Enter the code a seller shared with you to unlock their private niche.</p><div class="np-f"><input class="np-in" id="ivC" inputmode="numeric" maxlength="7" placeholder="000 000" autocomplete="off" aria-label="Invite code"></div><button class="np-go" id="ivGo" style="width:100%;margin-top:16px">Unlock niche</button><button class="np-txt" style="width:100%" data-act="close">Cancel</button>`);
+  $('#sheet').onclick=null;
+  $('#ivGo').onclick=()=>{const c=$('#ivC').value.replace(/\D/g,''),n=DB.niches.find(x=>x.priv&&x.code===c);if(!n){toast('This code does not match any niche');return}S.invited.add(n.id);saveInv();closeSheet();renderMarket(S.cat,$('#q').value);toast('Unlocked '+n.name);setTimeout(()=>push('niche',n.id,null),250)}}
+const pcAv=n=>`<span class="pc-av">${esc((n||'?').trim().charAt(0).toUpperCase())}</span>`;
+const pcCode=()=>{const a=new Uint32Array(1);crypto.getRandomValues(a);return String(100000+a[0]%900000)};
+const pcFmt=c=>c.slice(0,3)+' '+c.slice(3);
+const pcCopy=(t,ok)=>{(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast(ok),()=>toast('Copy this code: '+pcFmt(t)))};
+function pcAssigned(m){const mine=new Set(myProducts().map(p=>p.id)),ids=new Set(m.products.filter(id=>mine.has(id)));m.niches.forEach(nid=>nProds(nid).forEach(p=>{if(mine.has(p.id))ids.add(p.id)}));return DB.products.filter(p=>ids.has(p.id))}
+const PC_TABS=[['overview','Overview'],['team','Team'],['look','Appearance'],['niches','Niches'],['reach','Visibility']];
+S.pcTab='overview';S.pcNiche=null;S.pcProd=null;
+function primeView(){
+  S.pcTab='overview';
+  return `<div class="scroll np pc"><div class="np-top pc-top"><div class="np-tr"><button class="gbtn glass" data-act="back" aria-label="Back">${ic('back')}</button><div><h1>Prime Console</h1><small>Advanced controls for your store</small></div></div>
+    <div class="pc-tabs" role="tablist" aria-label="Prime Console">${PC_TABS.map(([k,l])=>`<button role="tab" data-pc="tab:${k}" aria-selected="${k==='overview'}">${l}</button>`).join('')}</div></div>
+    <div class="pc-body" id="pcBody">${pcOverview()}</div></div>`}
+function pcPanel(){return({overview:pcOverview,team:pcTeam,look:pcLook,niches:pcNiches,reach:pcReach}[S.pcTab]||pcOverview)()}
+function pcRender(top){
+  const el=S.stack.find(e=>e.dataset.type==='prime');if(!el)return;
+  const sc=$('.scroll',el),y=sc?sc.scrollTop:0;
+  $$('.pc-tabs button',el).forEach(b=>b.setAttribute('aria-selected',b.dataset.pc==='tab:'+S.pcTab));
+  const tb=$('.pc-tabs [aria-selected=true]',el);if(tb&&top)tb.parentNode.scrollTo({left:tb.offsetLeft-(tb.parentNode.clientWidth-tb.offsetWidth)/2,behavior:'smooth'});
+  $('#pcBody',el).innerHTML=pcPanel();if(sc)sc.scrollTop=top?0:y}
+function primeInit(el){
+  el.addEventListener('click',e=>{const b=e.target.closest('[data-pc]');if(!b)return;e.stopPropagation();pcAct(b.dataset.pc)});
+  el.addEventListener('keydown',e=>{if(e.key!=='Enter')return;if(e.target.id==='pcTag'){e.preventDefault();pcAct('rc:add')}else if(e.target.id==='pcSyn'){e.preventDefault();pcAct('rc:synadd')}})}
+const pcRow=(a,i,t,sub)=>`<button class="mg-r" data-pc="${a}">${mgIc(i)}<span class="mg-rt"><b>${t}</b>${sub?`<span>${sub}</span>`:''}</span>${ic('chevr','sm')}</button>`;
+/* ---- Overview ---- */
+function pcOps(){
+  const P=myProducts(),N=myNiches(),ops=[],pl=(n,a,b)=>n===1?a:b;
+  if(!P.length)return[{t:'Publish your first product',s:'Everything in Prime Console builds on your products.',a:'Publish',k:'publish'}];
+  const noTag=P.filter(p=>!(p.tags&&p.tags.length));
+  if(noTag.length)ops.push({t:noTag.length+' '+pl(noTag.length,'product has','products have')+' no search tags',s:'Tags help buyers find you with the words they use.',a:'Add tags',k:'tab-reach'});
+  const noNiche=P.filter(p=>!p.niche&&!(p.feat||[]).length);
+  if(noNiche.length)ops.push({t:noNiche.length+' '+pl(noNiche.length,'product is','products are')+' not in a niche',s:'Products in a niche are shown next to similar items.',a:'Link',k:'mg-'+noNiche[0].id});
+  const reels=new Set(DB.videos.filter(v=>v.mine&&v.ref[0]==='product').map(v=>v.ref[1])),noReel=P.filter(p=>!reels.has(p.id));
+  if(noReel.length)ops.push({t:noReel.length+' '+pl(noReel.length,'product has','products have')+' no reel in Feed',s:'A short video in Feed brings new buyers.',a:'Add reel',k:'mg-'+noReel[0].id});
+  N.filter(n=>nProds(n.id).length<3).slice(0,2).forEach(n=>{const c=nProds(n.id).length;ops.push({t:esc(n.name)+' has '+c+' '+pl(c,'product','products'),s:'Niches with at least 3 products look more complete.',a:'Manage',k:'mn-'+n.id})});
+  P.forEach(p=>{const v=stSum(p.id,'i',30);if(v>=5&&!sellerOrders(p.id).length)ops.push({t:esc(p.name)+' was seen '+v+' times, no orders',s:'Try a clearer first photo or a sharper price.',a:'Manage',k:'mg-'+p.id})});
+  return ops.slice(0,6)}
+function pcOverview(){
+  const N=myNiches(),T=DB.team,ops=pcOps();
+  return `${mgCard('At a glance',mgTiles([['Team',T.filter(m=>!m.paused).length+' active'],['Private niches',N.filter(n=>n.priv).length],['Geo niches',N.filter(n=>n.geo&&n.geo.length).length],['Custom look',pcCustom()?'On':'Off']]))}
+  ${mgCard('Opportunities',ops.length?ops.map(o=>`<div class="pc-op"><span class="pc-dot"></span><div><b>${o.t}</b><span class="s">${o.s}</span></div><button class="mg-rm ok" data-pc="go:${o.k}">${o.a}</button></div>`).join(''):`<div class="mg-em">${mgIc('inbox')}<b>All clear</b><span>Nothing needs your attention right now.</span></div>`,ops.length?ops.length+' to do':'')}
+  ${mgCard('Tools',pcRow('tab:team','users','Team','Give staff access to orders and messages')+pcRow('tab:look','edit','Appearance','Fonts, colour, buttons and fields')+pcRow('tab:niches','link','Niches','Access, location, collaboration and copies')+pcRow('tab:reach','eye','Visibility','Search tags, synonyms and reach'))}`}
+/* ---- Team ---- */
+function pcTeam(){
+  const T=DB.team;
+  const perm=`<div class="pc-perm"><div><b>Can</b><ul><li>Receive orders for assigned items</li><li>Receive buyer messages about them</li></ul></div><div><b>Cannot</b><ul><li>Browse the market or Feed</li><li>Edit, publish or delete</li><li>See stats, payouts or settings</li></ul></div></div>`;
+  const card=m=>{const ps=pcAssigned(m),ids=ps.map(p=>p.id),o=DB.orders.filter(x=>ids.includes(x.product)).length;
+    return `<section class="mg-c pc-m ${m.paused?'off':''}"><div class="pc-mh">${pcAv(m.name)}<div class="pc-mt"><b>${esc(m.name)}</b><span>${esc(m.role||'Team member')}</span></div><span class="mg-chip ${m.paused?'off':'on'}">${m.paused?'Paused':'Active'}</span></div>
+      <div class="pc-ms"><div><b>${ps.length}</b><span>Products</span></div><div><b>${m.niches.length}</b><span>Niches</span></div><div><b>${o}</b><span>Orders</span></div></div>
+      <div class="pc-ma"><button class="mg-rm" data-pc="tm:prev:${m.id}">Preview</button><button class="mg-rm" data-pc="tm:edit:${m.id}">Edit access</button><button class="mg-rm" data-pc="tm:pause:${m.id}">${m.paused?'Resume':'Pause'}</button><button class="mg-rm" data-pc="tm:del:${m.id}">Remove</button></div></section>`};
+  return `${mgCard('Team access',`<p class="pc-sub">Create an account for a staff member and choose what they handle. They receive orders and messages for those items, and nothing else.</p>${perm}<button class="np-go pc-add" data-pc="tm:add">Add a team member</button>`,T.length?T.length+' member'+(T.length===1?'':'s'):'')}
+  ${T.map(card).join('')}`}
+function pcMemberSheet(id){
+  const m=id?DB.team.find(x=>x.id===id):null,P=myProducts(),N=myNiches(),sel={p:new Set(m?m.products:[]),n:new Set(m?m.niches:[])};
+  const rp=p=>`<button type="button" class="ap-r" data-tp="${p.id}" aria-pressed="${sel.p.has(p.id)}"><span class="ap-t">${pimg(p)}</span><span class="ap-x"><b>${esc(p.name)}</b><span>${money(p.price)}</span></span><span class="ap-ck">${NN_CK}</span></button>`;
+  const rn=n=>`<button type="button" class="ap-r" data-tn="${n.id}" aria-pressed="${sel.n.has(n.id)}"><span class="ap-t">${ic('grid')}</span><span class="ap-x"><b>${esc(n.name)}</b><span>${nProds(n.id).length} products</span></span><span class="ap-ck">${NN_CK}</span></button>`;
+  openSheet(`<h3>${m?'Edit access':'New team member'}</h3>
+    <div class="np-f"><label class="np-l" for="tm-n"><span>Name</span></label><input class="np-in" id="tm-n" maxlength="40" dir="auto" autocomplete="off" value="${m?esc(m.name):''}" placeholder="e.g. Sara"></div>
+    <div class="np-f"><label class="np-l" for="tm-r"><span>Role</span><small>Optional</small></label><input class="np-in" id="tm-r" maxlength="30" dir="auto" autocomplete="off" value="${m?esc(m.role||''):''}" placeholder="e.g. Order packer"></div>
+    <div class="pc-sh"><b>Products they manage</b>${P.length?`<button type="button" class="pc-all" data-ta="p">${P.every(p=>sel.p.has(p.id))?'Clear':'Select all'}</button>`:''}</div>
+    <div class="ap-l mg-sl pc-sl">${P.length?P.map(rp).join(''):'<p class="mg-n" style="margin:6px 2px">You have no products yet.</p>'}</div>
+    <div class="pc-sh"><b>Niches they manage</b></div>
+    <div class="ap-l mg-sl pc-sl">${N.length?N.map(rn).join(''):'<p class="mg-n" style="margin:6px 2px">You have no niches yet.</p>'}</div>
+    ${m?`<div class="pc-cr"><span>Access code</span><b id="tcv">••• •••</b><button type="button" class="mg-rm" data-tc="show">Show</button><button type="button" class="mg-rm" data-tc="new">New</button></div>`:''}
+    <p class="mg-n">They receive orders and messages for these items only. They cannot browse or change anything.</p>
+    <button class="np-go" id="tmS" style="width:100%;margin-top:14px">${m?'Save changes':'Create account'}</button>
+    <button class="np-txt" style="width:100%" data-act="close">Cancel</button>`);
+  $('#sheet').onclick=e=>{const b=e.target.closest('[data-tp],[data-tn],[data-ta],[data-tc]');if(!b)return;e.stopPropagation();
+    if(b.dataset.tp){const i=b.dataset.tp;sel.p.has(i)?sel.p.delete(i):sel.p.add(i);b.setAttribute('aria-pressed',sel.p.has(i))}
+    else if(b.dataset.tn){const i=b.dataset.tn;sel.n.has(i)?sel.n.delete(i):sel.n.add(i);b.setAttribute('aria-pressed',sel.n.has(i))}
+    else if(b.dataset.ta){const all=P.every(p=>sel.p.has(p.id));P.forEach(p=>all?sel.p.delete(p.id):sel.p.add(p.id));$$('#sheet [data-tp]').forEach(x=>x.setAttribute('aria-pressed',sel.p.has(x.dataset.tp)));b.textContent=all?'Select all':'Clear'}
+    else if(b.dataset.tc){if(b.dataset.tc==='new')m.code=pcCode();$('#tcv').textContent=pcFmt(m.code)}};
+  $('#tmS').onclick=()=>{const name=$('#tm-n').value.trim(),role=$('#tm-r').value.trim();
+    if(name.length<2){toast('Enter a name');return}
+    if(!sel.p.size&&!sel.n.size){toast('Choose at least one product or niche');return}
+    if(m){m.name=name;m.role=role;m.products=[...sel.p];m.niches=[...sel.n];closeSheet();pcRender();toast('Access updated');return}
+    const nm={id:'t'+Date.now().toString(36),name,role,code:pcCode(),products:[...sel.p],niches:[...sel.n],paused:false,at:Date.now()};
+    DB.team.push(nm);pcRender();pcCodeSheet(nm)}}
+function pcCodeSheet(m){
+  openSheet(`<h3>${esc(m.name)} is ready</h3><p class="muted">Share this access code. ${esc(m.name)} signs in with it and sees orders and messages only.</p><div class="pc-code" aria-label="Access code">${pcFmt(m.code)}</div><button class="np-go" id="pcCp" style="width:100%">Copy code</button><button class="np-txt" style="width:100%" data-act="close">Done</button>`);
+  $('#sheet').onclick=null;$('#pcCp').onclick=()=>pcCopy(m.code,'Code copied')}
+function pcPreview(id){
+  const m=DB.team.find(x=>x.id===id);if(!m||$('#empv'))return;
+  const ps=pcAssigned(m),ids=ps.map(p=>p.id),orders=DB.orders.filter(o=>ids.includes(o.product));
+  const v=document.createElement('div');v.id='empv';v.className='empv';v.setAttribute('role','dialog');v.setAttribute('aria-modal','true');v.setAttribute('aria-label','Team member preview');
+  const orow=o=>{const p=DB.products.find(x=>x.id===o.product);return `<div class="mg-pr"><span class="mg-pt">${pimg(p)}</span><span class="mg-pn"><b>${esc(p.name)}</b><span>${esc(o.status)} · ${agoLabel(o.placedAt)}</span></span></div>`};
+  const body=k=>k==='orders'?(orders.length?`<section class="mg-c" style="margin:0"><div class="mg-pl">${orders.map(orow).join('')}</div></section>`:`<div class="mg-em">${mgIc('inbox')}<b>No orders yet</b><span>Orders for the ${ps.length} assigned item${ps.length===1?'':'s'} arrive here.</span></div>`)
+    :`<div class="mg-em">${mgIc('inbox')}<b>No messages yet</b><span>Buyer messages about the ${ps.length} assigned item${ps.length===1?'':'s'} arrive here.</span></div>`;
+  v.innerHTML=`<div class="ev-top"><div class="ev-who">${pcAv(m.name)}<div><b>${esc(m.name)}</b><span>${esc(m.role||'Team member')}${m.paused?' · Paused':''}</span></div></div><button class="ev-x" data-ev="close">Exit preview</button></div>
+    <div class="ev-note">${ic('shield')}<span>This is everything ${esc(m.name)} can see. Nothing else in the app is available to this account.</span></div>
+    <div class="np-seg" role="radiogroup" aria-label="Sections"><button type="button" role="radio" aria-checked="true" data-ev="orders">Orders</button><button type="button" role="radio" aria-checked="false" data-ev="msgs">Messages</button></div>
+    <div class="ev-body" id="evB">${body('orders')}</div>`;
+  v.addEventListener('click',e=>{const b=e.target.closest('[data-ev]');if(!b)return;e.stopPropagation();const a=b.dataset.ev;
+    if(a==='close'){v.remove();return}
+    $$('[data-ev]',v).forEach(x=>{if(x.getAttribute('role')==='radio')x.setAttribute('aria-checked',x===b)});$('#evB',v).innerHTML=body(a)});
+  $('#app').appendChild(v)}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){const v=$('#empv');if(v)v.remove()}});
+/* ---- Appearance ---- */
+const pcCh=(key,items,cur,fam)=>`<div class="pc-ch" role="radiogroup">${items.map(it=>`<button type="button" role="radio" aria-checked="${cur===it[0]}" data-pc="lk:${key}:${it[0]}"${fam&&it[2]?` style='font-family:${it[2]}'`:''}>${it[1]}</button>`).join('')}</div>`;
+function pcLook(){
+  const sw=PC_ACC.map(a=>`<button type="button" class="pc-sw" role="radio" aria-checked="${PC.ac===a[0]}" aria-label="${a[1]}" data-pc="lk:ac:${a[0]}" style="--c:${a[2]||'#1877F2'}"><i></i></button>`).join('');
+  return `<section class="mg-c pc-pv"><div class="mg-h"><b>Live preview</b><span>${pcCustom()?'Custom':'Default'}</span></div>
+    <div class="pc-pvx" aria-hidden="true"><div class="pc-pvp"><span class="pc-pl">Product page</span><h3>Stoneware mug set</h3><b class="pp">3 200 DA</b><button type="button" class="pay-fee" tabindex="-1"><span>Pay delivery fee</span><em>400 DA</em></button></div>
+    <div class="pc-pvn"><span class="pc-pl">Niche page</span><h3>Slow Mornings</h3><p class="muted">Ceramics, linen and small rituals.</p><button type="button" class="nv-fol" tabindex="-1">+ Follow Niche</button></div>
+    <div class="pc-pf"><span class="pc-pl">Fields</span><input class="np-in" placeholder="A text field" tabindex="-1" readonly></div></div></section>
+  ${mgCard('Typography',`<div class="pc-cl" style="margin-top:0">Product page font</div>${pcCh('fp',PC_FONTS,PC.fp,1)}<div class="pc-cl">Niche page font</div>${pcCh('fn',PC_FONTS,PC.fn,1)}<p class="mg-n">Applies to every product and niche page in the app.</p>`)}
+  ${mgCard('Colour',`<div class="pc-cl" style="margin-top:0">Accent on product and niche pages</div><div class="pc-ch" role="radiogroup" aria-label="Accent colour">${sw}</div>`)}
+  ${mgCard('Buttons',`<div class="pc-cl" style="margin-top:0">Shape</div>${pcCh('br',PC_BR,PC.br)}<div class="pc-cl">Style</div>${pcCh('bs',[['default','Default'],['solid','Solid'],['soft','Soft'],['outline','Outline']],PC.bs)}`)}
+  ${mgCard('Fields',`<div class="pc-cl" style="margin-top:0">Shape</div>${pcCh('ir',PC_IR,PC.ir)}<div class="pc-cl">Style</div>${pcCh('is',[['default','Default'],['outline','Outline'],['underline','Underline']],PC.is)}`)}
+  <section class="mg-c mg-d"><button class="mg-r" data-pc="lk:reset"><span class="mg-rt"><b>Reset appearance</b><span>Back to the Blex defaults</span></span></button></section>`}
+/* ---- Niches ---- */
+const pcPer=()=>`<div class="np-seg mg-seg" role="radiogroup" aria-label="Period">${[[7,'7 days'],[30,'30 days'],[0,'All time']].map(([v,l])=>`<button type="button" role="radio" aria-checked="${S.mgPer===v}" data-pc="nc:per:${v}">${l}</button>`).join('')}</div>`;
+function pcSpark(id,k,days){const d=stSeries(id,k,days),mx=Math.max(1,...d);return `<div class="pc-sp" role="img" aria-label="Visits, last ${days} days">${d.map(v=>`<i class="${v?'':'z'}" style="height:${v?Math.max(8,Math.round(v/mx*100)):6}%"></i>`).join('')}</div>`}
+const pcGeoText=n=>n.geo&&n.geo.length?(n.geo.length<=2?n.geo.join(', '):n.geo.length+' wilayas'):'All Algeria';
+function pcNiches(){
+  const N=myNiches();
+  if(!N.length)return `<div class="mg-em pc-em">${mgIc('plus')}<b>No niches yet</b><span>Create a niche to unlock access, location and collaboration controls.</span><button class="np-go" data-pc="nc:new" style="margin-top:12px;padding:0 24px">Create a niche</button></div>`;
+  const n=N.find(x=>x.id===S.pcNiche)||N[0];S.pcNiche=n.id;
+  const per=S.mgPer,ps=nProds(n.id),ord=ps.filter(x=>x.seller===DB.me.id).reduce((a,x)=>a+sellerOrders(x.id).length,0),vis=stSum('n:'+n.id,'v',per),days=per===7?7:30;
+  return `<div class="pc-pills" role="tablist" aria-label="Niches">${N.map(x=>`<button class="pc-pill" role="tab" aria-pressed="${x.id===n.id}" data-pc="nc:sel:${x.id}">${esc(x.name)}</button>`).join('')}</div>
+  ${mgCard('Performance',pcPer()+mgTiles([['Visits',vis],['Followers',esc(n.followers)],['Products',ps.length],['Orders',ord]])+`<div class="mg-cap">Visits per day, last ${days} days</div>${pcSpark('n:'+n.id,'v',days)}<p class="mg-n">Counting starts when the niche goes live.</p>`)}
+  ${mgCard('Access',`<div class="np-seg" role="radiogroup" aria-label="Access"><button type="button" role="radio" aria-checked="${!n.priv}" data-pc="nc:acc:public">Public</button><button type="button" role="radio" aria-checked="${!!n.priv}" data-pc="nc:acc:private">Invite only</button></div>`
+    +(n.priv?`<div class="pc-cr"><span>Invite code</span><b>${pcFmt(n.code||'000000')}</b><button class="mg-rm" data-pc="nc:copy">Copy</button><button class="mg-rm" data-pc="nc:newcode">New</button></div><p class="mg-n">Buyers enter this code under Curated Niches to unlock it. You always see your own niche.</p>`:`<p class="mg-n">Everyone can find this niche. Choose Invite only for exclusive products.</p>`))}
+  ${mgCard('Location',pcRow('nc:geo','eye','Visible only in…',esc(pcGeoText(n)))+`<p class="mg-n">Only buyers in the chosen wilayas see this niche. You always see your own.</p>`)}
+  ${mgCard('Collaboration',`<div class="np-sw mg-sw"><div><b>Collaborative niche</b><span>Other sellers can add their products without your approval</span></div><button type="button" role="switch" aria-checked="${!!n.collab}" aria-label="Collaborative niche" data-pc="nc:collab"><i></i></button></div>`)}
+  ${mgCard('Tools',pcRow('nc:dup','plus','Duplicate this niche','Use it as a starting point for a new one')+pcRow('nc:open','edit','Manage niche','Products, requests and settings')+pcRow('nc:view','eye','View niche','See it as buyers do'))}`}
+function pcGeoSheet(nid){
+  const n=DB.niches.find(x=>x.id===nid),sel=new Set(n.geo||[]);
+  openSheet(`<h3>Where is it visible?</h3><p class="muted">Only buyers in the chosen wilayas can see this niche. Leave empty for all of Algeria.</p><div class="pc-geo">${WILAYAS.map(w=>`<button type="button" class="pc-g" data-w="${esc(w)}" aria-pressed="${sel.has(w)}">${esc(w)}</button>`).join('')}</div><button class="np-go" id="pcGS" style="width:100%">Save</button><button class="np-txt" style="width:100%" id="pcGA">Whole Algeria</button>`);
+  $('#sheet').onclick=e=>{const b=e.target.closest('[data-w]');if(!b)return;e.stopPropagation();const w=b.dataset.w;sel.has(w)?sel.delete(w):sel.add(w);b.setAttribute('aria-pressed',sel.has(w))};
+  $('#pcGS').onclick=()=>{n.geo=[...sel];closeSheet();renderMarket(S.cat,$('#q').value);pcRender();toast('Location saved')};
+  $('#pcGA').onclick=()=>{n.geo=[];closeSheet();renderMarket(S.cat,$('#q').value);pcRender();toast('Visible in all of Algeria')}}
+function pcDupSheet(nid){
+  const n=DB.niches.find(x=>x.id===nid);let inc=true;
+  openSheet(`<h3>Duplicate niche</h3><div class="np-f"><label class="np-l" for="dp-n"><span>Name</span></label><input class="np-in" id="dp-n" maxlength="40" dir="auto" value="${esc(('Copy of '+n.name).slice(0,40))}"></div>
+    <div class="np-sw mg-sw" style="margin-top:14px"><div><b>Feature my products</b><span>Show my products from this niche in the copy too</span></div><button type="button" role="switch" aria-checked="true" aria-label="Feature my products" id="dpT"><i></i></button></div>
+    <button class="np-go" id="dpS" style="width:100%;margin-top:16px">Create copy</button><button class="np-txt" style="width:100%" data-act="close">Cancel</button>`);
+  $('#sheet').onclick=null;$('#dpT').onclick=e=>{inc=!inc;e.currentTarget.setAttribute('aria-checked',inc)};
+  $('#dpS').onclick=()=>{const name=$('#dp-n').value.trim();if(name.length<3){toast('Enter a name');return}
+    const d={id:'n'+Date.now().toString(36),name,seller:DB.me.id,followers:'0',visitors:'0',desc:n.desc,tags:[...(n.tags||[])],rating:null,verified:false,cover:n.cover,avatar:n.avatar,anon:n.anon};
+    DB.niches.unshift(d);
+    if(inc)nProds(n.id).filter(p=>p.seller===DB.me.id).forEach(p=>{p.feat=p.feat||[];if(p.niche!==d.id&&!p.feat.includes(d.id))p.feat.push(d.id)});
+    S.pcNiche=d.id;closeSheet();renderMarket(S.cat,$('#q').value);renderMenu();pcRender();toast('Niche duplicated')}}
+/* ---- Visibility ---- */
+function pcSuggest(p){
+  const n=DB.niches.find(x=>x.id===p.niche),have=new Set((p.tags||[]).map(t=>t.toLowerCase())),out=[];
+  const add=w=>{w=w.trim().toLowerCase();if(w.length>2&&!have.has(w)&&!out.includes(w))out.push(w)};
+  p.name.split(/[\s,.\-\/]+/).forEach(add);add(p.cat||'');if(n)add(n.name);return out.slice(0,6)}
+function pcReach(){
+  const P=myProducts();
+  if(!P.length)return `<div class="mg-em pc-em">${mgIc('plus')}<b>No products yet</b><span>Publish a product to manage its search tags and see its reach.</span><button class="np-go" data-pc="go:publish" style="margin-top:12px;padding:0 24px">Publish a product</button></div>`;
+  const p=P.find(x=>x.id===S.pcProd)||P[0];S.pcProd=p.id;const tags=p.tags||[],sug=pcSuggest(p);
+  const row=x=>{const v=stSum(x.id,'v',30),w=stSum(x.id,'i',30);return `<div class="pc-rr"><span class="mg-pt">${pimg(x)}</span><span class="mg-pn"><b>${esc(x.name)}</b></span><span class="pc-rn"><b>${w}</b><span>views</span></span><span class="pc-rn"><b>${v}</b><span>visits</span></span><span class="pc-rn"><b>${pctr(v,w)}</b><span>CTR</span></span></div>`};
+  return `<div class="pc-pills" role="tablist" aria-label="Products">${P.map(x=>`<button class="pc-pill" role="tab" aria-pressed="${x.id===p.id}" data-pc="rc:prod:${x.id}">${esc(x.name)}</button>`).join('')}</div>
+  ${mgCard('Search tags',(tags.length?`<div class="np-tags" style="margin-top:0">${tags.map(t=>`<span>${esc(t)}<button type="button" data-pc="rc:rm:${encodeURIComponent(t)}" aria-label="Remove ${esc(t)}">${ic('x','sm')}</button></span>`).join('')}</div>`:'<p class="pc-sub" style="margin:0">No tags yet. Add the words buyers type when they look for this product.</p>')
+    +`<div class="pc-ti"><input class="np-in" id="pcTag" maxlength="24" dir="auto" autocomplete="off" placeholder="Add a keyword" enterkeyhint="done" aria-label="Add a keyword"><button class="mg-rm ok" data-pc="rc:add">Add</button></div>`
+    +(sug.length?`<div class="pc-sug">${sug.map(t=>`<button type="button" data-pc="rc:sug:${encodeURIComponent(t)}">+ ${esc(t)}</button>`).join('')}</div>`:'')
+    +`<p class="mg-n">${tags.length} / 10 tags. Searching a tag finds ${esc(p.name)}.</p>`,tags.length?tags.length+' tag'+(tags.length===1?'':'s'):'')}
+  ${mgCard('Search synonyms',((PC.syn||[]).length?(PC.syn||[]).map((g,i)=>`<div class="pc-sr"><span>${g.map(esc).join(' = ')}</span><button class="mg-rm" data-pc="rc:synrm:${i}">Remove</button></div>`).join(''):'<p class="pc-sub" style="margin:0">No synonyms yet. Make different words find the same products.</p>')
+    +`<div class="pc-ti"><input class="np-in" id="pcSyn" dir="auto" autocomplete="off" placeholder="mobile = phone = téléphone" aria-label="Synonym group"><button class="mg-rm ok" data-pc="rc:synadd">Add</button></div><p class="mg-n">Separate words with = or a comma. Searching any word also finds the others.</p>`)}
+  ${mgCard('Reach by product',P.map(row).join('')+`<p class="mg-n">Last 30 days. Views are times it appeared in the market, CTR is visits divided by views.</p>`,'30 days')}`}
+/* ---- actions ---- */
+function pcAct(a){
+  const [k,s,v]=a.split(':'),nic=()=>DB.niches.find(x=>x.id===S.pcNiche),prod=()=>DB.products.find(x=>x.id===S.pcProd);
+  if(k==='tab'){S.pcTab=s;pcRender(true);return}
+  if(k==='go'){if(s==='publish'){push('newproduct');return}const[t,id]=s.split('-');if(t==='tab'){S.pcTab=id;pcRender(true)}else if(t==='mg')push('manage','p:'+id);else if(t==='mn')push('manage','n:'+id);return}
+  if(k==='lk'){if(s==='reset'){const syn=PC.syn;PC=Object.assign({},PC_DEF,{syn});toast('Appearance reset')}else PC[s]=v;pcSave();applyPrime();pcRender();return}
+  if(k==='tm'){const m=DB.team.find(x=>x.id===v);
+    if(s==='add'){pcMemberSheet();return}if(!m)return;
+    if(s==='edit'){pcMemberSheet(m.id);return}
+    if(s==='prev'){pcPreview(m.id);return}
+    if(s==='pause'){m.paused=!m.paused;pcRender();toast(m.paused?m.name+' is paused':m.name+' can receive orders again');return}
+    if(s==='del'){mgConfirm('Remove '+esc(m.name)+'?','Their access code stops working immediately.',()=>{DB.team=DB.team.filter(x=>x.id!==m.id);pcRender();toast('Team member removed')});return}return}
+  if(k==='nc'){const n=nic();
+    if(s==='new'){push('newniche');return}
+    if(s==='sel'){S.pcNiche=v;pcRender();return}
+    if(s==='per'){S.mgPer=+v;pcRender();return}
+    if(!n)return;
+    if(s==='acc'){n.priv=v==='private';if(n.priv&&!n.code)n.code=pcCode();renderMarket(S.cat,$('#q').value);pcRender();return}
+    if(s==='copy'){pcCopy(n.code,'Invite code copied');return}
+    if(s==='newcode'){n.code=pcCode();pcRender();toast('New invite code created');return}
+    if(s==='geo'){pcGeoSheet(n.id);return}
+    if(s==='collab'){n.collab=!n.collab;pcRender();toast(n.collab?'Other sellers can now add products freely':'Requests need your approval again');return}
+    if(s==='dup'){pcDupSheet(n.id);return}
+    if(s==='open'){push('manage','n:'+n.id);return}
+    if(s==='view'){push('niche',n.id,null);return}return}
+  if(k==='rc'){const p=prod();
+    if(s==='prod'){S.pcProd=v;pcRender();return}
+    if(!p&&s!=='synadd'&&s!=='synrm')return;
+    const addTag=t=>{t=t.trim().toLowerCase().replace(/\s+/g,' ');if(!t)return;p.tags=p.tags||[];if(p.tags.length>=10){toast('Up to 10 tags');return}if(p.tags.some(x=>x.toLowerCase()===t)){toast('Already added');return}p.tags.push(t);pcRender();const i=$('#pcTag');if(i)i.focus()};
+    if(s==='add'){const i=$('#pcTag');addTag(i?i.value:'');return}
+    if(s==='sug'){addTag(decodeURIComponent(v));return}
+    if(s==='rm'){const t=decodeURIComponent(v);p.tags=(p.tags||[]).filter(x=>x!==t);pcRender();return}
+    if(s==='synadd'){const i=$('#pcSyn'),w=[...new Set(((i&&i.value)||'').split(/[=,،]/).map(x=>x.trim()).filter(Boolean))];if(w.length<2){toast('Add at least two words, separated by =');return}PC.syn=PC.syn||[];PC.syn.push(w);pcSave();pcRender();return}
+    if(s==='synrm'){PC.syn.splice(+v,1);pcSave();pcRender();return}}}
+
 /* ---- notifications & cart ---- */
 DB.notifs=[{id:'n0',i:'truck',t:'Your order is on its way',s:'Order #O1 · '+((DB.products.find(x=>x.id==='p5')||{}).name||'your product'),at:Date.now()-30*36e5,unread:true}];
 function hdrUpdate(){const b=document.getElementById('hdBell'),c=document.getElementById('hdCart'),u=DB.notifs.filter(n=>n.unread).length;
