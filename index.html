@@ -1082,21 +1082,52 @@ html[data-pc-fbd] [data-own] .np-in{box-shadow:inset 0 0 0 1.5px var(--pc-fbd)}
 .pc-tpv[data-r=sq]{border-radius:3px}.pc-tpv[data-r=md]{border-radius:10px}.pc-tpv[data-r=lg]{border-radius:13px}.pc-tpv[data-r=xl]{border-radius:17px}
 .pc-sr .pc-sub2{display:block;margin-top:1px;font-size:12.5px;color:var(--ink2)}
 /* ---- dock: Market | + | Feed, with a refined glass droplet ---- */
-.dock{left:0;right:0;margin:0 auto;width:262px;height:52px;bottom:calc(var(--bot) + 18px);transition:transform .5s var(--ease),opacity .3s,width .45s var(--ease),height .45s var(--ease)}
-.dock.sm{width:176px;height:42px}
+.dock{left:0;right:0;margin:0 auto;width:352px;height:52px;bottom:calc(var(--bot) + 18px);transition:transform .5s var(--ease),opacity .3s,width .45s var(--ease),height .45s var(--ease)}
+.dock.sm{width:250px;height:42px}
+.dock{--d-on:var(--ink)}.dock.onfeed{--d-on:#fff}   /* icons are not lit: the current tab is just a little darker */
 .dock .item{font-size:10.5px;transition:color .18s,font-size .3s,gap .3s}.dock .item .ic{width:22px;height:22px}
 .dock.sm .item{font-size:0;gap:0}
 .dock .item .ic.shop{stroke-width:1.75}
 /* transparent glass droplet: clear body, bright rim, soft refraction */
-.dk-lens .rest{background:linear-gradient(180deg,rgba(255,255,255,.30),rgba(255,255,255,.05) 55%,rgba(255,255,255,.14));-webkit-backdrop-filter:blur(3px) saturate(1.7) brightness(1.06);backdrop-filter:blur(3px) saturate(1.7) brightness(1.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.65),inset 0 1.5px 1px rgba(255,255,255,.95),inset 0 -7px 12px rgba(255,255,255,.14),inset 0 0 16px rgba(80,120,255,.07)}
-[data-theme=dark] .dk-lens .rest,.dock.onfeed .dk-lens .rest{background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,.03) 55%,rgba(255,255,255,.09));box-shadow:inset 0 0 0 1px rgba(255,255,255,.3),inset 0 1.5px 1px rgba(255,255,255,.5),inset 0 -7px 12px rgba(160,190,255,.12)}
-.dk-lens{box-shadow:0 calc(6px + 4px*var(--k,0)) calc(14px + 10px*var(--k,0)) calc(-8px + 6px*var(--k,0)) rgba(30,60,160,.28)}
+.dk-lens .rest{background:linear-gradient(180deg,rgba(255,255,255,.30),rgba(255,255,255,.05) 55%,rgba(255,255,255,.14));-webkit-backdrop-filter:blur(3px) saturate(1.7) brightness(1.06);backdrop-filter:blur(3px) saturate(1.7) brightness(1.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.65),inset 0 1.5px 1px rgba(255,255,255,.95),inset 0 -7px 12px rgba(255,255,255,.14),inset 0 0 16px rgba(120,130,150,.06)}
+[data-theme=dark] .dk-lens .rest,.dock.onfeed .dk-lens .rest{background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,.03) 55%,rgba(255,255,255,.09));box-shadow:inset 0 0 0 1px rgba(255,255,255,.3),inset 0 1.5px 1px rgba(255,255,255,.5),inset 0 -7px 12px rgba(255,255,255,.08)}
+.dk-lens{box-shadow:0 calc(6px + 4px*var(--k,0)) calc(14px + 10px*var(--k,0)) calc(-8px + 6px*var(--k,0)) rgba(20,25,45,.22)}
 [data-theme=dark] .dk-lens,.dock.onfeed .dk-lens{box-shadow:0 calc(6px + 4px*var(--k,0)) calc(14px + 10px*var(--k,0)) calc(-8px + 6px*var(--k,0)) rgba(0,0,0,.5)}
 .dk-lens .mag{opacity:1}
-.dk-lens .mag .item{color:var(--d-ink);text-shadow:0 0 6px rgba(255,255,255,calc(.3*var(--k,0)))}
+.dk-lens .mag .item{color:var(--d-ink);text-shadow:none}
 .dk-lens .mag .item[aria-current=true]{color:var(--d-on)}
-.pcx{flex:none;width:38px;height:38px;border-radius:12px;display:grid;place-items:center;color:#EAF1FF;background:linear-gradient(160deg,#3D7BFF,#0B45E6);box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
-.pcx .pr-ic{width:21px;height:21px;color:#EAF1FF}.grp .prow.pcrow{min-height:68px}
+/* ---- Blex AI item: the 12-ball mark. At rest it is the exact outline; on press the balls gather into one goo clump and spring back out ---- */
+.dock .item .ic.mol{width:21px;height:21px;fill:currentColor;stroke:none;overflow:visible}
+.mol .mf{fill:currentColor}.mol .mg{fill:currentColor;opacity:0;transform-origin:181px 166.5px}
+.mol .mg circle{transform-box:view-box}
+.dock.mol-play .ic.mol{animation:molPop 1.6s var(--ease) both}
+.dock.mol-play .mol .mf{animation:molF 1.6s linear both}
+.dock.mol-play .mol .mg{animation:molG 1.6s linear both,molSpin 1.6s linear both}
+.dock.mol-play .mol .mg circle{animation:molB 1.6s linear both;animation-delay:var(--d)}
+@keyframes molF{0%{opacity:1}3%,88%{opacity:0}97%,100%{opacity:1}}
+@keyframes molG{0%{opacity:0}3%,98%{opacity:1}100%{opacity:0}}
+@keyframes molPop{0%{transform:scale(1)}18%,80%{transform:scale(1.4)}100%{transform:scale(1)}}
+@keyframes molSpin{0%{transform:rotate(0);animation-timing-function:cubic-bezier(.55,0,.8,.4)}24%{transform:rotate(-38deg);animation-timing-function:cubic-bezier(.2,1.3,.4,1)}100%{transform:rotate(0)}}
+@keyframes molB{0%{transform:translate(0,0);animation-timing-function:cubic-bezier(.55,0,.8,.4)}24%{transform:translate(var(--x),var(--y));animation-timing-function:cubic-bezier(.2,1.3,.4,1)}100%{transform:translate(0,0)}}
+/* ---- search page: segments, products, videos ---- */
+.sr-seg{display:flex;gap:8px;margin:2px 0 4px;overflow-x:auto;scrollbar-width:none}
+.sr-seg button{flex:none;min-height:36px;min-width:0;padding:0 16px;border-radius:18px;font-size:14px;font-weight:600;color:var(--ink2);background:var(--line);transition:background .25s,color .25s}
+.sr-seg button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.sr-h b small{margin-inline-start:8px;font-size:13px;font-weight:600;color:var(--ink2)}
+.sr-chips{display:flex;flex-wrap:wrap;gap:8px}
+.sr-chip{display:inline-flex;align-items:center;height:36px;border-radius:18px;background:var(--line);overflow:hidden}
+.sr-chip button{min-height:36px;min-width:0;padding:0 4px 0 14px;font-size:14px;font-weight:500;color:var(--ink)}.sr-chip button+button{padding:0 10px 0 4px;color:var(--ink2)}.sr-chip .ic{width:14px;height:14px}
+.sr-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sr-p{display:block;text-align:start;border-radius:18px;overflow:hidden;background:var(--card);box-shadow:inset 0 0 0 1px var(--line);transition:transform .35s var(--spring)}.sr-p:active{transform:scale(.97)}
+.sr-p .im{display:block;aspect-ratio:1;overflow:hidden;background:var(--line)}.sr-p .im>*{width:100%;height:100%;object-fit:cover;display:block}
+.sr-p b{display:block;padding:10px 12px 0;font-size:14px;font-weight:600;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sr-p .pr{display:block;padding:2px 12px 12px;font-size:13.5px;font-weight:600;color:var(--ink2)}
+.sr-vrow{display:flex;gap:10px;overflow-x:auto;margin:0 -16px;padding:0 16px 4px;scrollbar-width:none}.sr-vrow::-webkit-scrollbar{display:none}.sr-vrow .sr-v{flex:none;width:122px}
+.sr-vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sr-v{position:relative;display:block;aspect-ratio:9/16;border-radius:18px;overflow:hidden;background:#16181f;color:#fff;text-align:start;transition:transform .35s var(--spring)}.sr-v:active{transform:scale(.96)}
+.sr-v .bgv{position:absolute;inset:0}.sr-v .bgv>*{width:100%;height:100%;object-fit:cover;display:block}
+.sr-v::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 45%,rgba(0,0,0,.62))}
+.sr-v .pl{position:absolute;top:8px;right:8px;z-index:1;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:rgba(0,0,0,.35);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}.sr-v .pl .ic{width:13px;height:13px;fill:#fff}
+.sr-v .tt{position:absolute;left:10px;right:10px;bottom:9px;z-index:1;font-size:12.5px;font-weight:600;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 /* ---- Create page ---- */
 .cr-sub{margin:0 6px 2px;font-size:14px;color:var(--ink2)}
 .side[data-tab=ai] .qk{display:none}
@@ -1256,8 +1287,10 @@ html[data-pc-fbd] [data-own] .np-in{box-shadow:inset 0 0 0 1.5px var(--pc-fbd)}
   <div class="dock" id="bar" aria-label="Main">
     <nav class="dk-bar" id="dkBar"><div class="dk-row" id="dkRow">
       <button class="item" data-tab="market" aria-current="true"><svg class="ic nav shop"><use href="#i-shop"/></svg>Market</button>
-      <button class="item" data-dk="create" aria-current="false"><svg class="ic nav"><use href="#i-plus"/></svg>Create</button>
       <button class="item" data-tab="feed" aria-current="false"><svg class="ic nav"><use href="#i-feed"/></svg>Feed</button>
+      <button class="item" data-dk="search" aria-current="false"><svg class="ic nav"><use href="#i-search"/></svg>Search</button>
+      <button class="item" data-dk="create" aria-current="false"><svg class="ic nav"><use href="#i-plus"/></svg>Create</button>
+      <button class="item" data-dk="mol" aria-current="false"><svg class="ic nav mol" viewBox="52 37 258 259" aria-hidden="true"><defs><filter id="molGoo" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceGraphic" stdDeviation="7"/><feColorMatrix values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 22 -9"/></filter></defs><path class="mf" d="M274.3 97.0L272.2 104.0L269.0 109.4L266.9 112.0L263.6 115.0L260.8 117.0L258.0 118.5L252.0 120.5L249.0 121.0L245.0 121.2L239.0 120.3L231.0 117.5L227.0 117.0L224.0 117.3L222.0 117.9L217.0 120.4L213.0 124.1L210.6 128.0L209.9 131.0L209.2 138.0L208.2 142.0L206.1 147.0L202.6 152.0L200.0 154.6L197.0 156.9L193.0 159.2L187.0 161.2L180.0 161.8L175.0 161.2L169.0 159.2L164.0 156.3L159.5 152.0L155.9 147.0L154.2 143.0L152.8 138.0L152.1 131.0L151.2 128.0L150.2 126.0L148.0 123.4L146.0 121.5L143.0 119.7L139.0 118.2L134.0 117.7L131.0 118.4L126.0 120.5L121.0 121.9L115.0 122.3L111.7 122.0L106.0 120.5L102.6 119.0L99.4 117.0L96.0 114.1L92.0 109.3L90.6 107.0L88.9 103.0L87.9 99.0L87.4 93.0L87.8 89.0L88.8 85.0L89.9 82.0L92.7 77.0L97.3 72.0L102.0 68.7L109.0 65.9L114.0 65.2L121.0 65.6L125.0 66.6L130.0 68.9L134.0 71.6L138.3 76.0L141.0 80.0L143.2 85.0L144.3 90.0L144.9 96.0L145.8 99.0L147.7 102.0L149.5 104.0L154.0 107.3L159.0 109.1L163.0 109.4L166.0 108.5L168.0 107.5L170.1 106.0L171.9 103.0L172.4 100.0L171.9 97.0L171.0 95.0L170.0 93.7L164.3 90.0L160.0 86.4L157.0 82.9L155.0 79.7L153.0 75.0L152.0 70.7L151.5 66.0L152.0 61.0L152.9 57.0L155.1 52.0L158.0 47.8L161.9 44.0L166.3 41.0L171.0 39.0L175.2 38.0L180.0 37.6L184.0 37.9L188.7 39.0L193.0 40.7L198.0 44.0L201.0 46.7L204.3 51.0L206.4 55.0L208.2 61.0L208.6 66.0L208.3 71.0L207.3 75.0L205.1 80.0L203.2 83.0L200.7 86.0L197.0 89.2L191.4 93.0L190.0 94.6L189.3 96.0L188.8 100.0L189.3 103.0L190.4 105.0L193.0 107.1L196.0 108.4L198.0 108.9L202.0 108.8L205.0 108.1L207.0 107.2L211.0 104.8L214.0 101.8L216.3 98.0L217.1 95.0L217.7 89.0L218.8 84.0L221.0 79.0L223.7 75.0L227.0 71.5L232.0 67.9L237.0 65.6L243.0 64.3L249.0 64.2L252.0 64.7L256.0 65.8L258.0 66.7L262.0 69.0L264.7 71.0L266.7 73.0L269.2 76.0L271.2 79.0L273.3 84.0L274.6 91.0ZM161.0 291.3L156.0 293.5L150.0 294.9L143.0 294.9L137.0 293.4L134.0 292.2L131.0 290.5L126.0 286.4L121.9 281.0L120.0 276.8L118.5 272.0L118.1 266.0L118.6 261.0L120.5 255.0L123.0 250.4L126.0 246.7L130.0 243.2L134.0 240.3L136.3 238.0L138.0 235.0L139.4 231.0L139.7 226.0L139.2 222.0L138.6 220.0L136.0 215.5L132.0 212.4L130.0 211.5L128.0 211.5L125.0 212.6L123.0 214.1L121.7 216.0L121.4 217.0L120.9 224.0L120.0 229.0L119.0 232.0L117.1 236.0L113.4 241.0L110.0 244.0L107.0 246.2L102.0 248.5L100.0 249.3L96.0 250.0L91.0 250.3L86.0 249.6L81.0 248.0L76.0 245.2L73.3 243.0L70.4 240.0L67.6 236.0L65.7 232.0L64.2 227.0L63.7 222.0L64.2 217.0L65.5 212.0L67.9 207.0L70.9 203.0L74.0 200.0L78.0 197.2L83.0 194.8L87.0 193.8L92.0 193.3L99.0 194.0L104.0 195.6L111.0 199.2L114.0 199.4L117.0 198.1L119.0 196.3L120.2 194.0L120.4 192.0L119.7 188.0L118.1 185.0L117.0 183.6L114.0 180.8L112.0 179.6L108.0 177.8L104.0 177.1L100.0 177.3L97.0 178.3L91.0 181.3L88.0 182.3L83.0 183.1L78.0 183.0L72.7 182.0L67.6 180.0L63.0 177.0L58.9 173.0L55.5 168.0L54.0 164.8L52.8 161.0L52.2 155.0L52.6 149.0L54.5 143.0L57.0 138.5L59.0 135.9L61.9 133.0L66.0 130.0L71.0 127.6L74.0 126.8L81.0 126.0L88.0 127.0L93.0 128.8L96.0 130.5L99.0 132.7L102.0 135.6L105.3 140.0L108.0 146.2L109.9 155.0L111.9 159.0L113.6 161.0L116.0 163.0L120.0 165.2L125.0 166.6L129.0 166.6L131.0 166.2L138.0 162.9L142.0 161.6L147.0 160.6L153.0 160.9L159.0 162.4L162.0 163.6L165.0 165.4L170.3 170.0L174.0 175.1L176.2 180.0L177.5 186.0L177.7 189.0L177.5 193.0L176.0 199.0L174.1 203.0L171.0 207.5L167.5 211.0L161.0 215.9L159.2 218.0L157.1 222.0L156.0 227.0L155.9 229.0L156.3 233.0L157.7 237.0L160.0 240.4L166.4 246.0L170.5 251.0L172.2 254.0L174.3 260.0L175.0 264.0L175.0 269.0L174.4 273.0L173.1 277.0L171.3 281.0L167.0 286.6L164.0 289.2ZM203.0 291.6L200.0 289.6L197.0 287.0L192.9 282.0L190.0 275.9L188.7 270.0L188.4 267.0L188.6 263.0L189.5 259.0L190.9 255.0L192.4 252.0L195.3 248.0L198.0 245.2L202.9 241.0L204.4 239.0L206.5 234.0L207.1 229.0L206.3 223.0L205.1 220.0L204.0 218.2L201.2 215.0L195.6 211.0L192.0 207.6L188.7 203.0L186.4 198.0L185.1 192.0L184.9 187.0L186.0 181.0L187.0 178.2L189.0 174.1L193.0 168.9L198.0 164.7L204.0 161.8L208.0 160.8L214.0 160.2L219.0 160.8L223.0 161.9L231.0 165.5L234.0 166.2L238.0 166.0L243.0 164.4L246.8 162.0L250.0 158.6L251.9 155.0L253.9 145.0L256.0 140.1L259.6 135.0L262.6 132.0L265.2 130.0L269.0 127.8L272.0 126.6L275.0 125.7L281.0 125.1L288.0 125.8L291.0 126.7L295.0 128.6L298.0 130.5L300.9 133.0L304.4 137.0L307.3 142.0L308.4 145.0L309.4 149.0L309.7 155.0L309.2 159.0L308.4 162.0L306.3 167.0L303.0 171.8L298.7 176.0L294.0 179.0L288.0 181.3L283.0 182.1L279.0 182.1L274.0 181.3L270.0 180.0L265.0 177.5L262.0 176.5L259.0 176.3L255.0 176.9L252.0 177.9L249.0 179.6L245.3 183.0L243.8 185.0L242.9 187.0L242.3 191.0L242.6 193.0L244.0 195.3L246.2 197.0L249.0 197.9L252.0 197.6L261.0 192.7L265.0 191.6L271.0 191.0L277.0 191.6L281.0 192.8L285.7 195.0L289.9 198.0L294.0 202.6L296.0 205.7L298.0 210.1L299.1 214.0L299.6 219.0L299.2 225.0L298.0 229.6L296.0 233.9L293.0 238.2L289.0 242.1L286.0 244.2L282.0 246.2L277.0 247.7L273.0 248.2L267.0 247.9L263.0 247.1L258.0 245.2L255.0 243.3L250.0 239.0L246.9 235.0L244.8 231.0L243.8 228.0L242.7 223.0L242.1 216.0L241.2 214.0L240.4 213.0L238.0 211.4L235.0 210.5L233.0 210.8L231.0 211.8L229.0 213.2L227.0 215.1L224.7 219.0L223.8 222.0L223.4 225.0L223.8 231.0L225.0 234.6L227.0 238.0L229.0 240.1L235.0 244.5L237.6 247.0L240.1 250.0L243.0 255.1L244.7 260.0L245.5 266.0L245.2 271.0L244.0 275.8L241.0 282.0L237.1 287.0L233.0 290.3L227.0 293.4L221.0 294.9L214.0 295.0L209.0 294.1Z"/><g class="mg" filter="url(#molGoo)"><circle cx="116" cy="94" r="28.3" style="--x:55.0px;--y:54.0px;--d:0ms"/><circle cx="180" cy="66" r="28.3" style="--x:-3.2px;--y:82.4px;--d:23ms"/><circle cx="246" cy="93" r="28.3" style="--x:-48.0px;--y:61.8px;--d:46ms"/><circle cx="181" cy="133" r="28.3" style="--x:-2.0px;--y:23.8px;--d:69ms"/><circle cx="81" cy="155" r="28.3" style="--x:83.0px;--y:13.2px;--d:92ms"/><circle cx="281" cy="154" r="28.3" style="--x:-83.0px;--y:8.0px;--d:115ms"/><circle cx="149" cy="189" r="28.3" style="--x:27.6px;--y:-22.0px;--d:138ms"/><circle cx="214" cy="189" r="28.3" style="--x:-30.4px;--y:-14.0px;--d:1ms"/><circle cx="92" cy="222" r="28.3" style="--x:75.2px;--y:-46.4px;--d:24ms"/><circle cx="271" cy="220" r="28.3" style="--x:-74.0px;--y:-39.8px;--d:47ms"/><circle cx="147" cy="267" r="28.3" style="--x:30.2px;--y:-83.4px;--d:70ms"/><circle cx="217" cy="267" r="28.3" style="--x:-31.8px;--y:-77.4px;--d:93ms"/></g></svg>Prime</button>
     </div></nav>
     <div class="dk-lens" id="dkLens" aria-hidden="true"><div class="rest"></div><div class="glassf"></div><div class="mag" id="dkMag"></div></div>
   </div>
@@ -1389,6 +1422,8 @@ function closeStory(now){
 }
 document.addEventListener('keydown',e=>{const sv=$('#sv');if(!sv||sv.classList.contains('away'))return;if(e.key==='Escape')closeStory();else if(e.key==='ArrowRight')$('.sv-zone.n').click();else if(e.key==='ArrowLeft')$('.sv-zone.p').click()});
 function renderStories(){const L=DB.stories.map((p,i)=>({p,i})).filter(x=>(!S.storySeen.has(x.i)||x.p.mine)&&!(x.p.pid&&(storyProduct(x.p)||{}).hidden));$('#stories').classList.toggle('empty',!L.length);$('#stRow').innerHTML=L.map(({p,i})=>`<button class="st ${p.mine?'mine':''}" data-story="${i}" aria-label="${p.mine?'Your story':p.n+'\'s story'}"><span class="ring"><span class="av3">${p.pid&&storyProduct(p)?pimg(storyProduct(p)):scene(p.art,p.h,2)}</span></span><span class="nm">${p.mine?'You':p.n}</span></button>`).join('')}
+let molT=0;function playMol(){const b=$('#bar');clearTimeout(molT);b.classList.remove('mol-play');void b.offsetWidth;b.classList.add('mol-play');molT=setTimeout(()=>b.classList.remove('mol-play'),1750)}
+function openPrime(){playMol();if(S.primeOpening)return;S.primeOpening=true;setTimeout(()=>{S.primeOpening=false;if(!S.stack.length){openSide(false);push('prime')}},850)}
 function createSheet(){openSheet(`<h3>Create</h3><p class="muted">Publish something new to Blex.</p>
     <button class="opt" data-create="product"><span class="gbtn glass">${ic('tag')}</span><span><b>Product</b><span class="muted">Sell one item</span></span></button>
     <button class="opt" data-create="niche"><span class="gbtn glass">${ic('grid')}</span><span><b>Niche</b><span class="muted">Group related products on one page</span></span></button>
@@ -1408,7 +1443,7 @@ function renderCreate(){$('#create').innerHTML=createView()}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-cr-soon]');if(b)toast(b.dataset.crSoon+' are coming soon')});
 function syncChrome(){reelSync();const root=!S.stack.length;$('#bar').classList.toggle('hide',!root||S.tab==='ai');$('#top').classList.toggle('hide',!(root&&S.tab!=='feed'&&S.tab!=='create'));$('#top').dataset.tab=S.tab;const fo=root&&S.tab==='feed';$('#feedTop').classList.toggle('on',fo);if(fo){S.lastFeed=$('#feed').scrollTop;feedHdr(true)}else $('#stories').classList.remove('on');const sc=document.getElementById(S.tab==='ai'?'aiScroll':S.tab);$('#top').classList.toggle('sm',!!sc&&S.tab!=='feed'&&sc.scrollTop>24)}
 function setTab(t){
-  const was=S.tab;S.tab=t;if(t==='feed'&&was!=='feed')renderStories();$('#bar').classList.toggle('onfeed',t==='feed');$('#bar').classList.remove('sm');if(t==='create'){S.crPend=false;renderCreate()}syncChrome();if(S.side)renderSide();
+  const was=S.tab;S.tab=t;if(t==='feed'&&was!=='feed')renderStories();$('#bar').classList.toggle('onfeed',t==='feed');if(t==='create'){S.crPend=false;renderCreate()}syncChrome();if(S.side)renderSide();
   $$('.screen:not(.detail)').forEach(s=>s.classList.toggle('active',s.id===t));
   if(t==='market'||t==='feed'||t==='create')barUI.sync(t);
   const seg=t==='ai'?1:0; $('#seg').dataset.i=seg;
@@ -1718,7 +1753,6 @@ function acctHTML(){
   const row=(i,l,a,x='',sub='')=>`<button class="prow" data-p="${a}">${ic(i)}<span class="grow">${sub?`<b>${l}</b><span class="muted">${sub}</span>`:l}</span>${x}</button>`;
   const bd=k=>`<span class="bdg">${k}</span>`;
   return `<div class="sub-body"><button class="phead" data-p="profile"><span class="av2">B</span><div class="grow"><b>Guest</b><span class="muted">Free plan</span></div>${ic('chevr','sm')}</button>
-  <div class="grp"><button class="prow pcrow" data-prime><span class="pcx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pr-ic" aria-hidden="true"><path d="m12.342 9.316 1.764-3.527"/><path d="m12.59 14.545 2.35 3.759"/><path d="m13.982 12.332 4.03.447"/><path d="M5.414 17.586 8.88 14.12"/><path d="M9.025 9.742 5.317 5.505"/><circle cx="11" cy="12" r="3"/><circle cx="15" cy="4" r="2"/><circle cx="16" cy="20" r="2"/><circle cx="20" cy="13" r="2"/><circle cx="4" cy="19" r="2"/><circle cx="4" cy="4" r="2"/></svg></span><span class="grow"><b>Prime Console</b><span class="muted">Advanced store controls</span></span>${ic('chevr','sm')}</button></div>
   <div class="grp">${row('eyeoff','Anonymous selling','anon',sw(an),an?'Your name is hidden':'Your name is visible')}</div>
   <div class="grp">${row('save','Saved','saved',bd(n))}${row('truck','Delivery addresses','addr')}${row('shield','Delivery fee payments','pay')}</div>
   <div class="grp">${row('bell','Notifications','notif')}${row('moon','Dark mode','theme',sw(S.theme==='dark'))}${row('sliders','Settings','settings')}</div>
@@ -2048,7 +2082,7 @@ document.addEventListener('input',e=>{if(e.target.id==='cq')renderChatList(e.tar
 document.addEventListener('input',e=>{if(e.target.id==='aiIn'){fitIn();if(!AI.busy)$('#aiForm .send').disabled=!e.target.value.trim()}});
 document.addEventListener('submit',e=>{if(e.target.id==='aiForm'){e.preventDefault();if(AI.busy){AI.stop=true;return}const i=$('#aiIn'),v=i.value;if(!v.trim()&&!S.att.length)return;const full=S.att.map(a=>`[[${a.k}:${a.id}]]`).join('')+(v.trim()?'\n'+v.trim():'');i.value='';S.att=[];attRender();apClose();fitIn();$('#aiForm .send').disabled=true;ask(full)}});
 document.addEventListener('scroll',e=>{const g=e.target;if(g.id==='gal'){const i=Math.round(g.scrollLeft/g.clientWidth);$$('.dots i',g.parentNode).forEach((d,k)=>d.classList.toggle('on',k===i))}},true);
-const dkLast={};function dockScroll(g){const st=g.scrollTop,d=st-(dkLast[g.id]||0);dkLast[g.id]=st;const b=$('#bar');if(st>48&&d>6)b.classList.add('sm');else if(d<-6||st<=48)b.classList.remove('sm')}
+const dkLast={};function dockScroll(g){const st=g.scrollTop,d=st-(dkLast[g.id]||0);dkLast[g.id]=st;const b=$('#bar');if(st>48&&d>6)b.classList.add('sm')}
 document.addEventListener('scroll',e=>{const g=e.target;if(g.id==='market'||g.id==='feed'||g.id==='create')dockScroll(g);if(g.id==='market'||g.id==='aiScroll')$('#top').classList.toggle('sm',g.scrollTop>24);if(g.id==='feed'){const st=g.scrollTop,d=st-S.lastFeed;if(d>6&&st>20)feedHdr(false);else if(d<-6)feedHdr(true);S.lastFeed=st}},true);
 /* Liquid Glass tab bar. Rest: flat thumb behind the active tab. Press/drag: a glass lens grows, follows the finger
    and shows a magnified copy of the icons. Release: the lens springs to the nearest tab and shrinks back. */
@@ -2073,7 +2107,6 @@ const barUI=(()=>{
   }
   bar.addEventListener('pointerdown',e=>{
     if(!e.isPrimary)return;
-    if(wrap.classList.contains('sm')){wrap.classList.remove('sm');return}      /* a press on the shrunk bar only brings it back */
     bar.setPointerCapture(e.pointerId);clearTimeout(releaseT);
     St.drag=true;St.moved=false;St.tk=1;St.tx=centers[nearest(localX(e))];setActive(nearest(St.tx));kick();
   });
@@ -2084,12 +2117,17 @@ const barUI=(()=>{
   const end=e=>{
     if(!St.drag)return;St.drag=false;
     const i=e.type==='pointercancel'?selected:nearest(St.tx);
-    if(i===1&&e.type==='pointerup'&&!S.stack.length&&!St.moved&&S.tab==='market'&&!S.crPend){   /* first tap in Market: half sheet; the droplet hops back */
+    const tap=e.type==='pointerup'&&!S.stack.length,TABS=['market','feed','search','create','mol'];
+    if((i===2||i===4)&&tap){        /* Search opens the search page, the last item plays its animation; the droplet hops back to the current tab */
+      const prev=Math.max(0,TABS.indexOf(S.tab));selected=prev;setActive(prev);St.tx=centers[prev];kick();
+      releaseT=setTimeout(()=>{St.tk=0;kick()},St.moved?0:30);setTimeout(i===2?openSearch:openPrime,0);return}
+    if(i===3&&tap&&!St.moved&&S.tab==='market'&&!S.crPend){   /* first tap in Market: half sheet; the droplet hops back */
       S.crPend=true;selected=0;setActive(0);St.tx=centers[0];kick();
       releaseT=setTimeout(()=>{St.tk=0;kick()},30);setTimeout(()=>openCreate('sheet'),0);return}
     selected=i;setActive(i);St.tx=centers[i];
     kick();releaseT=setTimeout(()=>{St.tk=0;kick()},St.moved?0:30);   /* a plain tap keeps the lens up for a beat */
-    if(e.type==='pointerup'&&!S.stack.length)setTimeout(()=>{const t=i===2?'feed':i===1?'create':'market';if(t!=='create'||S.tab!=='create')setTab(t)},0);
+    if(tap){const t=TABS[i];if(!St.moved&&t===S.tab)wrap.classList.remove('sm');   /* tapping the tab you are already on restores the full-size bar */
+      setTimeout(()=>{if(t!=='create'||S.tab!=='create')setTab(t)},0)}
   };
   bar.addEventListener('pointerup',end);bar.addEventListener('pointercancel',end);
   let last=performance.now();
@@ -2117,7 +2155,7 @@ const barUI=(()=>{
     requestAnimationFrame(frame);
   }
   function sync(t){            /* called by setTab so the thumb follows any navigation (e.g. the Back-to-Market pill) */
-    const i=t==='feed'?2:t==='create'?1:0;selected=i;setActive(i);if(!St.drag){clearTimeout(releaseT);St.tx=centers[i];St.tk=0}kick()
+    const i=t==='feed'?1:t==='create'?3:0;selected=i;setActive(i);if(!St.drag){clearTimeout(releaseT);St.tx=centers[i];St.tk=0}kick()
   }
   function init(jump){measure();if(jump)St.x=St.tx=centers[selected];else St.tx=centers[selected];setActive(selected);kick()}
   addEventListener('resize',()=>init(true));
@@ -4473,29 +4511,48 @@ function openLoc(){
 const RECENT_KEY='blex.recent';
 const getRecent=()=>{try{return JSON.parse(localStorage.getItem(RECENT_KEY)||'[]')}catch(e){return[]}};
 const setRecent=a=>{try{localStorage.setItem(RECENT_KEY,JSON.stringify(a.slice(0,8)))}catch(e){}};
+let SRT='all';
+function srVids(t){
+  return DB.videos.filter(v=>!(v.mine&&(DB.products.find(p=>p.id===v.ref[1])||{}).hidden)).filter(v=>v.ref[0]!=='niche'||nVisible(DB.niches.find(n=>n.id===v.ref[1])))
+    .filter(v=>{const o=v.ref[0]==='niche'?DB.niches.find(n=>n.id===v.ref[1]):DB.products.find(p=>p.id===v.ref[1]);if(!o)return false;return !t||(v.title+' '+(v.text||'')+' '+o.name).toLowerCase().includes(t)})}
 function srBody(q){
-  const t=q.trim().toLowerCase(),R=getRecent(),row=(v,i,del)=>`<div class="sr-r" style="padding:0"><button class="sr-r" style="border:0;flex:1;min-width:0" data-sr="${esc(v)}"><span class="sr-ic">${ic(i,'sm')}</span><span class="t">${esc(v)}</span></button>${del?`<button class="sr-d" data-srdel="${esc(v)}" aria-label="Remove ${esc(v)}">${ic('x','sm')}</button>`:''}</div>`;
-  if(t){
-    const names=[...DB.products.map(p=>p.name),...DB.niches.map(n=>n.name)].filter(n=>n.toLowerCase().includes(t)).slice(0,5);
-    return `<div class="sr-h"><b>Suggestions</b></div>`+row(q.trim(),'search')+names.filter(n=>n.toLowerCase()!==t).map(n=>row(n,'tag')).join('')}
-  return `<div class="sr-h"><b>Recent searches</b>${R.length?'<button data-srclear>Clear</button>':''}</div>`
-    +(R.length?R.map(v=>row(v,'search',1)).join(''):'<p class="sr-e">Your recent searches will appear here.</p>')}
+  const t=q.trim().toLowerCase(),R=getRecent(),loc=S.loc&&S.loc!=='Algeria'?S.loc:null;
+  const row=(v,i)=>`<div class="sr-r" style="padding:0"><button class="sr-r" style="border:0;flex:1;min-width:0" data-sr="${esc(v)}"><span class="sr-ic">${ic(i,'sm')}</span><span class="t">${esc(v)}</span></button></div>`;
+  const P=pcOrder(DB.products.filter(p=>!p.hidden&&pMatch(p,t?q:'')&&(!loc||!p.city||p.city===loc))),V=srVids(t);
+  const all=SRT==='all',showP=SRT!=='videos',showV=SRT!=='products',nP=all?6:P.length,nV=all?8:V.length;
+  const pcard=p=>`<button class="sr-p" data-open="product:${p.id}" aria-label="${esc(p.name)}, ${money(p.price)}"><span class="im">${pimg(p)}</span><b>${esc(p.name)}</b><span class="pr">${money(p.price)}</span></button>`;
+  const vcard=v=>{const o=v.ref[0]==='niche'?DB.niches.find(n=>n.id===v.ref[1]):DB.products.find(p=>p.id===v.ref[1]);const pr=v.ref[0]==='niche'?DB.products.find(p=>p.niche===o.id):o;if(!pr)return '';
+    return `<button class="sr-v" data-srvid="${v.id}" aria-label="Play ${esc(v.title)}"><span class="bgv">${v.media?`<video src="${v.media.url}" muted playsinline preload="metadata"></video>`:scene(pr.art,pr.h,1)}</span><span class="pl">${ic('play','sm')}</span><span class="tt">${esc(v.title)}</span></button>`};
+  const head=(title,n,more)=>`<div class="sr-h"><b>${title}<small>${n}</small></b>${more?`<button data-srt="${more}">See all</button>`:''}</div>`;
+  let h=`<div class="sr-seg" role="tablist">${[['all','All'],['products','Products'],['videos','Videos']].map(([k,l])=>`<button role="tab" data-srt="${k}" aria-pressed="${SRT===k}">${l}</button>`).join('')}</div>`;
+  if(all){
+    if(t){const names=[...DB.products.map(p=>p.name),...DB.niches.map(n=>n.name)].filter(n=>n.toLowerCase().includes(t)&&n.toLowerCase()!==t).slice(0,3);
+      h+=`<div class="sr-h"><b>Suggestions</b></div>`+row(q.trim(),'search')+names.map(n=>row(n,'tag')).join('')}
+    else if(R.length)h+=`<div class="sr-h"><b>Recent searches</b><button data-srclear>Clear</button></div><div class="sr-chips">${R.slice(0,6).map(v=>`<span class="sr-chip"><button data-sr="${esc(v)}">${esc(v)}</button><button data-srdel="${esc(v)}" aria-label="Remove ${esc(v)}">${ic('x','sm')}</button></span>`).join('')}</div>`}
+  if(showP&&P.length)h+=head(t?'Products':'Popular products',P.length,all&&P.length>nP?'products':'')+`<div class="sr-grid">${P.slice(0,nP).map(pcard).join('')}</div>`;
+  if(showV&&V.length)h+=head(t?'Videos':'Trending videos',V.length,all&&V.length>nV?'videos':'')+(all?`<div class="sr-vrow">${V.slice(0,nV).map(vcard).join('')}</div>`:`<div class="sr-vgrid">${V.map(vcard).join('')}</div>`);
+  if(t&&!(showP&&P.length)&&!(showV&&V.length))h+=`<p class="sr-e">Nothing found for “${esc(q.trim())}”. Try another word.</p>`;
+  return h}
 function openSearch(){
-  if($('#sr'))return;
+  if($('#sr'))return;SRT='all';
   const el=document.createElement('div');el.id='sr';el.className='spg';el.setAttribute('role','dialog');el.setAttribute('aria-label','Search');
   const cur=$('#q').value;
   el.innerHTML=`<div class="sr-top"><label class="search">${ic('search','sm')}<input id="srIn" value="${esc(cur)}" placeholder="Search products and niches" aria-label="Search" enterkeyhint="search" autocomplete="off"></label><button class="sr-x" data-srx>Cancel</button></div><div class="sr-body" id="srBody">${srBody(cur)}</div>`;
   $('#app').appendChild(el);requestAnimationFrame(()=>requestAnimationFrame(()=>{el.classList.add('in');const i=$('#srIn');i.focus();i.setSelectionRange(i.value.length,i.value.length)}));
-  const run=v=>{v=v.trim();if(v){const R=getRecent().filter(x=>x.toLowerCase()!==v.toLowerCase());R.unshift(v);setRecent(R)}$('#q').value=v;renderMarket(S.cat,v);closeSearch()};
+  const run=v=>{v=v.trim();if(v){const R=getRecent().filter(x=>x.toLowerCase()!==v.toLowerCase());R.unshift(v);setRecent(R)}$('#q').value=v;renderMarket(S.cat,v);if(S.tab!=='market')setTab('market');closeSearch()};
   el.addEventListener('input',e=>{if(e.target.id==='srIn')$('#srBody').innerHTML=srBody(e.target.value)});
   el.addEventListener('keydown',e=>{if(e.target.id==='srIn'&&e.key==='Enter'){e.preventDefault();run(e.target.value)}});
   el.addEventListener('click',e=>{
     const b=e.target.closest('button');if(!b)return;
     if(b.dataset.srx!==undefined){closeSearch();return}
+    if(b.dataset.srt!==undefined){e.stopPropagation();SRT=b.dataset.srt;const bd=$('#srBody');bd.innerHTML=srBody($('#srIn').value);bd.scrollTop=0;return}
+    if(b.dataset.srvid!==undefined){e.stopPropagation();goReel(b.dataset.srvid);return}
+    if(b.dataset.open){closeSearch();return}
     if(b.dataset.sr!==undefined){e.stopPropagation();run(b.dataset.sr);return}
     if(b.dataset.srdel!==undefined){e.stopPropagation();setRecent(getRecent().filter(x=>x!==b.dataset.srdel));$('#srBody').innerHTML=srBody($('#srIn').value);return}
     if(b.dataset.srclear!==undefined){e.stopPropagation();setRecent([]);$('#srBody').innerHTML=srBody($('#srIn').value);return}
   })}
+function goReel(id){closeSearch();setTab('feed');setTimeout(()=>{const f=$('#feed'),r=f.querySelector(`.reel[data-vid="${id}"]`);if(r){f.scrollTop=r.offsetTop;reelSync()}},140)}
 function closeSearch(){const el=$('#sr');if(!el)return;el.classList.remove('in');el.querySelector('input')?.blur();setTimeout(()=>el.remove(),450)}
 document.addEventListener('focusin',e=>{if(e.target.id==='q'){e.target.blur();openSearch()}});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSearch()});
