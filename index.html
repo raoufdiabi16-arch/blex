@@ -1350,6 +1350,15 @@ body.ai-busy #top[data-tab=ai] .ttl-m{display:inline-block;animation:lumoPop .45
 .cb.me{background:#DCEAFF;color:#0A1A3A;border:1px solid rgba(47,107,255,.16)}[data-theme=dark] .cb.me{background:#1B3358;color:#E8F0FF;border-color:rgba(120,160,255,.25)}
 
 .scroll.ch{display:block;align-items:initial;gap:0;min-height:0;width:auto;padding:0 0 calc(var(--bot) + 100px);border-radius:0}.scroll.ch:active{background:none}
+
+/* ---- v10: blue notification banner ---- */
+#bnr{position:absolute;left:10px;right:10px;top:calc(var(--top) + 10px);z-index:300;display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:24px;color:#fff;background:linear-gradient(135deg,#2F6BFF 0%,#1E4FD8 100%);box-shadow:0 18px 36px -14px rgba(30,79,216,.55),inset 0 0 0 1px rgba(255,255,255,.22);transform:translateY(-140%);opacity:0;transition:transform .55s var(--spring),opacity .3s;cursor:pointer;text-align:start}
+#bnr.on{transform:none;opacity:1}
+.bn-lg{flex:none;width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:#fff;box-shadow:0 4px 10px rgba(0,0,0,.14)}.bn-lg img{display:block;height:24px;width:auto}
+.bn-tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.bn-h{display:flex;align-items:center;justify-content:space-between;font-size:12px;opacity:.85}.bn-h b{font-weight:750;letter-spacing:.4px;text-transform:uppercase}.bn-h small{font-size:12px}
+.bn-tx strong{font-size:15.5px;font-weight:700;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bn-b{font-size:13.5px;opacity:.92;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 </style>
 </head>
 <body>
@@ -1931,6 +1940,7 @@ function acctHTML(){
   <div class="grp">${row('layers','Prime Console','prime',sw(S.prime),S.prime?'Shown in the bottom bar':'Hidden from the bottom bar')}</div>
   <div class="grp">${row('eyeoff','Anonymous selling','anon',sw(an),an?'Your name is hidden':'Your name is visible')}</div>
   <div class="grp">${row('save','Saved','saved',bd(n))}${row('truck','Delivery addresses','addr')}${row('shield','Delivery fee payments','pay')}</div>
+  <div class="grp">${row('bell','Notification sound','snd',sw(SFX.on),SFX.on?'Plays on new messages and orders':'Silent')}${row('chat','Preview: new message','tmsg')}${row('box','Preview: new order','tord')}</div>
   <div class="grp">${row('bell','Notifications','notif')}${row('moon','Dark mode','theme',sw(S.theme==='dark'))}${row('sliders','Settings','settings')}</div>
   <div class="grp">${row('help','Help & support','help')}</div>
   ${AUTH.user?`<button class="cta up" data-p="signout">Sign out</button>`:`<button class="cta up" data-p="signin">Sign in or create account</button>`}</div>`;
@@ -2252,6 +2262,9 @@ document.addEventListener('click',e=>{
   if(d.p){
     if(d.p==='theme'){applyTheme(S.theme==='dark'?'light':'dark');S.themeUser=true;renderSub();return}
     if(d.p==='prime'){S.prime=!S.prime;try{localStorage.setItem('blex_prime',S.prime?'1':'0')}catch(e){}barUI.setPrime(S.prime);renderSub();toast(S.prime?'Prime Console added to the bar':'Prime Console hidden');return}
+    if(d.p==='snd'){SFX.on=!SFX.on;renderSub();if(SFX.on)SFX.message();toast(SFX.on?'Notification sound on':'Notification sound off');return}
+    if(d.p==='tmsg'){const c=chatSellers()[0],k=c?c.sid:Object.keys(DB.sellers).find(x=>x!==DB.me.id);hideSub&&openSide(false);setTimeout(()=>receiveMessage(k,'Hello! Yes, it is still available.',(DB.products.find(p=>p.seller===k)||{}).id),500);return}
+    if(d.p==='tord'){const mp=myProducts()[0]||DB.products[0];openSide(false);setTimeout(()=>receiveOrder({id:'o'+Date.now().toString(36).slice(-4),product:mp.id,status:'Awaiting confirmation',deliveryFee:450,feePaid:true,placedAt:Date.now(),statusAt:Date.now(),deadlineH:48}),500);return}
     if(d.p==='anon'){DB.me.anon=!DB.me.anon;renderSub();toast(DB.me.anon?'Your identity is hidden':'Your name is visible');return}
     if(d.p==='saved'){openSide(false);push('saved');return}
     if(d.p==='signin'){openSide(false);setTimeout(()=>authSheet(),250);return}
@@ -4738,6 +4751,47 @@ DB.notifs=[{id:'n0',i:'truck',t:'Your order is on its way',s:'Order #O1 · '+((D
 function hdrUpdate(){const b=document.getElementById('hdBell'),c=document.getElementById('hdCart'),u=DB.notifs.filter(n=>n.unread).length;
   if(b){b.hidden=!u;b.textContent=u}if(c){c.hidden=!S.cart.length;c.textContent=S.cart.length}const c2=document.getElementById('hdCart2');if(c2){c2.hidden=!S.cart.length;c2.textContent=S.cart.length}}
 function notify(i,t,s){DB.notifs.unshift({id:'n'+Date.now()+Math.random().toString(36).slice(2,5),i,t,s,at:Date.now(),unread:true});hdrUpdate()}
+/* ============ ALERTS: sounds + blue in-app notification ============ */
+/* ZzFX Micro (MIT, Frank Force) – lazy audio context so the page loads even where audio is blocked */
+const SFX=(()=>{
+  let zzfxV=.3,zzfxX=null;
+  const zzfx=(p=1,k=.05,b=220,e=0,r=0,t=.1,q=0,D=1,u=0,y=0,v=0,z=0,l=0,E=0,A=0,F=0,c=0,w=1,m=0,B=0,N=0)=>{let M=Math,d=2*M.PI,R=44100,G=u*=500*d/R/R,C=b*=(1-k+2*k*M.random(k=[]))*d/R,g=0,H=0,a=0,n=1,I=0,J=0,f=0,h=N<0?-1:1,x=d*h*N*2/R,L=M.cos(x),Z=M.sin,K=Z(x)/4,O=1+K,X=-2*L/O,Y=(1-K)/O,P=(1+h*L)/2/O,Q=-(h+L)/O,S=P,T=0,U=0,V=0,W=0;e=R*e+9;m*=R;r*=R;t*=R;c*=R;y*=500*d/R**3;A*=d/R;v*=d/R;z*=R;l=R*l|0;p*=zzfxV;for(h=e+m+r+t+c|0;a<h;k[a++]=f*p)++J%(100*F|0)||(f=q?1<q?2<q?3<q?4<q?(g/d%1<D/2)*2-1:Z(g**3):M.max(M.min(M.tan(g),1),-1):1-(2*g/d%2+2)%2:1-4*M.abs(M.round(g/d)-g/d):Z(g),f=(l?1-B+B*Z(d*a/l):1)*(4<q?f:(f<0?-1:1)*M.abs(f)**D)*(a<e?a/e:a<e+m?1-(a-e)/m*(1-w):a<e+m+r?w:a<h-c?(h-a-c)/t*w:0),f=c?f/2+(c>a?0:(a<h-c?1:(h-a)/c)*k[a-c|0]/2/p):f,N?f=W=S*T+Q*(T=U)+P*(U=f)-Y*V-X*(V=W):0),x=(b+=u+=y)*M.cos(A*H++),g+=x+x*E*(a*a*d%2-1),n&&++n>z&&(b+=v,C+=v,n=0),!l||++I%l||(b=C,u=G,n=n||1);X=zzfxX=zzfxX||new(window.AudioContext||window.webkitAudioContext),p=X.createBuffer(1,h,R);p.getChannelData(0).set(k);b=X.createBufferSource();b.buffer=p;b.connect(X.destination);b.start()};
+  let on=true;try{on=localStorage.getItem('blex_snd')!=='0'}catch(e){}
+  let cash=null,cashOk=true;
+  const mkCash=()=>{if(cash||!cashOk)return cash;try{cash=new Audio('cash.wav');cash.preload='auto';cash.addEventListener('error',()=>{cashOk=false})}catch(e){cashOk=false}return cash};
+  /* browsers only allow sound after a first tap: unlock on the first gesture */
+  const unlock=()=>{try{zzfxX=zzfxX||new(window.AudioContext||window.webkitAudioContext);if(zzfxX.state==='suspended')zzfxX.resume()}catch(e){}mkCash()};
+  ['pointerdown','keydown','touchstart'].forEach(ev=>document.addEventListener(ev,unlock,{once:true,passive:true}));
+  const resume=()=>{try{if(zzfxX&&zzfxX.state==='suspended')zzfxX.resume()}catch(e){}};
+  return{
+    get on(){return on},set on(v){on=!!v;try{localStorage.setItem('blex_snd',on?'1':'0')}catch(e){}},
+    message(){if(!on)return;try{resume();zzfx(...[1.2,,252,.03,.03,.09,,2.9,-15,31,,,,,,,.03,.99,.09])}catch(e){}},
+    order(){if(!on)return;const a=mkCash();let fallback=()=>{try{resume();zzfx(...[1.1,,1200,.01,.08,.25,1,1.5,,,300,.06,,,,,.05,.9,.1])}catch(e){}};
+      if(a&&cashOk){try{a.currentTime=0;const pr=a.play();if(pr&&pr.catch)pr.catch(fallback)}catch(e){fallback()}}else fallback()}}
+})();
+let bnT=0;
+function showBanner({title,body,onTap}){
+  let b=document.getElementById('bnr');
+  if(!b){b=document.createElement('div');b.id='bnr';b.setAttribute('role','alert');$('#app').appendChild(b)}
+  b.innerHTML=`<span class="bn-lg"><img alt="" src="${LOGO}"></span><span class="bn-tx"><span class="bn-h"><b>Blex</b><small>now</small></span><strong>${esc(title)}</strong><span class="bn-b">${esc(body)}</span></span>`;
+  b._tap=onTap||null;void b.offsetWidth;b.classList.add('on');
+  try{if(navigator.vibrate)navigator.vibrate(40)}catch(e){}
+  clearTimeout(bnT);bnT=setTimeout(()=>b.classList.remove('on'),5200)}
+document.addEventListener('click',e=>{const b=e.target.closest('#bnr');if(!b)return;b.classList.remove('on');clearTimeout(bnT);if(b._tap)b._tap()});
+/* incoming message: stores it, rings, shows the banner. A real backend would call this when a message arrives. */
+function receiveMessage(key,text,pid){
+  const sl=peerOf(key),bu=isBuyerKey(key),nm=bu?sl.name:sellerName(sl);
+  (DB.dm[key]=DB.dm[key]||[]).push({from:'them',text,ts:Date.now(),pid:pid||undefined});dmSave();
+  notify('chat','New message from '+nm,text);try{qkUpdate();chRefresh()}catch(e){}
+  const open=S.stack[S.stack.length-1];if(open&&open.dataset.type==='chat'){try{$$('#chM',open)}catch(e){}}
+  SFX.message();showBanner({title:nm,body:text,onTap:()=>{openSide(false);push('chat',key)}})}
+/* incoming order on one of my products */
+function receiveOrder(o){
+  if(!DB.orders.find(x=>x.id===o.id))DB.orders.push(o);
+  const p=DB.products.find(x=>x.id===o.product)||{name:'your product'};
+  notify('box','New order',p.name+' · Order #'+o.id.toUpperCase());try{renderMenu()}catch(e){}
+  SFX.order();showBanner({title:'New order received',body:p.name+' · Order #'+o.id.toUpperCase(),onTap:()=>{openSide(false);S.odId='all';push('orders','all')}})}
+
 function notifsView(){
   const L=DB.notifs,now=Date.now(),isNew=n=>n.unread;
   const row=n=>`<div class="nt-r ${n.unread?'un':''}"><span class="nt-i">${ic(n.i)}</span><div class="nt-x"><b>${esc(n.t)}</b><span>${esc(n.s)}</span></div><div class="nt-m"><span>${ago(n.at)}</span>${n.unread?'<i></i>':''}</div></div>`;
