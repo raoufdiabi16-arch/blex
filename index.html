@@ -1925,16 +1925,16 @@ body.ai-busy #top[data-tab=ai] .ttl-m{display:inline-block;animation:lumoPop .45
 .bux-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;min-height:40px}
 .bux-bt{display:flex;align-items:center;justify-content:center;text-align:center;min-width:0}
 .bux-bt h1{margin:0;font-size:18px;font-weight:650;letter-spacing:.1px;line-height:1.2;white-space:nowrap;transform:scale(calc(1 + var(--pcs,0)*.12));transform-origin:center;will-change:transform}
-.bux-tabs{position:sticky;top:var(--bxh,calc(var(--top) + 54px));z-index:5;display:flex;margin:8px 0 0;padding:0 6px;overflow-x:auto;scrollbar-width:none;box-shadow:inset 0 -1px 0 var(--line);background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(26px) saturate(1.8);backdrop-filter:blur(26px) saturate(1.8)}
+.bux-tabs{position:sticky;top:var(--bxh,calc(var(--top) + 54px));z-index:5;display:flex;justify-content:space-between;gap:2px;margin:2px 0 0;padding:0 12px;overflow-x:auto;scrollbar-width:none;box-shadow:inset 0 -1px 0 var(--line);background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(26px) saturate(1.8);backdrop-filter:blur(26px) saturate(1.8)}
 .bux-tabs::-webkit-scrollbar{display:none}
-.bux-t{position:relative;flex:1 0 auto;display:flex;align-items:center;justify-content:center;min-width:0;min-height:46px;padding:0 5px;border:0;border-radius:0;background:none;box-shadow:none;font:inherit;font-size:15.5px;font-weight:600;color:var(--ink2);white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:color .2s}
+.bux-t{position:relative;flex:0 0 auto;display:flex;align-items:center;justify-content:center;min-width:0;min-height:48px;padding:0 4px;border:0;border-radius:0;background:none;box-shadow:none;font:inherit;font-size:15px;font-weight:550;letter-spacing:-.1px;color:var(--ink2);white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:color .22s}
 .bux-t[aria-selected=true]{color:var(--ink);font-weight:700}
-.bux-ti{display:grid;place-items:center;flex:none;width:0;margin-right:0;opacity:0;overflow:hidden;transition:width .26s cubic-bezier(.3,.8,.3,1),margin .26s cubic-bezier(.3,.8,.3,1),opacity .2s}
+.bux-ti{display:grid;place-items:center;flex:none;width:0;margin-right:0;opacity:0;overflow:hidden;transition:width .3s cubic-bezier(.3,.8,.3,1),margin .3s cubic-bezier(.3,.8,.3,1),opacity .22s}
 .bux-ti .ic{width:17px;height:17px}
 .bux-t[aria-selected=true] .bux-ti{width:17px;margin-right:6px;opacity:1}
-.bux-t em{margin-left:5px;font-style:normal;font-size:12.5px;font-weight:600;font-variant-numeric:tabular-nums;color:color-mix(in srgb,var(--ink) 38%,transparent)}
-.bux-t[aria-selected=true] em{color:var(--ink2)}
-.bux-t::after{content:"";position:absolute;left:5px;right:5px;bottom:0;height:2px;border-radius:2px;background:var(--ink);opacity:0;transform:scaleX(.35);transition:transform .28s cubic-bezier(.3,.8,.3,1),opacity .2s}
+.bux-t em{display:inline-flex;align-items:center;justify-content:center;flex:none;height:20px;max-width:0;margin-left:0;padding:0;border-radius:10px;overflow:hidden;opacity:0;background:color-mix(in srgb,var(--ink) 8%,transparent);font-style:normal;font-size:12px;font-weight:650;line-height:1;font-variant-numeric:tabular-nums;color:var(--ink2);transition:max-width .3s cubic-bezier(.3,.8,.3,1),margin .3s cubic-bezier(.3,.8,.3,1),padding .3s cubic-bezier(.3,.8,.3,1),opacity .22s}
+.bux-t[aria-selected=true] em{max-width:44px;margin-left:7px;padding:0 7px;opacity:1}
+.bux-t::after{content:"";position:absolute;left:4px;right:4px;bottom:0;height:2.5px;border-radius:3px 3px 0 0;background:var(--ink);opacity:0;transform:scaleX(.3);transition:transform .3s cubic-bezier(.3,.8,.3,1),opacity .2s}
 .bux-t[aria-selected=true]::after{opacity:1;transform:none}
 .bux-t:active{opacity:.6}
 .scroll.bux .od-wrap{padding:14px 16px 0}
@@ -2079,6 +2079,20 @@ body.ai-busy #top[data-tab=ai] .ttl-m{display:inline-block;animation:lumoPop .45
 .rl-acts{display:flex;gap:8px;margin-top:10px}
 .rl-acts button{flex:1;height:44px;min-height:0;border-radius:14px;background:var(--card);font-size:14.5px;font-weight:650;color:var(--ink);box-shadow:0 0 0 1px var(--line);display:flex;align-items:center;justify-content:center;gap:7px}
 .rl-acts .ic{width:18px;height:18px}
+/* ===== reel playback controls ===== */
+.reel{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.reel .rp{position:absolute;left:0;right:0;bottom:calc(var(--bot) + 72px);height:28px;z-index:4;display:flex;align-items:center;padding:0 12px;touch-action:none;cursor:pointer}
+.rl .reel .rp{bottom:calc(var(--bot) + 2px)}
+.rp-t{position:relative;flex:1;height:2.5px;border-radius:3px;background:rgba(255,255,255,.32);box-shadow:0 0 0 .5px rgba(0,0,0,.16);transition:height .16s var(--ease)}
+.rp-f{position:absolute;inset:0;border-radius:inherit;background:#fff;transform-origin:left center;transform:scaleX(0);will-change:transform}
+.reel.scrub .rp-t,.reel.hold .rp-t{height:6px}
+.rp-tm{position:absolute;left:50%;bottom:34px;transform:translateX(-50%) translateY(4px);padding:5px 11px;border-radius:14px;background:rgba(0,0,0,.5);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff;font-size:13px;font-weight:650;font-variant-numeric:tabular-nums;letter-spacing:.2px;opacity:0;pointer-events:none;transition:opacity .15s,transform .15s var(--ease);white-space:nowrap}
+.reel.scrub .rp-tm{opacity:1;transform:translateX(-50%)}
+.reel .info,.reel .acts{transition:opacity .22s}
+.reel.hold .info,.reel.hold .acts,.reel.scrub .info,.reel.scrub .acts{opacity:0;pointer-events:none}
+.rp-g{position:absolute;left:50%;top:50%;width:78px;height:78px;margin:-39px 0 0 -39px;border-radius:50%;background:rgba(0,0,0,.34);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);display:grid;place-items:center;color:#fff;opacity:0;transform:scale(.72);pointer-events:none;transition:opacity .18s,transform .26s var(--spring);z-index:4}
+.rp-g svg{width:34px;height:34px;margin-left:4px;fill:currentColor}
+.reel.paused .rp-g{opacity:1;transform:scale(1)}
 </style>
 </head>
 <body>
@@ -2733,7 +2747,7 @@ function reelHTML(v){
     const isN=v.ref[0]==='niche',sl=seller(o.seller),nn=DB.niches.find(n=>n.id===o.niche)||{};
     const who=sl.anon?(isN?o.name:(nn.name||'Anonymous')):sl.name;
     const av=sl.av?`<span class="av3">${scene(sl.av.art,sl.av.h,2)}</span>`:`<span class="av3 anon">${ic('eyeoff','sm')}</span>`;
-    return `<article class="reel" data-vid="${v.id}"><div class="bg">${v.media?`<video class="rv" src="${v.media.url}" loop muted playsinline preload="auto"></video>`:scene(pr.art,pr.h,1)}</div>
+    return `<article class="reel" data-vid="${v.id}"><div class="bg">${v.media?`<video class="rv" src="${v.media.url}" data-dur="${v.media.dur||0}" loop muted playsinline preload="auto"></video>`:scene(pr.art,pr.h,1)}</div>${v.media?`<div class="rp-g" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.2v13.6a.7.7 0 0 0 1.07.6l10.6-6.8a.7.7 0 0 0 0-1.2L9.07 4.6A.7.7 0 0 0 8 5.2z"/></svg></div><div class="rp" data-rp role="slider" aria-label="Video progress"><span class="rp-t"><i class="rp-f"></i></span><span class="rp-tm">0:00 / 0:00</span></div>`:''}
     <div class="info"><button class="visit" data-open="${v.ref.join(':')}">${isN?'Visit niche':'Visit product'}${ic('arrow','sm')}</button>
       <button class="poster" data-toast="Creator profiles are coming soon">${av}<b>${who}</b></button>
       <p><b>${esc(v.title)}.</b> ${esc(v.text||'')}</p></div>
@@ -4398,7 +4412,7 @@ function buxSync(el){const d=buxData();$$('.bux-t',el).forEach(b=>{const on=S.bu
 function buxPopHTML(){return BUX_SORT.map(([k,l,i,a])=>`<button type="button" role="menuitemradio" class="bux-o" data-bu="so" data-k="${k}" aria-checked="${S.buS===k}"><span class="bux-oi">${buxIc(i)}</span><span class="bux-ol">${l}</span><span class="bux-ok">${buxIc(a)}</span></button>`).join('')}
 function buysView(){
   S.buQ='';const n=myPurchases().length;
-  return `<div class="scroll np bux"><div class="bux-bar" id="buxBar"><div class="bux-row"><span aria-hidden="true"></span><div class="bux-bt"><h1>My purchases</h1></div>${n?`<button type="button" class="bux-sortb" id="buxSortB" data-bu="sort" aria-haspopup="menu" aria-expanded="false" aria-controls="buxPop" aria-label="Sort orders">${buxIc(S.buS==='old'?'sortU':'sortD')}</button>`:'<span aria-hidden="true"></span>'}</div></div>${n?`<div class="pc-sbw bux-sbw" id="buxSb"><label class="pc-sb">${ic('search')}<input id="buxq" type="search" placeholder="Search ${n} order${n===1?'':'s'}" autocomplete="off" enterkeyhint="search" aria-label="Search orders"><button type="button" data-bu="sx" aria-label="Clear search">${ic('x')}</button></label></div><div class="bux-tabs" id="buxTabs" role="tablist" aria-label="Orders">${buxTabsHTML()}</div>`:''}<div class="od-wrap" id="buxList">${buxListHTML()}</div></div>${n?`<div class="bux-ov" id="buxOv" data-bu="ov"></div><div class="bux-pop" id="buxPop" role="menu" aria-label="Sort orders" aria-hidden="true">${buxPopHTML()}</div>`:''}`}
+  return `<div class="scroll np bux"><div class="bux-bar" id="buxBar"><div class="bux-row"><span aria-hidden="true"></span><div class="bux-bt"><h1>My purchases</h1></div>${n?`<button type="button" class="bux-sortb" id="buxSortB" data-bu="sort" aria-haspopup="menu" aria-expanded="false" aria-controls="buxPop" aria-label="Sort orders">${buxIc(S.buS==='old'?'sortU':'sortD')}</button>`:'<span aria-hidden="true"></span>'}</div></div>${n?`<div class="bux-tabs" id="buxTabs" role="tablist" aria-label="Orders">${buxTabsHTML()}</div><div class="pc-sbw bux-sbw" id="buxSb"><label class="pc-sb">${ic('search')}<input id="buxq" type="search" placeholder="Search ${n} order${n===1?'':'s'}" autocomplete="off" enterkeyhint="search" aria-label="Search orders"><button type="button" data-bu="sx" aria-label="Clear search">${ic('x')}</button></label></div>`:''}<div class="od-wrap" id="buxList">${buxListHTML()}</div></div>${n?`<div class="bux-ov" id="buxOv" data-bu="ov"></div><div class="bux-pop" id="buxPop" role="menu" aria-label="Sort orders" aria-hidden="true">${buxPopHTML()}</div>`:''}`}
 function buQR(id){
   const o=DB.orders.find(x=>x.id===id),p=DB.products.find(x=>x.id===o.product),used=buFinal(o);
   openSheet(`<h3>Delivery QR code</h3><div class="bu-big ${used?'used':''}">${qrSVG(buCode(o),232)}</div><div class="bu-bc">${buTok(o)}</div><p class="muted" style="text-align:center;margin:4px 0 14px">${esc(p.name)} · Order #${o.id.toUpperCase()}<br>Show this code to the courier when your order arrives. It confirms the delivery.</p><button class="np-txt" style="width:100%" data-act="close">Close</button>`)}
@@ -4407,7 +4421,7 @@ function buCancel(id){
   openSheet(`<h3>Cancel this order?</h3><p class="muted">${esc(p.name)} · Order #${o.id.toUpperCase()}<br>Your delivery fee of <b>${money(o.deliveryFee)}</b> will be refunded.</p><button class="np-go" id="buY" style="width:100%;margin-top:16px">Cancel & refund ${money(o.deliveryFee)}</button><button class="np-txt" style="width:100%" data-act="close">Keep the order</button>`);
   $('#buY').onclick=()=>{if(!buCan(o)){closeSheet();toast('This order is not eligible yet');return}o.status='Cancelled';o.refunded=true;o.statusAt=Date.now();closeSheet();notify('bag','Order cancelled',money(o.deliveryFee)+' refunded for '+p.name);toast(money(o.deliveryFee)+' refunded');const el=S.stack[S.stack.length-1];if(el&&el.dataset.type==='buys')buxSync(el)}}
 function buxPop(el,on){const pop=$('#buxPop',el),ov=$('#buxOv',el),b=$('#buxSortB',el);if(!pop)return;if(on===undefined)on=!pop.classList.contains('on');pop.classList.toggle('on',on);if(ov)ov.classList.toggle('on',on);pop.setAttribute('aria-hidden',String(!on));if(b)b.setAttribute('aria-expanded',String(on))}
-function buxTop(el){const sc=el.querySelector(':scope>.scroll'),sb=$('#buxSb',el),bar=$('#buxBar',el);if(sc&&sb&&bar){const y=sb.offsetTop+sb.offsetHeight+8-bar.offsetHeight;if(sc.scrollTop>y)sc.scrollTop=Math.max(0,y)}}
+function buxTop(el){const sc=el.querySelector(':scope>.scroll'),ls=$('#buxList',el),bar=$('#buxBar',el),tb=$('#buxTabs',el);if(sc&&ls&&bar&&tb){const y=ls.offsetTop-bar.offsetHeight-tb.offsetHeight;if(sc.scrollTop>y)sc.scrollTop=Math.max(0,y)}}
 document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;const el=S.stack[S.stack.length-1];if(el&&el.dataset.type==='buys'&&$('#buxPop.on',el)){buxPop(el,false);const b=$('#buxSortB',el);if(b)b.focus()}});
 function buxBarH(el){const b=$('#buxBar',el);if(b&&b.offsetHeight)el.style.setProperty('--bxh',b.offsetHeight+'px')}
 function buysInit(el){
@@ -4544,7 +4558,7 @@ function reelSync(){
   const f=document.getElementById('feed');if(!f)return;
   const on=S.tab==='feed'&&!S.stack.length,i=Math.round(f.scrollTop/(f.clientHeight||1));
   f.querySelectorAll('.reel').forEach((a,j)=>{const v=a.querySelector('video.rv');if(!v)return;
-    if(on&&j===i){v.muted=!S.reelSound;const pr=v.play();if(pr&&pr.catch)pr.catch(()=>{})}else v.pause()})}
+    if(on&&j===i){v.muted=!S.reelSound;if(!v._man){const pr=v.play();if(pr&&pr.catch)pr.catch(()=>{})}}else{v.pause();rpReset(v)}})}
 function refreshFeed(top){const f=$('#feed'),y=f.scrollTop;f.innerHTML=feedView();if(!top)f.scrollTop=y;setTimeout(reelSync,60)}
 document.getElementById('feed').addEventListener('scroll',()=>{clearTimeout(reelT);reelT=setTimeout(reelSync,90)},{passive:true});
 function pickMedia(file,o,ok){
@@ -4564,6 +4578,64 @@ function mgFeed(p){
   const R=DB.videos.filter(v=>v.mine&&v.ref[0]==='product'&&v.ref[1]===p.id);
   const row=v=>`<div class="mg-pr"><span class="mg-pt mg-rv"><video src="${v.media.url}#t=0.1" muted playsinline preload="metadata"></video></span><span class="mg-pn"><b>${esc(v.text||'Reel')}</b><span>${agoLabel(v.at)} · ${esc(v.likes)} likes</span></span><button class="mg-rm" data-mg="rview" data-id="${v.id}">View</button><button class="mg-rm" data-mg="rdel" data-id="${v.id}" aria-label="Delete reel">Delete</button></div>`;
   return mgCard('Feed',(R.length?`<div class="mg-pl">${R.map(row).join('')}</div>`:'<p class="mg-n" style="margin-top:0">No reels yet. A reel is a short video in Feed with a button to this product.</p>')+mgRow('reel','play','Add a reel','Short video in Feed, linked to this product'),R.length?R.length+' reel'+(R.length===1?'':'s'):'')}
+/* ---- reel playback controls, Instagram style: tap = pause / play, hold = pause while held, drag the thin line = scrub ---- */
+(function(){
+  const dur=v=>isFinite(v.duration)&&v.duration>0?v.duration:(+v.dataset.dur||0);
+  const mmss=s=>{s=Math.max(0,Math.floor(s));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
+  const rpOf=v=>{const r=v.closest('.reel');return r&&r.querySelector('.rp-f')};
+  function paint(v,t){const f=rpOf(v);if(!f)return;const d=dur(v),c=t==null?v.currentTime:t;f.style.transform='scaleX('+(d?Math.min(1,Math.max(0,c/d)):0)+')'}
+  let raf=0;
+  function loop(){raf=0;let any=false;document.querySelectorAll('.reel video.rv').forEach(v=>{if(!v.paused&&!v.ended){any=true;if(!v._scrub)paint(v)}});if(any)raf=requestAnimationFrame(loop)}
+  const kick=()=>{if(!raf)raf=requestAnimationFrame(loop)};
+  const isRv=t=>t instanceof HTMLVideoElement&&t.classList.contains('rv');
+  document.addEventListener('play',e=>{if(!isRv(e.target))return;const r=e.target.closest('.reel');if(r)r.classList.remove('paused');kick()},true);
+  document.addEventListener('playing',e=>{if(isRv(e.target))kick()},true);
+  document.addEventListener('seeked',e=>{if(isRv(e.target)&&!e.target._scrub)paint(e.target)},true);
+  document.addEventListener('timeupdate',e=>{if(isRv(e.target)&&e.target.paused&&!e.target._scrub)paint(e.target)},true);
+  document.addEventListener('loadedmetadata',e=>{
+    const v=e.target;if(!isRv(v))return;paint(v);
+    if(v.duration===Infinity&&!v._fx){v._fx=1;const back=()=>{v.removeEventListener('timeupdate',back);v.currentTime=0;paint(v)};v.addEventListener('timeupdate',back);v.currentTime=1e101}},true);
+  window.rpReset=v=>{v._man=false;const r=v.closest('.reel');if(r)r.classList.remove('paused','hold','scrub')};
+  let g=null;
+  const glyph=(r,on)=>{r.classList.toggle('paused',on)};
+  document.addEventListener('pointerdown',e=>{
+    const t=e.target;if(!t.closest||g)return;
+    const rp=t.closest('.rp');
+    if(rp){
+      const rl=rp.closest('.reel'),v=rl&&rl.querySelector('video.rv');if(!v||!dur(v))return;
+      e.preventDefault();e.stopPropagation();
+      const tr=rp.querySelector('.rp-t'),tm=rp.querySelector('.rp-tm'),was=!v.paused;let pend=null;
+      v._scrub=true;v.pause();rl.classList.add('scrub');
+      const at=ev=>{const b=tr.getBoundingClientRect(),x=Math.min(1,Math.max(0,(ev.clientX-b.left)/b.width)),d=dur(v);paint(v,x*d);tm.textContent=mmss(x*d)+' / '+mmss(d);pend=x*d;
+        if(!v._sk){v._sk=requestAnimationFrame(()=>{v._sk=0;if(pend!=null)v.currentTime=pend})}};
+      try{rp.setPointerCapture(e.pointerId)}catch(_){}
+      at(e);
+      const mv=ev=>{if(ev.pointerId===e.pointerId)at(ev)};
+      const up=ev=>{if(ev.pointerId!==e.pointerId)return;
+        rp.removeEventListener('pointermove',mv);rp.removeEventListener('pointerup',up);rp.removeEventListener('pointercancel',up);
+        v._scrub=false;rl.classList.remove('scrub');if(pend!=null){v.currentTime=pend;paint(v,pend)}
+        if(was&&!v._man){const p=v.play();if(p&&p.catch)p.catch(()=>{})}};
+      rp.addEventListener('pointermove',mv);rp.addEventListener('pointerup',up);rp.addEventListener('pointercancel',up);return}
+    if(t.closest('button,a,input,textarea,select'))return;
+    const rl=t.closest('.reel'),v=rl&&rl.querySelector('video.rv');if(!v)return;
+    if(e.pointerType==='mouse'&&e.button!==0)return;
+    g={v,rl,id:e.pointerId,x:e.clientX,y:e.clientY,hold:false,moved:false,was:!v.paused,tm:0};
+    g.tm=setTimeout(()=>{if(g&&!g.moved){g.hold=true;v.pause();rl.classList.add('hold')}},260)},true);
+  document.addEventListener('pointermove',e=>{
+    if(!g||e.pointerId!==g.id||g.moved)return;
+    if(Math.hypot(e.clientX-g.x,e.clientY-g.y)>9){g.moved=true;clearTimeout(g.tm);
+      if(g.hold){g.rl.classList.remove('hold');if(g.was&&!g.v._man){const p=g.v.play();if(p&&p.catch)p.catch(()=>{})}}}},true);
+  const end=(e,cancel)=>{
+    if(!g||e.pointerId!==g.id)return;const o=g;g=null;clearTimeout(o.tm);
+    if(o.hold){o.rl.classList.remove('hold');if(o.was&&!o.v._man){const p=o.v.play();if(p&&p.catch)p.catch(()=>{})}return}
+    if(cancel||o.moved)return;
+    const v=o.v;
+    if(v.paused){v._man=false;glyph(o.rl,false);const p=v.play();if(p&&p.catch)p.catch(()=>{})}
+    else{v._man=true;v.pause();glyph(o.rl,true)}};
+  document.addEventListener('pointerup',e=>end(e,false),true);
+  document.addEventListener('pointercancel',e=>end(e,true),true);
+  document.addEventListener('contextmenu',e=>{if(e.target.closest&&e.target.closest('.reel'))e.preventDefault()},true);
+})();
 /* ============ VIDEO EDITOR (Feed reels) ============
    Non-destructive edit state (clips, text/shape items, filter) drawn on a canvas; "Done" renders it
    in real time with MediaRecorder into one video that the rest of the app treats like any other reel. */
@@ -5347,7 +5419,7 @@ function reelsView(vid){
 function rlSync(el){const f=el.querySelector?el.querySelector('.rl')||el:el;if(!f||!f.classList.contains('rl'))return;
   const i=Math.round(f.scrollTop/(f.clientHeight||1));
   f.querySelectorAll('.reel').forEach((a,j)=>{const v=a.querySelector('video.rv');if(!v)return;
-    if(j===i){v.muted=!S.reelSound;const pr=v.play();if(pr&&pr.catch)pr.catch(()=>{})}else v.pause()})}
+    if(j===i){v.muted=!S.reelSound;if(!v._man){const pr=v.play();if(pr&&pr.catch)pr.catch(()=>{})}}else{v.pause();rpReset(v)}})}
 function rlInit(el,vid){const f=el.querySelector('.rl');if(!f)return;
   const a=f.querySelector('.reel[data-vid="'+vid+'"]');if(a)f.scrollTop=a.offsetTop;
   let t;f.addEventListener('scroll',()=>{clearTimeout(t);t=setTimeout(()=>rlSync(f),90)});setTimeout(()=>rlSync(f),200)}
